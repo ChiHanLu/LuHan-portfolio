@@ -3,6 +3,9 @@ import path from "path";
 import matter from "gray-matter";
 import { notFound } from "next/navigation";
 import { MDXContent } from "@/lib/mdx";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import styles from "./post.module.css";
 
 export const dynamic = "force-static";
 
@@ -24,16 +27,25 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const filePathMd = path.join(base, `${slug}.md`);
   const filePathMdx = path.join(base, `${slug}.mdx`);
   let raw: string | null = null;
+  let sourceExt: ".md" | ".mdx" | null = null;
+  // Prefer .md if present (treat .md as pure markdown), otherwise fallback to .mdx
   try {
     raw = await fs.readFile(filePathMd, "utf8");
+    sourceExt = ".md";
   } catch {}
   if (!raw) {
     try {
       raw = await fs.readFile(filePathMdx, "utf8");
+      sourceExt = ".mdx";
     } catch {}
   }
   if (!raw) return notFound();
   const { data, content } = matter(raw);
+
+  // Respect explicit frontmatter flag first
+  const mdOnlyFlag = Boolean(data?.mdOnly);
+  // Decide renderer: prefer explicit frontmatter, else based on file extension
+  const useMDX = mdOnlyFlag ? false : sourceExt === ".mdx";
   
   return (
     <main className="min-h-screen bg-background">
@@ -50,8 +62,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
           </header>
           
-          <div className="prose prose-lg prose-invert max-w-none prose-headings:text-white prose-p:text-gray-300 prose-strong:text-white prose-code:text-primary-300 prose-pre:bg-secondary-900 prose-blockquote:border-primary-500 prose-blockquote:text-gray-300">
-            <MDXContent source={content} />
+          <div className={`${styles.article} max-w-none`}> 
+            {useMDX ? (
+              <MDXContent source={content} />
+            ) : (
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+            )}
           </div>
 
         </article>

@@ -1,0 +1,54 @@
+/* Local article styles to mimic basic prose styling without changing globals.css */
+.article {
+  color: #e5e7eb; /* text-gray-200 */
+  line-height: 1.75;
+  font-size: 1.0625rem; /* 17px */
+}
+.article h1,
+.article h2,
+.article h3,
+.article h4 {
+  color: #ffffff;
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.25;
+}
+.article p {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  color: #d1d5db; /* gray-300 */
+}
+.article a {
+  color: #93c5fd; /* light blue */
+  text-decoration: underline;
+}
+.article code {
+  background: #0f172a; /* slate-900 */
+  color: #18a02a; /* orange */
+  padding: 0.15rem 0.3rem;
+  border-radius: 0.25rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;
+  font-size: 0.9em;
+}
+.article pre {
+  background: #0b1220; /* darker */
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow: auto;
+  color: #cbd5e1;
+}
+.article blockquote {
+  border-left: 4px solid rgba(99,102,241,0.3); /* indigo-500/30 */
+  padding-left: 1rem;
+  color: #cbd5e1;
+  margin: 1rem 0;
+}
+.article ul,
+.article ol {
+  padding-left: 1.25rem;
+  margin: 0.75rem 0;
+}
+.article img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+}

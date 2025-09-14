@@ -18,26 +18,33 @@ export default function Footer() {
           transition={{ duration: 0.6 }}
           className="text-center space-y-4"
         >
-          <div className="flex justify-center gap-6 mb-6">
-            {[
-              { name: "GitHub", icon: "💻", href: "https://github.com/ChiHanLu" },
-              { name: "SoulCraft Journal", icon: "📝", href: "https://www.soulcraftjournal.studio/" },
-              { name: "Email", icon: "📧", href: "mailto:11336028@ntub.edu.tw" }
-            ].map((social, index) => (
-              <motion.a
-                key={social.name}
-                href={social.href}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="flex items-center gap-2 text-sm text-gray-400 hover:text-primary-400 transition-colors duration-200 hover:scale-105"
-                aria-label={social.name}
-              >
-                <span className="text-lg">{social.icon}</span>
-                <span className="hidden sm:inline">{social.name}</span>
-              </motion.a>
-            ))}
+          <div className="flex flex-col items-center gap-4 mb-6">
+            <div className="flex justify-center gap-6">
+              {[
+                { name: "GitHub", icon: "/icons/github.svg", href: "https://github.com/ChiHanLu" },
+                { name: "SoulCraft Journal", icon: "/icons/soulcraft.svg", href: "https://www.soulcraftjournal.studio/" },
+                { name: "Instagram", icon: "/icons/instagram.svg", href: "https://www.instagram.com/lu_chihan/" }
+              ].map((social, index) => (
+                <motion.a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="flex items-center gap-2 text-sm text-gray-400 hover:text-primary-400 transition-colors duration-200 hover:scale-105"
+                  aria-label={social.name}
+                >
+                  <img src={social.icon} alt={`${social.name} icon`} className="w-5 h-5" />
+                  <span className="hidden sm:inline">{social.name}</span>
+                </motion.a>
+              ))}
+            </div>
+
+            {/* Email as plain text (not a clickable button) */}
+            <p className="text-sm text-gray-400">Email: 11336028@ntub.edu.tw</p>
           </div>
           
           <div className="h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent w-48 mx-auto" />

@@ -9,19 +9,20 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "next": "15.5.3",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "@tailwindcss/typography": "^0.5.15",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "tailwind-merge": "^2.5.2",
     "framer-motion": "^11.3.30",
     "gray-matter": "^4.0.3",
-    "@tailwindcss/typography": "^0.5.15",
+    "next": "15.5.3",
     "next-mdx-remote": "^5.0.0",
-    "remark-gfm": "^4.0.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-markdown": "^8.0.7",
     "rehype-pretty-code": "^0.14.0",
-    "shiki": "^1.24.0"
+    "remark-gfm": "^4.0.1",
+    "shiki": "^1.24.0",
+    "tailwind-merge": "^2.5.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

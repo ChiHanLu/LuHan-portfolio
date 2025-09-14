@@ -229,6 +229,10 @@ h1, h2, h3, h4, h5, h6 {
   display: none;  /* Safari and Chrome */
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 /* Header 隱藏動畫 */
 .header-visible {
   transform: translateY(0);
