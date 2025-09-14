@@ -3,8 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { notFound } from "next/navigation";
 import { MDXContent } from "@/lib/mdx";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import ReactMarkdown from "@/components/mdx/ReactMarkdownClient";
 import styles from "./post.module.css";
 
 export const dynamic = "force-static";
@@ -63,10 +62,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </header>
           
           <div className={`${styles.article} max-w-none`}> 
-            {useMDX ? (
+            {useMDX ? ( 
               <MDXContent source={content} />
             ) : (
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+              <ReactMarkdown content={content} />
             )}
           </div>
 
