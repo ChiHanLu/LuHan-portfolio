@@ -151,7 +151,7 @@ luhan-portfolio/
 ## 🚀 部署資訊
 
 - **平台**: Vercel
-- **域名**: [您的域名]
+- **域名**: https://luhanspacelab.vercel.app/
 - **自動部署**: Git push 觸發自動建置與部署
 - **CDN**: 全球內容分發網路
 - **SSL**: 自動 HTTPS 憑證
