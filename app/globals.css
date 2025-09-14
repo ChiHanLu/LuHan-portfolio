@@ -1,26 +1,244 @@
 @import "tailwindcss";
 
+/* 黑色橙色主題配色變數 */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+ --background: #0a0a0a;
+ --foreground: #ffffff;
+
+ /* Primary（橙色層次）*/
+ --primary-light: #fed7aa;
+ --primary: #f97316;
+ --primary-dark: #ea580c;
+
+ /* Secondary（深灰層次）*/
+ --secondary: #1e293b;
+ --secondary-light: #334155;
+
+ /* Accent */
+ --accent-orange: #f97316;
+ --accent-amber: #f59e0b;
+
+ /* 文字顏色 */
+ --text-primary: #ffffff;
+ --text-secondary: #e2e8f0;
+ --text-muted: #94a3b8;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* 確保黑色橙色主題一致性 */
+:root {
+ --color-background: #0a0a0a;
+ --color-foreground: #ffffff;
+ --color-muted: #94a3b8;
+ --color-muted-foreground: #64748b;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* 全域基礎樣式 - 優化絲滑度 */
+* { 
+ box-sizing: border-box;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+}
+html, body { 
+ height: 100%; 
+ overflow-x: hidden;
+}
+html { 
+ scroll-behavior: smooth; 
+ scroll-padding-top: 5rem;
+}
+::selection { 
+ background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+ color: white;
+}
+body {
+ background: var(--background);
+ color: var(--text-primary);
+ line-height: 1.6;
+ transition: all 0.3s ease;
+}
+
+/* 確保標題文字可見 */
+h1, h2, h3, h4, h5, h6 {
+ color: inherit;
+}
+
+.bg-clip-text {
+ -webkit-background-clip: text;
+ background-clip: text;
+ -webkit-text-fill-color: transparent;
+ color: transparent;
+}
+
+/* 文字工具類別 */
+.text-readable { color: var(--text-primary); }
+.text-readable-secondary { color: var(--text-secondary); }
+.text-readable-muted { color: var(--text-muted); }
+
+/* 容器與排版工具 */
+.container {
+ width: 100%;
+ margin-left: auto;
+ margin-right: auto;
+ padding-left: 1.5rem; /* 24px */
+ padding-right: 1.5rem;
+}
+@media (min-width: 640px) { .container { max-width: 640px; } }
+@media (min-width: 768px) { .container { max-width: 768px; } }
+@media (min-width: 1024px) { .container { max-width: 1024px; } }
+@media (min-width: 1280px) { .container { max-width: 1280px; } }
+
+/* 微互動：按鈕水波紋效果（黑色橙色主題） */
+.button-ripple {
+ position: relative;
+ overflow: hidden;
+ transform: translateZ(0);
+ will-change: transform;
+}
+.button-ripple::before {
+ content: "";
+ position: absolute;
+ inset: 0;
+ border-radius: inherit;
+ background: radial-gradient(circle at var(--x, 50%) var(--y, 50%),
+     rgba(255, 255, 255, 0.4) 0%,
+     rgba(249, 115, 22, 0.3) 30%,
+     transparent 65%);
+ opacity: 0;
+ transition: opacity 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+ pointer-events: none;
+}
+.button-ripple:hover::before { 
+ opacity: 1;
+ animation: ripple 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 絲滑度增強 */
+.smooth-transition {
+ transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hover-lift:hover {
+ transform: translateY(-2px) scale(1.02);
+ transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 海浪波紋動畫 */
+@keyframes wave {
+  0%, 100% {
+    transform: translateX(0%) translateY(0px);
+  }
+  25% {
+    transform: translateX(-5%) translateY(-5px);
+  }
+  50% {
+    transform: translateX(0%) translateY(-10px);
+  }
+  75% {
+    transform: translateX(5%) translateY(-5px);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes wave-reverse {
+  0%, 100% {
+    transform: translateX(0%) translateY(0px);
+  }
+  25% {
+    transform: translateX(5%) translateY(-3px);
+  }
+  50% {
+    transform: translateX(0%) translateY(-8px);
+  }
+  75% {
+    transform: translateX(-5%) translateY(-3px);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.animate-wave {
+  animation: wave 6s ease-in-out infinite;
+}
+
+.animate-wave-reverse {
+  animation: wave-reverse 8s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-ripple {
+  animation: ripple 2s ease-out infinite;
+}
+
+/* 滑鼠跟隨海浪特效 */
+@keyframes mouse-wave {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes gentle-pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.animate-mouse-wave {
+  animation: mouse-wave 1.5s ease-out infinite;
+}
+
+.animate-gentle-pulse {
+  animation: gentle-pulse 2s ease-in-out infinite;
+}
+
+/* 隱藏滾動條 */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
+/* Header 隱藏動畫 */
+.header-visible {
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.header-hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  pointer-events: none;
 }

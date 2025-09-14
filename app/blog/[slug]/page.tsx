@@ -1,0 +1,61 @@
+import fs from "fs/promises";
+import path from "path";
+import matter from "gray-matter";
+import { notFound } from "next/navigation";
+import { MDXContent } from "@/lib/mdx";
+
+export const dynamic = "force-static";
+
+export async function generateStaticParams() {
+  const base = path.join(process.cwd(), "content", "blog");
+  try {
+    const files = await fs.readdir(base);
+    return files
+      .filter((f) => f.endsWith(".md") || f.endsWith(".mdx"))
+      .map((f) => ({ slug: f.replace(/\.(md|mdx)$/, "") }));
+  } catch {
+    return [];
+  }
+}
+
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const base = path.join(process.cwd(), "content", "blog");
+  const filePathMd = path.join(base, `${slug}.md`);
+  const filePathMdx = path.join(base, `${slug}.mdx`);
+  let raw: string | null = null;
+  try {
+    raw = await fs.readFile(filePathMd, "utf8");
+  } catch {}
+  if (!raw) {
+    try {
+      raw = await fs.readFile(filePathMdx, "utf8");
+    } catch {}
+  }
+  if (!raw) return notFound();
+  const { data, content } = matter(raw);
+  
+  return (
+    <main className="min-h-screen bg-background">
+
+      <div className="container py-16">
+
+        <article className="max-w-4xl mx-auto">
+          <header className="mb-12 text-center">
+            <h1 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6 leading-tight">
+              {String(data.title ?? slug)}
+            </h1>
+            <div className="flex items-center justify-center gap-4 text-primary-400">
+              <time className="text-lg font-medium">{String(data.date ?? "")}</time>
+            </div>
+          </header>
+          
+          <div className="prose prose-lg prose-invert max-w-none prose-headings:text-white prose-p:text-gray-300 prose-strong:text-white prose-code:text-primary-300 prose-pre:bg-secondary-900 prose-blockquote:border-primary-500 prose-blockquote:text-gray-300">
+            <MDXContent source={content} />
+          </div>
+
+        </article>
+      </div>
+    </main>
+  );
+}
