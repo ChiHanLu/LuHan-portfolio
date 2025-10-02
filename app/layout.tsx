@@ -28,6 +28,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="zh-Hant" suppressHydrationWarning>
+      <head></head>
       <body suppressHydrationWarning className={`${noto.variable} ${lexend.variable} antialiased bg-background text-foreground scroll-smooth`} style={{ overflowX: 'hidden' }}>
         <Header />
         {children}

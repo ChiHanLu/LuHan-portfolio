@@ -1,9 +1,42 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  
+  // 超爆笑 footer 小語陣列
+  const funnyQuotes = [
+    "Coffee → Code → Repeat ☕💻",
+    "Bug 不是 Bug，是未記錄的 Feature 🐛✨",
+    "複製貼上工程師 Ctrl+C Ctrl+V 💪",
+    "Stack Overflow 救了我的人生 🙏",
+    "Console.log() 是我最好的朋友 👾",
+    "Git Commit -m '修了一堆屁' 💩",
+    "下班時間到，Bug 明天再說 🏃‍♂️💨",
+    "人生苦短，我用 Python 🐍 (誒不對我用 TypeScript)",
+    "寫 Code 像寫詩，Debug 像寫屁 📝💨",
+    "今天也是被 CSS 虐的一天 🎨😭",
+    "React 渲染三次，我的心情更新一萬次 ⚛️",
+    "睡覺 = 編譯中... Zzz 😴",
+    "程式碼能跑就是奇蹟，能用就是神蹟 ✨🎉",
+    "Merge Conflict 是我的宿敵 ⚔️",
+    "Localhost:3000 是我的第二個家 🏠",
+    "Work Hard, Git Push Harder 💪🚀",
+    "Documentation? 我就是 Documentation 📚",
+    "測試？能動就行了吧？🤷‍♂️",
+    "我的程式碼：優雅、高效、能跑（選一個）🎯",
+    "Tabs vs Spaces？我選逃避問題 🏃"
+  ];
+  
+  const [randomQuote, setRandomQuote] = useState("");
+  
+  // 每次刷新選擇隨機小語
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * funnyQuotes.length);
+    setRandomQuote(funnyQuotes[randomIndex]);
+  }, []);
   
   return (
     <footer className="relative bg-gradient-to-t from-secondary-900/30 to-transparent">
@@ -50,6 +83,10 @@ export default function Footer() {
           <div className="h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent w-48 mx-auto" />
           
           <p className="text-sm text-gray-400 font-medium">
+            {randomQuote || "Coffee → Code → Repeat ☕💻"}
+          </p>
+          
+          <p className="text-xs text-gray-500 mt-2">
             © {currentYear} Chi Han Lu. Made with 🔥 by coding passion.
           </p>
           
