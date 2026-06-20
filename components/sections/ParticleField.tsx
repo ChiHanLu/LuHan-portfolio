@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 /**
- * 粒子星群連線（2D canvas）：漂浮的橘色粒子，鄰近者以漸隱線相連，滑鼠周圍會牽引連線。
+ * 粒子星群連線（2D canvas）：漂浮的紫色粒子，鄰近者以漸隱線相連，滑鼠周圍會牽引連線。
  * - 離開視窗 / 分頁隱藏 → 暫停
  * - prefers-reduced-motion → 畫一幀靜態星點、不動
  * - 依容器尺寸自動調整粒子數，devicePixelRatio 縮放，完整清理
@@ -59,7 +59,7 @@ export default function ParticleField() {
             dy = a.y - b.y;
           const d = Math.hypot(dx, dy);
           if (d < LINK) {
-            ctx.strokeStyle = `rgba(249,115,22,${(1 - d / LINK) * 0.35})`;
+            ctx.strokeStyle = `rgba(139,92,246,${(1 - d / LINK) * 0.38})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -72,7 +72,7 @@ export default function ParticleField() {
           mdy = a.y - mouse.y;
         const md = Math.hypot(mdx, mdy);
         if (md < MOUSE) {
-          ctx.strokeStyle = `rgba(251,146,60,${(1 - md / MOUSE) * 0.5})`;
+          ctx.strokeStyle = `rgba(167,139,250,${(1 - md / MOUSE) * 0.55})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
@@ -82,7 +82,7 @@ export default function ParticleField() {
       }
       // 粒子
       for (const p of particles) {
-        ctx.fillStyle = "rgba(251,146,60,0.9)";
+        ctx.fillStyle = "rgba(167,139,250,0.9)";
         ctx.beginPath();
         ctx.arc(p.x, p.y, 1.6, 0, Math.PI * 2);
         ctx.fill();

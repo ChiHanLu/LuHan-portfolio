@@ -4,10 +4,10 @@ import { Reveal } from "@/components/ui/Reveal";
 import { GlassCard } from "@/components/ui/GlassCard";
 
 const highlights = [
-  { k: "現職", v: "智能悅信 · 資訊實習生" },
-  { k: "在學", v: "臺北商業大學 · 資訊管理系" },
-  { k: "專長", v: "後端工程 · AI / LLM 應用" },
-  { k: "代表作", v: "日記之森 SoulCraft Journal" },
+  { k: "現職", v: "全端開發實習生（在職中）" },
+  { k: "在學", v: "臺北商業大學 · 資訊管理系（二技）" },
+  { k: "專長", v: "全端開發 · 自動化整合 · 資安防禦" },
+  { k: "代表作", v: "Civic Tech 跨域競技場 · 全國決賽" },
 ];
 
 export default function About() {
@@ -22,16 +22,16 @@ export default function About() {
             </h2>
             <div className="mt-6 space-y-4 leading-relaxed text-gray-300">
               <p>
-                我是 Chi Han Lu，國立臺北商業大學資訊管理系學生，同時也是一名軟體開發實習生，具備小型專案全端開發、AI 技術應用與團隊專案的實務經驗。
+                我是呂其翰（Chi Han Lu），就讀國立臺北商業大學資訊管理系。從五專企業管理科跨域轉向軟體開發，一門網頁設計課點燃了我「用程式從無到有解決問題」的熱情，也讓我帶著商業營運與 ERP 的底蘊投入工程。
               </p>
               <p>
-                目前在智能悅信資訊股份有限公司擔任資訊實習生，主要負責後端系統開發，同時協作前端 UI/UX 設計，並運用 workflow 建立自動化流程。
+                目前是全端開發實習生（1~2 年經歷），主力 Laravel 與 Python，主導開發金物流發票中控、CRM 中控等百萬級商業中台系統，擅長把複雜的商業邏輯轉化為模組化、標準化的系統架構。
               </p>
               <p>
-                具備 Python (Flask) 與 PHP (Laravel) 的後端開發能力，熟悉 JavaScript (React, Next.js) 前端技術，擅長 PostgreSQL、MySQL 資料庫運用，並具備 AI/LLM Prompt Engineering 與 RAG 技術經驗。
+                也負責後端架構與自動化整合：曾與臺大資工團隊協作開發 LineBot 與全端網站，運用 n8n、Make 建立跨平台工作流與 AI 客服串接，並熟悉 AWS、GCP、Oracle Cloud 部署與 Cloudflare 效能優化。
               </p>
               <p>
-                作為團隊專案《日記之森》的主要開發者，帶領專案晉級競賽決賽，相信技術的力量在於解決實際問題、創造有意義的產品。
+                重視系統的安全與穩定，獨立設計集中化 Log 監控與資安分析系統。曾帶領團隊從零程式基礎晉級《數位發展部》Civic Tech Taiwan 跨域競技場全國決賽——我相信好的系統，要兼顧高效的程式碼與貼合營運的商業邏輯。
               </p>
             </div>
           </Reveal>

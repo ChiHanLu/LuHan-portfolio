@@ -10,10 +10,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Glass Cinema 暗色基底
-        background: "#070707",
-        surface: "#0a0a0a",
-        elevated: "#101010",
+        // Glass Cinema 紫黑基底
+        background: "#08060f",
+        surface: "#0d0a16",
+        elevated: "#13101f",
         foreground: "#f0f0f5",
         muted: {
           DEFAULT: "#101010",
@@ -25,19 +25,19 @@ const config: Config = {
           strong: "rgb(255 255 255 / 0.08)",
           border: "rgb(255 255 255 / 0.12)",
         },
-        // 主色調 - 橙色系統（沿用）
+        // 主色調 - 紫色 / violet 系統（配 galaxy 藍紫）
         primary: {
-          50: "#fff7ed",
-          100: "#ffedd5",
-          200: "#fed7aa",
-          300: "#fdba74",
-          400: "#fb923c",
-          500: "#f97316",
-          600: "#ea580c",
-          700: "#c2410c",
-          800: "#9a3412",
-          900: "#7c2d12",
-          DEFAULT: "#f97316",
+          50: "#f5f3ff",
+          100: "#ede9fe",
+          200: "#ddd6fe",
+          300: "#c4b5fd",
+          400: "#a78bfa",
+          500: "#8b5cf6",
+          600: "#7c3aed",
+          700: "#6d28d9",
+          800: "#5b21b6",
+          900: "#4c1d95",
+          DEFAULT: "#8b5cf6",
         },
         // 次要 - 深灰（沿用，供既有元件相容）
         secondary: {
@@ -54,8 +54,8 @@ const config: Config = {
           DEFAULT: "#1e293b",
         },
         accent: {
-          orange: { 50: "#fff7ed", 400: "#fb923c", 500: "#f97316", 600: "#ea580c", DEFAULT: "#f97316" },
-          amber: { 50: "#fffbeb", 400: "#fbbf24", 500: "#f59e0b", 600: "#d97706", DEFAULT: "#f59e0b" },
+          violet: { 50: "#f5f3ff", 400: "#a78bfa", 500: "#8b5cf6", 600: "#7c3aed", DEFAULT: "#8b5cf6" },
+          indigo: { 50: "#eef2ff", 400: "#818cf8", 500: "#6366f1", 600: "#4f46e5", DEFAULT: "#6366f1" },
         },
         success: "#10B981",
         warning: "#F59E0B",
@@ -76,8 +76,8 @@ const config: Config = {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        "dark-orange-gradient": "linear-gradient(135deg, #f97316 0%, #ea580c 50%, #fb923c 100%)",
-        "text-orange-gradient": "linear-gradient(120deg, #ffffff 0%, #fb923c 100%)",
+        "brand-gradient": "linear-gradient(135deg, #8b5cf6 0%, #6d28d9 50%, #a78bfa 100%)",
+        "text-brand-gradient": "linear-gradient(120deg, #ffffff 0%, #a78bfa 100%)",
       },
       animation: {
         "fade-in": "fade-in 0.6s ease-out forwards",
@@ -103,8 +103,8 @@ const config: Config = {
         "pulse-orb": { "50%": { transform: "translateY(-50%) scale(1.06)" } },
       },
       boxShadow: {
-        glow: "0 8px 30px rgba(249, 115, 22, 0.35)",
-        "glow-lg": "0 24px 60px rgba(249, 115, 22, 0.20)",
+        glow: "0 8px 30px rgba(139, 92, 246, 0.40)",
+        "glow-lg": "0 24px 60px rgba(139, 92, 246, 0.22)",
         glass: "0 8px 32px rgba(0, 0, 0, 0.4)",
         soft: "0 2px 15px rgba(0, 0, 0, 0.35)",
       },

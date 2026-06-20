@@ -5,13 +5,13 @@
    Glass Cinema — 玻璃擬態暗色主題（黑底 + 橘色）
    ============================================================ */
 :root {
-  --bg-deep: #070707;
-  --bg-base: #0a0a0a;
+  --bg-deep: #08060f;
+  --bg-base: #0d0a16;
   --surface: rgb(255 255 255 / 0.05);
   --glass-border: rgb(255 255 255 / 0.12);
-  --orange: #f97316;
-  --orange-light: #fb923c;
-  --glow: rgb(249 115 22 / 0.4);
+  --violet: #8b5cf6;
+  --violet-light: #a78bfa;
+  --glow: rgb(139 92 246 / 0.4);
   --text: #f0f0f5;
   --text-muted: #9aa0aa;
   --ease-cinema: cubic-bezier(0.16, 1, 0.3, 1);
@@ -38,7 +38,7 @@ body {
 }
 
 ::selection {
-  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
   color: #fff;
 }
 
@@ -99,15 +99,15 @@ h1, h2, h3, h4, h5, h6 { color: inherit; }
   pointer-events: none;
   background: radial-gradient(
     300px circle at var(--mx, 50%) var(--my, 50%),
-    rgb(249 115 22 / 0.18),
+    rgb(139 92 246 / 0.20),
     transparent 60%
   );
   transition: opacity 0.3s;
 }
 .glass-card:hover::before { opacity: 1; }
 .glass-card:hover {
-  border-color: rgb(249 115 22 / 0.5);
-  box-shadow: 0 24px 60px rgb(249 115 22 / 0.18);
+  border-color: rgb(139 92 246 / 0.5);
+  box-shadow: 0 24px 60px rgb(139 92 246 / 0.20);
 }
 
 /* ---------- 顆粒質感覆蓋層 ---------- */
@@ -124,6 +124,21 @@ h1, h2, h3, h4, h5, h6 { color: inherit; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 body::-webkit-scrollbar { display: none; }
+
+/* ---------- galaxy / 黑洞 3D 背景（youmom.js）---------- */
+.experience {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  z-index: 1;
+  overflow: hidden;
+}
+.experience canvas {
+  pointer-events: auto;
+  touch-action: none;
+}
 
 /* ---------- Lenis 平滑捲動 ---------- */
 html.lenis,

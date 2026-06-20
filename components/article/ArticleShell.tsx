@@ -54,7 +54,7 @@ export function ArticleShell({
     <main className="relative min-h-screen bg-background">
       <ReadingProgress />
 
-      {/* 頂部橘色暈染封面 */}
+      {/* 頂部紫色暈染封面 */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-primary-600/15 via-primary-500/5 to-transparent" />
 
       <div className="container relative py-20">

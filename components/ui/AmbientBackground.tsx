@@ -42,9 +42,9 @@ export default function AmbientBackground() {
         className="absolute -inset-[20%] animate-aurora blur-[90px]"
         style={{
           background:
-            "radial-gradient(40% 40% at 20% 30%, rgb(249 115 22 / 0.30), transparent 60%)," +
-            "radial-gradient(35% 35% at 80% 20%, rgb(251 146 60 / 0.20), transparent 60%)," +
-            "radial-gradient(45% 45% at 60% 80%, rgb(234 88 12 / 0.24), transparent 60%)",
+            "radial-gradient(40% 40% at 20% 30%, rgb(139 92 246 / 0.32), transparent 60%)," +
+            "radial-gradient(35% 35% at 80% 20%, rgb(99 102 241 / 0.24), transparent 60%)," +
+            "radial-gradient(45% 45% at 60% 80%, rgb(124 58 237 / 0.26), transparent 60%)",
         }}
       />
       {/* 漂浮光球 */}

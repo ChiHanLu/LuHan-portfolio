@@ -59,7 +59,7 @@ const projects: Project[] = [
   },
   {
     title: "個人作品集網站",
-    desc: "玻璃擬態黑橘主題響應式個人網站，整合 GSAP 捲動動畫、Lenis 平滑捲動與 Canvas 粒子特效。",
+    desc: "玻璃擬態紫黑主題響應式個人網站，整合 GSAP 捲動動畫、Lenis 平滑捲動與 Canvas 粒子、WebGL 星系特效。",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "GSAP"],
     flagship: true,
   },

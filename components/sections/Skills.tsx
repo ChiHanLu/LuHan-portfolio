@@ -5,12 +5,12 @@ import { gsap } from "@/lib/gsap";
 import { Reveal } from "@/components/ui/Reveal";
 
 const skills = [
-  { name: "Python · Flask · Django", level: 85 },
-  { name: "JavaScript · React · Next.js", level: 80 },
-  { name: "PostgreSQL · MySQL", level: 75 },
-  { name: "AI / LLM · Prompt Engineering", level: 70 },
-  { name: "RESTful API 開發", level: 85 },
-  { name: "Git · Linux", level: 80 },
+  { name: "Laravel · PHP", level: 88 },
+  { name: "Python · FastAPI · Flask", level: 85 },
+  { name: "Vue.js · Next.js · React Native", level: 80 },
+  { name: "MySQL · PostgreSQL · Oracle", level: 80 },
+  { name: "自動化整合 · 資安防禦 · 雲端部署", level: 78 },
+  { name: "AI / LLM · RAG · Prompt Engineering", level: 75 },
 ];
 
 export default function Skills() {
@@ -65,7 +65,7 @@ export default function Skills() {
                 <div
                   data-bar
                   style={{ width: `${skill.level}%`, transformOrigin: "left center" }}
-                  className="h-full rounded-full bg-dark-orange-gradient"
+                  className="h-full rounded-full bg-brand-gradient"
                 />
               </div>
             </div>

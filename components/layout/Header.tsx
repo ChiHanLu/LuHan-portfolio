@@ -42,7 +42,7 @@ export default function Header() {
   const linkClass =
     "text-sm font-medium text-gray-300 hover:text-primary-400 transition-colors duration-200 relative group";
   const underline =
-    "absolute -bottom-1 left-0 h-0.5 w-0 bg-dark-orange-gradient transition-all duration-300 group-hover:w-full";
+    "absolute -bottom-1 left-0 h-0.5 w-0 bg-brand-gradient transition-all duration-300 group-hover:w-full";
 
   return (
     <header

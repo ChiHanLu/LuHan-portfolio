@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Button } from "@/components/ui/Button";
 import { ResumeDownload } from "@/components/ui/ResumeDownload";
-import { Magnetic } from "@/components/ui/Magnetic";
 
 // 粒子星群只在 client 載入
 const ParticleField = dynamic(() => import("./ParticleField"), { ssr: false });
@@ -60,16 +59,12 @@ export default function Hero() {
           </p>
 
           <div className="hero-cta mt-10 flex flex-wrap items-center gap-4">
-            <Magnetic strength={0.4}>
-              <ResumeDownload className="shadow-glow hover:shadow-glow" intent="primary" size="lg" />
-            </Magnetic>
-            <Magnetic strength={0.4}>
-              <a href="#contact">
-                <Button className="backdrop-blur-sm" intent="outline" size="lg">
-                  聯絡我
-                </Button>
-              </a>
-            </Magnetic>
+            <ResumeDownload className="shadow-glow hover:shadow-glow" intent="primary" size="lg" />
+            <a href="#contact">
+              <Button className="backdrop-blur-sm" intent="outline" size="lg">
+                聯絡我
+              </Button>
+            </a>
           </div>
 
           <div className="mt-12 flex flex-wrap gap-2">
