@@ -1,72 +1,55 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
-import type { PostMeta } from "@/lib/md";
+import type { ArticleMeta } from "@/components/article/ArticleShell";
+import { Reveal } from "@/components/ui/Reveal";
+import { Magnetic } from "@/components/ui/Magnetic";
 
-interface BlogPageClientProps {
-  posts: PostMeta[];
-}
-
-export default function BlogPageClient({ posts }: BlogPageClientProps) {
+export default function BlogPageClient({ posts }: { posts: ArticleMeta[] }) {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="relative min-h-screen overflow-hidden bg-background pt-28">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-primary-600/15 via-primary-500/5 to-transparent" />
 
-      <div className="container py-16">
+      <div className="container relative pb-24">
+        <Reveal>
+          <p className="font-mono text-sm tracking-widest text-primary-400">{"// blog"}</p>
+          <h1 className="mt-2 font-display text-4xl font-bold text-white sm:text-5xl">部落格文章</h1>
+          <p className="mt-4 max-w-2xl text-gray-400">技術見解、專案心得與成長紀錄。</p>
+        </Reveal>
 
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="font-display text-4xl sm:text-5xl font-bold text-white mb-12"
-        >
-          部落格文章
-        </motion.h1>
-        
         {posts.length === 0 ? (
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-gray-400 text-lg"
-          >
-            目前沒有文章。
-          </motion.p>
+          <p className="mt-16 font-mono text-gray-500">{"// 目前沒有文章。"}</p>
         ) : (
-          <div className="grid gap-8">
-            {posts.map((post, index) => (
-              <motion.div
-                key={post.slug}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
+          <Reveal className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2" stagger={0.1}>
+            {posts.map((post) => (
+              <Magnetic key={post.slug} strength={0.1} className="h-full">
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="group block bg-gradient-to-br from-black/70 via-secondary-800/40 to-black/80 backdrop-blur-md border border-primary-500/20 rounded-2xl p-8 hover:shadow-2xl hover:shadow-primary-500/10 hover:border-primary-400/30 transition-all duration-500 ease-out hover:scale-[1.02] hover:-translate-y-1"
+                  className="group flex h-full flex-col rounded-2xl border border-primary-500/20 bg-gradient-to-br from-black/60 to-secondary-900/40 p-6 backdrop-blur-md transition-all duration-300 hover:border-primary-400/40 hover:shadow-2xl hover:shadow-primary-500/15 md:p-7"
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <h2 className="font-display font-semibold text-2xl text-white group-hover:text-primary-400 transition-colors mb-3">
-                        {post.title}
-                      </h2>
-                      <p className="text-sm text-primary-400 font-medium mb-4">
-                        {post.date}
-                      </p>
-                      {post.excerpt && (
-                        <p className="text-gray-300 leading-relaxed">
-                          {post.excerpt}
-                        </p>
-                      )}
-                    </div>
-                    <div className="text-3xl opacity-60 group-hover:opacity-100 transition-opacity">
-                      📄
-                    </div>
+                  <div className="mb-4 flex flex-wrap items-center gap-x-3 font-mono text-xs text-primary-400">
+                    <span>{post.date}</span>
+                    <span className="text-primary-500/50">·</span>
+                    <span>{post.readingMins} min</span>
+                  </div>
+                  <h2 className="font-display text-xl font-semibold text-white transition-colors group-hover:text-primary-300">
+                    {post.title}
+                  </h2>
+                  <p className="mt-3 flex-1 leading-relaxed text-gray-300">{post.excerpt}</p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {post.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-full border border-primary-500/30 bg-primary-500/10 px-2.5 py-0.5 font-mono text-xs text-primary-300"
+                      >
+                        {t}
+                      </span>
+                    ))}
                   </div>
                 </Link>
-              </motion.div>
+              </Magnetic>
             ))}
-          </div>
+          </Reveal>
         )}
       </div>
     </main>

@@ -1,102 +1,144 @@
 "use client";
-import { Button } from "@/components/ui/Button";
-import { motion } from "framer-motion";
 
-const projects = [
-  { 
-    id: 1, 
-    title: "日記之森 - SoulCraft Journal", 
-    desc: "一個專注於心情記錄的線上日記平台，提供安全私密的情感抒發空間，幫助用戶建立健康的情緒管理習慣。", 
-    tech: ["Python", "Flask", "PostgreSQL", "HTML/CSS", "JavaScript"],
-    image: "🌳",
-    link: "https://www.soulcraftjournal.studio/"
+import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/ui/Reveal";
+import { GlassCard } from "@/components/ui/GlassCard";
+
+type Project = {
+  title: string;
+  desc: string;
+  tech: string[];
+  /** 線上 demo 連結；無則視為私有專案 */
+  live?: string;
+  /** 標記為旗艦/代表作 */
+  flagship?: boolean;
+};
+
+// 註：以下描述為依專案名稱與技術棧草擬，待本人校正。
+const projects: Project[] = [
+  {
+    title: "日記之森 · SoulCraft Journal",
+    desc: "專注於心情記錄的線上日記平台，提供安全私密的情感抒發空間；身為主要開發者帶領團隊晉級競賽決賽。",
+    tech: ["Python", "Flask", "PostgreSQL", "JavaScript"],
+    live: "https://www.soulcraftjournal.studio/",
+    flagship: true,
   },
-  { 
-    id: 2, 
-    title: "個人作品集網站", 
-    desc: "採用黑橙主題的響應式個人網站，展示全端開發技能與成長歷程，包含部落格與專案展示功能。", 
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    image: "🔥"
-  }
+  {
+    title: "NTUB 資管系專題系統",
+    desc: "資管系團隊專題的全端系統，Vue 前端搭配 TypeScript 後端 API，含成績／學分相關模組與前後端資料對齊。",
+    tech: ["Vue", "TypeScript", "REST API"],
+    live: "https://ntub-project-frontend.vercel.app",
+  },
+  {
+    title: "ESG AI 行銷工具箱",
+    desc: "串接 Gemini 的 ESG 行銷內容生成工具，透過 serverless proxy 安全呼叫模型，前端即時產出文案。",
+    tech: ["JavaScript", "Gemini API", "Serverless"],
+    live: "https://esg-ai-demo.vercel.app",
+  },
+  {
+    title: "Vocab 單字學習 App",
+    desc: "每日單字學習應用，支援來源篩選與「重新產生今日學習」，以 Expo 跨平台開發。",
+    tech: ["React Native", "Expo", "TypeScript"],
+    live: "https://vocab-frontend-zeta.vercel.app",
+  },
+  {
+    title: "無障礙前端專案",
+    desc: "以無障礙（a11y）為核心的前端專案，著重鍵盤操作、語意標記與對比可讀性。",
+    tech: ["TypeScript", "Accessibility"],
+    live: "https://accessibility-frontend-project.vercel.app",
+  },
+  {
+    title: "Log Analysis 日誌分析平台",
+    desc: "日誌分析系統，Laravel 後端 API 搭配 Vue 前端視覺化，協助快速定位異常。",
+    tech: ["Laravel", "PHP", "Vue"],
+  },
+  {
+    title: "TripOne 旅遊規劃平台",
+    desc: "旅遊行程規劃平台，Vue 前端與 PHP 後端整合，提供行程與資料管理。",
+    tech: ["Vue", "PHP"],
+  },
+  {
+    title: "個人作品集網站",
+    desc: "玻璃擬態黑橘主題響應式個人網站，整合 GSAP 捲動動畫、Lenis 平滑捲動與 Canvas 粒子特效。",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "GSAP"],
+    flagship: true,
+  },
 ];
 
+const GITHUB = "https://github.com/ChiHanLu";
+
 export default function Projects() {
-
   return (
-    <section id="projects" className="relative py-24 scroll-mt-20 overflow-hidden bg-background">
-      {/* 頂部橙色漸層延續效果 */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary-600/15 via-primary-700/8 to-black" />
-      <div className="absolute inset-0 bg-gradient-to-b from-orange-600/8 via-orange-700/5 to-transparent" />
-      <motion.div 
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 2, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="absolute left-10 bottom-20 w-48 h-48 rounded-full bg-primary-500/12 blur-3xl"
-      />
-      
-      <div className="container relative">
-        <motion.h2
-          className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-white"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-        >
-          精選作品
-        </motion.h2>
-        
-        <motion.p
-          className="mt-4 text-center text-gray-400 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          展示一些代表性專案，每個作品都承載著解決實際問題的思考與創新
-        </motion.p>
+    <section id="projects" className="relative scroll-mt-20 py-28">
+      <div className="container relative z-10">
+        <Reveal className="text-center">
+          <p className="font-mono text-sm tracking-widest text-primary-400">{"// projects"}</p>
+          <h2 className="mt-2 font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+            精選作品
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-gray-400">
+            從全端系統、AI 工具到跨平台 App，每個作品都承載著解決實際問題的思考。
+          </p>
+        </Reveal>
 
-        {/* 響應式網格佈局 */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <Reveal className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3" stagger={0.1}>
           {projects.map((project, idx) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ 
-                duration: 0.6, 
-                delay: idx * 0.1, 
-                ease: [0.25, 0.46, 0.45, 0.94] 
-              }}
-              className="group"
-            >
-              <div className="bg-gradient-to-br from-black/80 via-secondary-800/50 to-black/90 backdrop-blur-md border border-primary-500/20 rounded-2xl p-6 md:p-8 shadow-2xl shadow-primary-500/5 hover:shadow-2xl hover:shadow-primary-500/15 hover:border-primary-400/30 transition-all duration-500 ease-out hover:scale-[1.03] hover:-translate-y-2 h-full">
-                <div className="text-4xl md:text-5xl mb-4 md:mb-6">{project.image}</div>
-                <h3 className="font-display font-semibold text-lg md:text-xl text-primary-300">{project.title}</h3>
-                <p className="mt-3 md:mt-4 text-sm md:text-base text-gray-300 leading-relaxed">{project.desc}</p>
-                
-                <div className="mt-4 md:mt-6 flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span key={tech} className="px-3 py-1 md:py-1.5 text-xs bg-primary-500/20 text-primary-300 rounded-full border border-primary-500/30 font-medium">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                
-                <div className="mt-6 md:mt-8 flex gap-3">
-                  {project.link ? (
-                    <a href={project.link} target="_blank" rel="noopener noreferrer">
-                      <Button intent="ghost" size="sm">查看專案</Button>
-                    </a>
-                  ) : (
-                    <Button intent="ghost" size="sm">持續開發中</Button>
-                  )}
-                  <Button intent="outline" size="sm">GitHub</Button>
-                </div>
+            <GlassCard key={project.title} className="flex h-full flex-col p-6 md:p-7">
+              <div className="mb-4 flex items-center gap-3">
+                <span className="font-mono text-sm text-primary-400">
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+                <span className="h-px flex-1 bg-primary-500/20" />
+                {project.flagship && (
+                  <span className="rounded-full bg-primary-500/15 px-2 py-0.5 font-mono text-[10px] tracking-widest text-primary-300">
+                    代表作
+                  </span>
+                )}
+                {!project.live && (
+                  <span className="rounded-full border border-glass-border px-2 py-0.5 font-mono text-[10px] tracking-widest text-gray-400">
+                    私有
+                  </span>
+                )}
               </div>
-            </motion.div>
+
+              <h3 className="font-display text-lg font-semibold text-primary-300">{project.title}</h3>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-gray-300">{project.desc}</p>
+
+              <div className="mt-5 flex flex-wrap gap-2">
+                {project.tech.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-full border border-glass-border bg-glass px-3 py-1 font-mono text-xs text-primary-300 backdrop-blur-md"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-6">
+                {project.live ? (
+                  <a href={project.live} target="_blank" rel="noopener noreferrer">
+                    <Button intent="outline" size="sm">
+                      查看 Demo →
+                    </Button>
+                  </a>
+                ) : (
+                  <span className="font-mono text-xs text-gray-500">原始碼可應要求提供</span>
+                )}
+              </div>
+            </GlassCard>
           ))}
+        </Reveal>
+
+        <div className="mt-10 text-center">
+          <a
+            href={GITHUB}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-medium text-gray-300 transition-colors hover:text-primary-400"
+          >
+            更多專案在 GitHub <span aria-hidden>→</span>
+          </a>
         </div>
       </div>
     </section>

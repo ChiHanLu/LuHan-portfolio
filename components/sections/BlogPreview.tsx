@@ -1,9 +1,6 @@
-import { getAllPosts } from "@/lib/md";
+import { posts } from "@/lib/posts";
 import BlogPreviewClient from "./BlogPreviewClient";
 
-export default async function BlogPreview() {
-  const allPosts = await getAllPosts();
-  const posts = allPosts.slice(0, 3);
-
-  return <BlogPreviewClient posts={posts} />;
+export default function BlogPreview() {
+  return <BlogPreviewClient posts={posts.slice(0, 3)} />;
 }

@@ -3,120 +3,134 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 
 export default function Header() {
   const [hidden, setHidden] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     let lastScrollY = 0;
-    
     const onScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      // 判斷滾動方向來顯示/隱藏 Header
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // 向下滾動且超過 100px 時隱藏
-        setHidden(true);
-      } else if (currentScrollY < lastScrollY) {
-        // 向上滾動時顯示
-        setHidden(false);
-      }
-      
-      lastScrollY = currentScrollY;
+      const y = window.scrollY;
+      if (y > lastScrollY && y > 100) setHidden(true);
+      else if (y < lastScrollY) setHidden(false);
+      lastScrollY = y;
     };
-
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // 根據頁面路徑決定顯示的導航項目
-  const getNavItems = () => {
-    if (pathname === "/") {
-      // 主頁顯示完整導航
-      return [
-        { href: "#about", label: "關於" },
-        { href: "#projects", label: "作品" },
-        { href: "/blog", label: "部落格" },
-        { href: "#contact", label: "聯絡" }
-      ];
-    } else {
-      // 其他頁面只顯示部落格
-      return [
-        { href: "/blog", label: "部落格" }
-      ];
-    }
-  };
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
 
-  const navItems = getNavItems();
+  const navItems =
+    pathname === "/"
+      ? [
+          { href: "#about", label: "關於" },
+          { href: "#skills", label: "技能" },
+          { href: "#projects", label: "作品" },
+          { href: "#experience", label: "經歷" },
+          { href: "/blog", label: "部落格" },
+          { href: "#contact", label: "聯絡" },
+        ]
+      : [{ href: "/blog", label: "部落格" }];
+
+  const linkClass =
+    "text-sm font-medium text-gray-300 hover:text-primary-400 transition-colors duration-200 relative group";
+  const underline =
+    "absolute -bottom-1 left-0 h-0.5 w-0 bg-dark-orange-gradient transition-all duration-300 group-hover:w-full";
 
   return (
     <header
       className={cn(
-        "fixed top-0 z-50 w-full transition-transform duration-300",
-        hidden ? "-translate-y-full" : "translate-y-0",
-        "bg-black/10 backdrop-blur-md"
+        "fixed inset-x-0 top-0 z-50 transition-transform duration-300",
+        hidden && !menuOpen ? "-translate-y-full" : "translate-y-0"
       )}
     >
-      <nav className="container flex h-12 items-center justify-between">
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          <Link
-            href="/"
-            className="text-sm font-medium text-gray-300 hover:text-primary-400 transition-colors duration-200 relative group"
-          >
-            首頁
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-dark-orange-gradient group-hover:w-full transition-all duration-300" />
+      <div className="container mt-3">
+        <nav className="glass flex h-14 items-center justify-between rounded-2xl px-4 shadow-glass sm:px-6">
+          <Link href="/" className={cn(linkClass, "font-mono")}>
+            ~/luhan
+            <span className={underline} />
           </Link>
-        </motion.div>
-        
-        <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item, index) => (
-            item.href.startsWith('#') ? (
-              <motion.a
-                key={item.href}
-                href={item.href}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
-                className="text-sm font-medium text-gray-300 hover:text-primary-400 transition-colors duration-200 relative group"
-              >
-                {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-dark-orange-gradient group-hover:w-full transition-all duration-300" />
-              </motion.a>
-            ) : (
-              <motion.div
-                key={item.href}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
-              >
-                <Link
-                  href={item.href}
-                  className="text-sm font-medium text-gray-300 hover:text-primary-400 transition-colors duration-200 relative group"
-                >
-                  {item.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-dark-orange-gradient group-hover:w-full transition-all duration-300" />
-                </Link>
-              </motion.div>
-            )
-          ))}
-        </div>
 
-        {/* 手機版選單按鈕 */}
-        <div className="md:hidden">
-          <button className="p-2 text-gray-700">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          {/* 桌機導航 */}
+          <div className="hidden items-center gap-7 md:flex">
+            {navItems.map((item) =>
+              item.href.startsWith("#") ? (
+                <a key={item.href} href={item.href} className={linkClass}>
+                  {item.label}
+                  <span className={underline} />
+                </a>
+              ) : (
+                <Link key={item.href} href={item.href} className={linkClass}>
+                  {item.label}
+                  <span className={underline} />
+                </Link>
+              )
+            )}
+          </div>
+
+          {/* 手機選單按鈕 */}
+          <button
+            className="rounded p-2 text-gray-200 transition-colors hover:text-primary-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 md:hidden"
+            aria-label="開啟選單"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {menuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
             </svg>
           </button>
-        </div>
-      </nav>
+        </nav>
+      </div>
+
+      {/* 手機選單面板 */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            id="mobile-menu"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="container overflow-hidden md:hidden"
+          >
+            <div className="glass mt-2 flex flex-col rounded-2xl p-2">
+              {navItems.map((item) =>
+                item.href.startsWith("#") ? (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="rounded-lg px-3 py-3 text-base text-gray-200 transition-colors hover:bg-primary-500/10 hover:text-primary-300"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="rounded-lg px-3 py-3 text-base text-gray-200 transition-colors hover:bg-primary-500/10 hover:text-primary-300"
+                  >
+                    {item.label}
+                  </Link>
+                )
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
