@@ -14,7 +14,14 @@ export default function ThreeBackground() {
 
   useEffect(() => {
     const onError = (e: ErrorEvent) => {
-      if (e.filename && e.filename.includes("youmom.js")) {
+      const msg = e.message || "";
+      const stack = e.error?.stack || "";
+      // 此錯誤的 filename 常為空（匿名 RAF/resize），改以訊息與 stack 判斷來源
+      if (
+        msg.includes("composer") ||
+        (e.filename && e.filename.includes("youmom.js")) ||
+        stack.includes("youmom.js")
+      ) {
         e.preventDefault();
         e.stopImmediatePropagation();
       }

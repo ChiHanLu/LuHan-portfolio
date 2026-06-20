@@ -32,7 +32,18 @@ export default function Skills() {
   }, [ref]);
 
   return (
-    <section id="skills" className="relative scroll-mt-20 py-28">
+    <section id="skills" className="relative scroll-mt-20 overflow-hidden py-28">
+      {/* 旋轉裝飾環（隨捲動旋轉） */}
+      <Parallax
+        rotate={120}
+        speed={0}
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2 opacity-40"
+      >
+        <div className="h-[520px] w-[520px] rounded-full border border-dashed border-primary-500/20" />
+        <div className="absolute inset-10 rounded-full border border-primary-500/10" />
+      </Parallax>
+
       <div className="container relative z-10">
         <Parallax speed={-50}>
           <Reveal className="text-center">

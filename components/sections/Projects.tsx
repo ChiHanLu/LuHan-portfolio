@@ -1,5 +1,7 @@
 "use client";
 
+import { useRef } from "react";
+import { gsap, useGSAP } from "@/lib/gsap";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { GlassCard } from "@/components/ui/GlassCard";
@@ -9,20 +11,12 @@ type Project = {
   title: string;
   desc: string;
   tech: string[];
-  /** 線上 demo 連結；無則視為私有專案 */
   live?: string;
-  /** 標記為旗艦/代表作 */
   flagship?: boolean;
 };
 
-// 註：以下描述為依專案名稱與技術棧草擬，待本人校正。
+// 註：描述依專案名稱與技術棧草擬，待本人校正。
 const projects: Project[] = [
-  {
-    title: "日記之森 · SoulCraft Journal",
-    desc: "專注於心情記錄的線上日記平台，提供安全私密的情感抒發空間；身為主要開發者帶領團隊晉級《數位發展部》Civic Tech Taiwan 跨域競技場全國決賽。",
-    tech: ["Python", "Flask", "PostgreSQL", "JavaScript"],
-    flagship: true,
-  },
   {
     title: "NTUB 資管系專題系統",
     desc: "資管系團隊專題的全端系統，Vue 前端搭配 TypeScript 後端 API，含成績／學分相關模組與前後端資料對齊。",
@@ -68,8 +62,39 @@ const projects: Project[] = [
 const GITHUB = "https://github.com/ChiHanLu";
 
 export default function Projects() {
+  const root = useRef<HTMLElement>(null);
+  const pinRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      // 桌機：釘住面板，垂直捲動驅動卡片橫向滑動（pin + scrub）
+      mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+        const track = trackRef.current;
+        const pin = pinRef.current;
+        if (!track || !pin) return;
+        const amount = () => Math.max(0, track.scrollWidth - window.innerWidth + 96);
+        gsap.to(track, {
+          x: () => -amount(),
+          ease: "none",
+          scrollTrigger: {
+            trigger: pin,
+            start: "top top",
+            end: () => "+=" + amount(),
+            pin: true,
+            scrub: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+      });
+      return () => mm.revert();
+    },
+    { scope: root }
+  );
+
   return (
-    <section id="projects" className="relative scroll-mt-20 py-28">
+    <section id="projects" ref={root} className="relative scroll-mt-20 pt-28">
       <div className="container relative z-10">
         <Parallax speed={-50}>
           <Reveal className="text-center">
@@ -79,14 +104,26 @@ export default function Projects() {
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-gray-400">
               從全端系統、AI 工具到跨平台 App，每個作品都承載著解決實際問題的思考。
+              <span className="mt-1 hidden md:block font-mono text-xs text-primary-400/70">
+                ↓ 向下捲動，作品橫向展開
+              </span>
             </p>
           </Reveal>
         </Parallax>
+      </div>
 
-        <Reveal className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3" stagger={0.1}>
+      {/* 桌機：pin 釘住 + 橫向 track；手機：垂直 grid */}
+      <div ref={pinRef} className="relative mt-12 md:mt-16 md:h-screen md:overflow-hidden">
+        <div
+          ref={trackRef}
+          className="container grid grid-cols-1 gap-6 sm:grid-cols-2 md:flex md:h-full md:w-max md:max-w-none md:items-center md:gap-8 md:px-16"
+        >
           {projects.map((project, idx) => (
-            <GlassCard key={project.title} className="flex h-full flex-col p-6 md:p-7">
-              <div className="mb-4 flex items-center gap-3">
+            <GlassCard
+              key={project.title}
+              className="flex flex-col p-6 md:w-[340px] md:shrink-0 md:p-6"
+            >
+              <div className="mb-3 flex items-center gap-3">
                 <span className="font-mono text-sm text-primary-400">
                   {String(idx + 1).padStart(2, "0")}
                 </span>
@@ -103,10 +140,10 @@ export default function Projects() {
                 )}
               </div>
 
-              <h3 className="font-display text-lg font-semibold text-primary-300">{project.title}</h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-gray-300">{project.desc}</p>
+              <h3 className="font-display text-base font-semibold text-primary-300 md:text-lg">{project.title}</h3>
+              <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-gray-300">{project.desc}</p>
 
-              <div className="mt-5 flex flex-wrap gap-2">
+              <div className="mt-4 flex flex-wrap gap-2">
                 {project.tech.map((t) => (
                   <span
                     key={t}
@@ -130,18 +167,18 @@ export default function Projects() {
               </div>
             </GlassCard>
           ))}
-        </Reveal>
-
-        <div className="mt-10 text-center">
-          <a
-            href={GITHUB}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-medium text-gray-300 transition-colors hover:text-primary-400"
-          >
-            更多專案在 GitHub <span aria-hidden>→</span>
-          </a>
         </div>
+      </div>
+
+      <div className="container relative z-10 mt-12 pb-28 text-center md:mt-16">
+        <a
+          href={GITHUB}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 font-medium text-gray-300 transition-colors hover:text-primary-400"
+        >
+          更多專案在 GitHub <span aria-hidden>→</span>
+        </a>
       </div>
     </section>
   );

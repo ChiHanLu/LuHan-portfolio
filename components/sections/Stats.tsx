@@ -7,8 +7,8 @@ import { GlassCard } from "@/components/ui/GlassCard";
 
 const stats = [
   { value: 2, suffix: "+", label: "年開發經驗" },
-  { value: 2, suffix: "", label: "代表專案" },
-  { value: 1, suffix: "", label: "競賽決賽晉級" },
+  { value: 8, suffix: "+", label: "代表專案" },
+  { value: 15, suffix: "+", label: "掌握技術" },
   { value: 5, suffix: "+", label: "技術文章" },
 ];
 

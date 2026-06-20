@@ -3,8 +3,9 @@
 import { useEffect, useRef } from "react";
 
 /**
- * 全站背景：極光漸層 + 三顆漂浮橘光球（滑鼠視差）。
- * fixed 在最底層、不吃滑鼠事件。減少動態偏好下停用視差。
+ * 全站背景：極光漸層 + 三顆漂浮紫光球（滑鼠 + 捲動視差），
+ * 並隨捲動進度做 hue-rotate，使主色在區塊間於紫↔靛藍間漸變。
+ * fixed 在最底層、不吃滑鼠事件。減少動態偏好下全部停用。
  */
 export default function AmbientBackground() {
   const ref = useRef<HTMLDivElement>(null);
@@ -41,6 +42,10 @@ export default function AmbientBackground() {
     };
     const onScroll = () => {
       sy = window.scrollY;
+      // 捲動進度 → hue-rotate：整層背景主色在紫↔靛藍間漸變（過程漸變）
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const p = max > 0 ? Math.min(1, sy / max) : 0;
+      root.style.filter = `hue-rotate(${-p * 45}deg)`;
       apply();
     };
 
@@ -52,6 +57,7 @@ export default function AmbientBackground() {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(raf);
+      root.style.filter = "";
     };
   }, []);
 

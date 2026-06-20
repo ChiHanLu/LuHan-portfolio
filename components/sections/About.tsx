@@ -2,6 +2,7 @@
 
 import { Reveal } from "@/components/ui/Reveal";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { Parallax } from "@/components/ui/Parallax";
 
 const highlights = [
   { k: "現職", v: "全端開發實習生（在職中）" },
@@ -36,14 +37,16 @@ export default function About() {
             </div>
           </Reveal>
 
-          <Reveal className="grid grid-cols-1 gap-4 sm:grid-cols-2" stagger={0.1}>
-            {highlights.map((h) => (
-              <GlassCard key={h.k} className="p-6">
-                <div className="font-mono text-xs uppercase tracking-widest text-primary-400">{h.k}</div>
-                <div className="mt-2 text-base font-medium text-white">{h.v}</div>
-              </GlassCard>
-            ))}
-          </Reveal>
+          <Parallax speed={-40}>
+            <Reveal className="grid grid-cols-1 gap-4 sm:grid-cols-2" stagger={0.1}>
+              {highlights.map((h) => (
+                <GlassCard key={h.k} className="p-6">
+                  <div className="font-mono text-xs uppercase tracking-widest text-primary-400">{h.k}</div>
+                  <div className="mt-2 text-base font-medium text-white">{h.v}</div>
+                </GlassCard>
+              ))}
+            </Reveal>
+          </Parallax>
         </div>
       </div>
     </section>

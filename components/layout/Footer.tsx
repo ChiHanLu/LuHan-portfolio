@@ -13,7 +13,6 @@ const quotes = [
 
 const socials = [
   { name: "GitHub", href: "https://github.com/ChiHanLu" },
-  { name: "SoulCraft", href: "https://www.soulcraftjournal.studio/" },
   { name: "Instagram", href: "https://www.instagram.com/lu_chihan/" },
 ];
 

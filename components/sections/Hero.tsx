@@ -6,6 +6,7 @@ import { gsap, useGSAP } from "@/lib/gsap";
 import { Button } from "@/components/ui/Button";
 import { ResumeDownload } from "@/components/ui/ResumeDownload";
 import { Parallax } from "@/components/ui/Parallax";
+import { SplitReveal } from "@/components/ui/SplitReveal";
 
 // 粒子星群只在 client 載入
 const ParticleField = dynamic(() => import("./ParticleField"), { ssr: false });
@@ -21,8 +22,7 @@ export default function Hero() {
         gsap
           .timeline({ defaults: { ease: "power3.out" } })
           .from(".hero-eyebrow", { opacity: 0, y: 16, duration: 0.5 })
-          .from(".hero-title", { opacity: 0, y: 28, duration: 0.7 }, "-=0.25")
-          .from(".hero-sub", { opacity: 0, y: 20, duration: 0.6 }, "-=0.4")
+          .from(".hero-sub", { opacity: 0, y: 20, duration: 0.6 }, "-=0.2")
           .from(".hero-cta > *", { opacity: 0, y: 18, duration: 0.5, stagger: 0.12 }, "-=0.3")
           .from(".hero-chip", { opacity: 0, scale: 0.6, duration: 0.4, stagger: 0.07 }, "-=0.2");
 
@@ -59,8 +59,8 @@ export default function Hero() {
             {"// Full-Stack Engineer"}
           </p>
 
-          <h1 className="hero-title mt-4 font-display text-5xl font-extrabold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
-            Chi Han Lu
+          <h1 className="mt-4 font-display text-5xl font-extrabold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
+            <SplitReveal text="Chi Han Lu" stagger={0.045} />
           </h1>
 
           <p className="hero-sub mt-6 max-w-xl text-lg leading-relaxed text-gray-300 lg:text-xl">

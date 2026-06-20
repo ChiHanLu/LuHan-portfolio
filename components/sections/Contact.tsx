@@ -28,22 +28,26 @@ export default function Contact() {
   }, []);
 
   return (
-    <section id="contact" className="relative scroll-mt-20 overflow-hidden py-28">
-      {/* 星系 / 黑洞 3D 背景（紫藍，與主題契合） */}
+    <section
+      id="contact"
+      className="relative flex min-h-[90vh] scroll-mt-20 items-start overflow-hidden pt-10 pb-0"
+    >
+      {/* galaxy 星系作為整塊背景 */}
       <ThreeBackground />
 
-      {/* 上下漸層融合：讓 galaxy 自然融入上方文章區與下方頁尾，消除硬邊 */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-56 bg-gradient-to-b from-background via-background/60 to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-56 bg-gradient-to-t from-background via-background/60 to-transparent" />
+      {/* 僅底部漸層銜接頁尾；頂部不加遮罩，galaxy 完全透出 */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-44 bg-gradient-to-t from-background to-transparent" />
 
+      {/* contact 內容直接融入 galaxy 上方（無卡片框） */}
       <div className="container relative z-10 pointer-events-none">
-        <Reveal className="pointer-events-auto mx-auto max-w-2xl rounded-glass border border-white/10 bg-white/[0.02] p-10 text-center shadow-glass backdrop-blur-2xl">
+        <Reveal className="mx-auto max-w-2xl text-center [text-shadow:0_2px_24px_rgba(0,0,0,0.7)]">
           <p className="font-mono text-sm tracking-widest text-primary-400">{"// contact"}</p>
-          <h2 className="mt-3 font-display text-2xl font-bold leading-snug text-white sm:text-3xl lg:text-4xl">
-            {line}
+          <h2 className="mt-3 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+            一起做點有趣的東西
           </h2>
+          <p className="mt-4 font-mono text-sm text-gray-300">{line}</p>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="pointer-events-auto mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link href="mailto:11336028@ntub.edu.tw" aria-label="Email">
               <Button intent="primary" size="lg">
                 Email 聯絡
@@ -54,6 +58,5 @@ export default function Contact() {
         </Reveal>
       </div>
     </section>
-
   );
 }
