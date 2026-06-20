@@ -32,8 +32,12 @@ export default function Contact() {
       {/* 星系 / 黑洞 3D 背景（紫藍，與主題契合） */}
       <ThreeBackground />
 
+      {/* 上下漸層融合：讓 galaxy 自然融入上方文章區與下方頁尾，消除硬邊 */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-56 bg-gradient-to-b from-background via-background/60 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-56 bg-gradient-to-t from-background via-background/60 to-transparent" />
+
       <div className="container relative z-10 pointer-events-none">
-        <Reveal className="pointer-events-auto mx-auto max-w-2xl rounded-glass border border-glass-border bg-white/[0.03] p-10 text-center backdrop-blur-md">
+        <Reveal className="pointer-events-auto mx-auto max-w-2xl rounded-glass border border-white/10 bg-white/[0.02] p-10 text-center shadow-glass backdrop-blur-2xl">
           <p className="font-mono text-sm tracking-widest text-primary-400">{"// contact"}</p>
           <h2 className="mt-3 font-display text-2xl font-bold leading-snug text-white sm:text-3xl lg:text-4xl">
             {line}

@@ -57,7 +57,7 @@ export function ResumeDownload({ intent = "primary", size = "lg", className }: R
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
-            className="absolute left-0 z-50 mt-2 w-64 overflow-hidden rounded-xl border border-white/10 bg-black/80 p-1.5 shadow-2xl shadow-black/50 backdrop-blur-lg"
+            className="absolute left-0 z-[60] mt-2 w-64 overflow-hidden rounded-xl border border-white/10 bg-black/85 p-1.5 shadow-2xl shadow-black/50 backdrop-blur-lg"
           >
             {resumes.map((r) => (
               <a

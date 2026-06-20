@@ -18,9 +18,8 @@ type Project = {
 const projects: Project[] = [
   {
     title: "日記之森 · SoulCraft Journal",
-    desc: "專注於心情記錄的線上日記平台，提供安全私密的情感抒發空間；身為主要開發者帶領團隊晉級競賽決賽。",
+    desc: "專注於心情記錄的線上日記平台，提供安全私密的情感抒發空間；身為主要開發者帶領團隊晉級《數位發展部》Civic Tech Taiwan 跨域競技場全國決賽。",
     tech: ["Python", "Flask", "PostgreSQL", "JavaScript"],
-    live: "https://www.soulcraftjournal.studio/",
     flagship: true,
   },
   {

@@ -6,7 +6,7 @@ export default function Article() {
       <H2 id="sec-1">專案起源：一個溫暖的想法</H2>
 
       <Lead>
-        在資訊管理系的學習過程中，我發現身邊很多同學都有記錄心情、整理思緒的需求。市面上雖然有許多日記應用，但大多數要不功能複雜難用，要不就是隱私保護不足。
+        在資訊管理系的學習過程中，我發現身邊許多同學都有記錄心情、整理思緒的需求。市面上的日記應用雖多，卻常常不是功能繁雜難用，就是隱私保護不足。
       </Lead>
 
       <P>
@@ -15,10 +15,10 @@ export default function Article() {
 
       <H3>設計初衷</H3>
       <Ul>
-        <Li>🌳 <strong>溫暖療癒</strong>：森林主題營造寧靜的書寫氛圍</Li>
-        <Li>🔒 <strong>隱私安全</strong>：用戶的情感記錄需要完全的保護</Li>
-        <Li>✍️ <strong>專注書寫</strong>：簡潔的介面讓用戶專心記錄</Li>
-        <Li>🤝 <strong>AI 陪伴</strong>：智能聊天機器人提供溫暖的互動</Li>
+        <Li><strong>溫暖療癒</strong>：以森林主題營造寧靜的書寫氛圍</Li>
+        <Li><strong>隱私安全</strong>：用戶的情感記錄理應受到完整保護</Li>
+        <Li><strong>專注書寫</strong>：簡潔的介面讓用戶安心記錄</Li>
+        <Li><strong>AI 陪伴</strong>：以智能聊天機器人提供溫暖的互動</Li>
       </Ul>
 
       <H2 id="sec-2">技術選型的學習歷程</H2>
@@ -26,19 +26,19 @@ export default function Article() {
       <H3>當時的我：架構？那是什麼？</H3>
 
       <P>
-        回想起專案初期，老實說我連什麼叫「架構」都不太懂。看著學長姐們談論什麼 MVC、前後端分離，我完全是一頭霧水。
+        回想專案初期，老實說我連「架構」是什麼都不太懂。聽著學長姐談論 MVC、前後端分離，我完全一頭霧水。
       </P>
 
       <P>
-        但正是這種「無知者無畏」的心態，讓我決定從最基礎的技術開始學起。
+        但也正是這份「無知者無畏」的心態，讓我下定決心從最基礎的技術學起。
       </P>
 
       <H3>為什麼選擇 Flask？</H3>
       <Ul>
-        <Li><strong>學習曲線友善</strong>：對初學者相對容易上手</Li>
-        <Li><strong>文檔豐富</strong>：網路上有大量的中文教學資源</Li>
-        <Li><strong>靈活度高</strong>：可以根據自己的需求慢慢擴展功能</Li>
-        <Li><strong>Python 生態</strong>：與我在課堂上學習的 Python 無縫接軌</Li>
+        <Li><strong>學習曲線友善</strong>：對初學者相對容易上手。</Li>
+        <Li><strong>文件豐富</strong>：網路上有大量中文教學資源。</Li>
+        <Li><strong>靈活度高</strong>：能依自己的需求逐步擴展功能。</Li>
+        <Li><strong>Python 生態</strong>：與我在課堂上學的 Python 無縫接軌。</Li>
       </Ul>
 
       <H3>最終的技術組合</H3>
@@ -63,11 +63,11 @@ export default function Article() {
       <H3>第一階段：搞懂「大架構」是什麼</H3>
 
       <P>
-        還記得剛開始時，我連 Web 應用程式的基本概念都很模糊。什麼是前端？什麼是後端？為什麼需要資料庫？
+        還記得剛開始時，我對 Web 應用程式的基本概念十分模糊：什麼是前端？什麼是後端？為什麼需要資料庫？
       </P>
 
       <P>
-        我花了好幾週的時間，從最基礎的概念開始研究：
+        於是我花了好幾週，從最基礎的概念開始一點一滴研究：
       </P>
 
       <P>
@@ -97,7 +97,7 @@ export default function Article() {
       <H3>第二階段：模組化設計的領悟</H3>
 
       <P>
-        當我慢慢理解了基本概念後，下一個挑戰就是如何組織程式碼。一開始我把所有功能都寫在一個檔案裡，結果越寫越亂。
+        慢慢理解基本概念後，下一個挑戰是如何組織程式碼。起初我把所有功能都塞進同一個檔案，結果越寫越亂。
       </P>
 
       <P>
@@ -114,7 +114,7 @@ export default function Article() {
       />
 
       <P>
-        這樣的設計讓我學會了一個重要概念：<strong>關注點分離</strong>。每個模組專注處理自己的業務邏輯，程式碼變得更容易理解和維護。
+        這樣的設計讓我領會到一個重要概念：<strong>關注點分離</strong>。每個模組只專注處理自己的業務邏輯，程式碼也因此更容易理解與維護。
       </P>
 
       <H3>第三階段：從小功能到完整系統</H3>
@@ -128,11 +128,11 @@ export default function Article() {
       <H3>使用者認證：我的第一個「大功能」</H3>
 
       <P>
-        還記得第一次要實作用戶註冊登入功能時，我完全不知道從何下手。什麼是 Session？什麼是密碼加密？
+        還記得第一次要實作用戶註冊登入功能時，我完全不知道從何下手。什麼是 Session？什麼又是密碼加密？
       </P>
 
       <P>
-        我花了整整一週的時間，從網路教學中拼湊出一個基本的認證系統：
+        我花了整整一週，從網路教學中一點一滴拼湊出一套基本的認證系統：
       </P>
 
       <P>
@@ -145,13 +145,13 @@ export default function Article() {
       </Ul>
 
       <P>
-        當第一次看到「註冊成功」的訊息出現時，那種成就感真的無法言喻！
+        當「註冊成功」的訊息第一次出現在畫面上時，那份成就感真的難以言喻。
       </P>
 
       <H3>日記撰寫功能：從簡單到豐富</H3>
 
       <P>
-        一開始的日記功能非常陽春，就是一個文字框加上儲存按鈕。但隨著對用戶需求的理解加深，我開始思考：
+        最初的日記功能非常陽春，只是一個文字框加上儲存按鈕。但隨著對用戶需求理解加深，我開始思考：
       </P>
 
       <P>
@@ -164,13 +164,13 @@ export default function Article() {
       </Ul>
 
       <P>
-        每增加一個功能，我都要學習新的技術。情緒標記讓我學會了資料庫的枚舉類型，搜尋功能讓我理解了 SQL 的模糊查詢。
+        每新增一個功能，我都得學習一項新技術。情緒標記讓我學會資料庫的枚舉型別，搜尋功能則讓我理解了 SQL 的模糊查詢。
       </P>
 
       <H3>AI 聊天機器人：最具挑戰性的功能</H3>
 
       <P>
-        當專案進行到中期時，我想加入一個 AI 聊天機器人，讓用戶在寫日記之餘還能有個「數位夥伴」陪伴。
+        專案進行到中期，我想加入一個 AI 聊天機器人，讓用戶在寫日記之餘，還能有個「數位夥伴」相伴。
       </P>
 
       <P>
@@ -186,11 +186,11 @@ export default function Article() {
         <strong>心境轉折</strong>：
       </P>
       <P>
-        這個功能讓我第一次體會到「系統整合」的複雜性。不再是單純的 CRUD 操作，而是要讓不同的服務協同工作。
+        這個功能讓我第一次體會到「系統整合」的複雜：它不再是單純的 CRUD 操作，而是要讓不同的服務協同運作。
       </P>
 
       <P>
-        雖然最終的實現比較簡單，但這個過程讓我對「全端開發」有了更深的理解。
+        雖然最終的實作相對簡單，但這段過程讓我對「全端開發」有了更深的理解。
       </P>
 
       <H2 id="sec-5">踩坑經驗分享</H2>
@@ -203,14 +203,14 @@ export default function Article() {
 
       <CodeBlock
         lang="javascript"
-        code={`// ❌ 錯誤做法
+        code={`// 錯誤做法
 const [entries, setEntries] = useState([]);
 const [loading, setLoading] = useState(false);
 const [error, setError] = useState(null);
 const [currentEntry, setCurrentEntry] = useState(null);
 // ... 更多狀態
 
-// ✅ 正確做法：使用 useReducer
+// 正確做法：使用 useReducer
 const [state, dispatch] = useReducer(journalReducer, initialState);
 
 const journalReducer = (state, action) => {
@@ -238,7 +238,7 @@ const journalReducer = (state, action) => {
 
       <CodeBlock
         lang="javascript"
-        code={`// ✅ 統一的 API 錯誤處理
+        code={`// 統一的 API 錯誤處理
 const apiCall = async (url, options = {}) => {
   try {
     const response = await fetch(url, {
@@ -267,7 +267,7 @@ const apiCall = async (url, options = {}) => {
 
       <CodeBlock
         lang="javascript"
-        code={`// ✅ 使用 React.memo 避免不必要的重渲染
+        code={`// 使用 React.memo 避免不必要的重渲染
 const EntryCard = React.memo(({ entry, onEdit, onDelete }) => {
   return (
     <div className="entry-card">
@@ -281,7 +281,7 @@ const EntryCard = React.memo(({ entry, onEdit, onDelete }) => {
   );
 });
 
-// ✅ 虛擬化長列表
+// 虛擬化長列表
 import { FixedSizeList as List } from 'react-window';
 
 const EntryList = ({ entries }) => (
@@ -335,21 +335,21 @@ const EntryList = ({ entries }) => (
       <H2 id="sec-9">結語</H2>
 
       <P>
-        從一個想法到實際的產品，這個過程充滿挑戰但也很有成就感。<strong>日記之森</strong>不只是我的第一個全端專案，更是我成長路上的重要里程碑。
+        從一個想法走到實際的產品，這段過程充滿挑戰，卻也格外有成就感。<strong>日記之森</strong>不只是我的第一個全端專案，更是我成長路上的重要里程碑。
       </P>
 
       <P>
-        每一行程式碼都承載著我想要幫助他人的初心，每一個功能都是對更好用戶體驗的追求。
+        每一行程式碼都承載著我想幫助他人的初心，每一項功能都是對更好用戶體驗的追求。
       </P>
 
       <Divider />
 
       <P>
-        🌳 <strong>體驗專案</strong>：<a href="https://www.soulcraftjournal.studio/" className="text-primary-300 underline underline-offset-4 hover:text-primary-200" target="_blank" rel="noreferrer">SoulCraft Journal</a>
+        <strong>體驗專案</strong>：<a href="https://www.soulcraftjournal.studio/" className="text-primary-300 underline underline-offset-4 hover:text-primary-200" target="_blank" rel="noreferrer">SoulCraft Journal</a>
         <br />
-        💻 <strong>技術交流</strong>：11336028@ntub.edu.tw
+        <strong>技術交流</strong>：11336028@ntub.edu.tw
         <br />
-        📖 <strong>更多文章</strong>：持續分享開發心得與技術筆記
+        <strong>更多文章</strong>：持續分享開發心得與技術筆記
       </P>
     </>
   );

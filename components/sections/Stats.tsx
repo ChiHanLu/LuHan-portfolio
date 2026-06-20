@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { gsap } from "@/lib/gsap";
+import { prefersReducedMotion, useInView } from "@/lib/useInView";
 import { GlassCard } from "@/components/ui/GlassCard";
 
 const stats = [
@@ -12,40 +13,29 @@ const stats = [
 ];
 
 export default function Stats() {
-  const ref = useRef<HTMLDivElement>(null);
+  // 進場時數字由 0 滾動到目標值（減少動態偏好下直接顯示最終值、不動畫）
+  const ref = useInView<HTMLDivElement>(
+    (el) => {
+      el.querySelectorAll<HTMLElement>("[data-num]").forEach((n) => {
+        const end = Number(n.dataset.num);
+        const obj = { v: 0 };
+        gsap.to(obj, {
+          v: end,
+          duration: 1.4,
+          ease: "power2.out",
+          onUpdate: () => (n.textContent = String(Math.round(obj.v))),
+        });
+      });
+    },
+    { threshold: 0.3, enabled: !prefersReducedMotion() }
+  );
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const nums = el.querySelectorAll<HTMLElement>("[data-num]");
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
-      nums.forEach((n) => (n.textContent = n.dataset.num ?? "0"));
-      return;
-    }
-    // 用原生 IntersectionObserver 觸發數字滾動（不依賴 Lenis 捲動代理）
-    const io = new IntersectionObserver(
-      (entries, obs) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          nums.forEach((n) => {
-            const end = Number(n.dataset.num);
-            const obj = { v: 0 };
-            gsap.to(obj, {
-              v: end,
-              duration: 1.4,
-              ease: "power2.out",
-              onUpdate: () => (n.textContent = String(Math.round(obj.v))),
-            });
-          });
-          obs.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+    if (!prefersReducedMotion() || !ref.current) return;
+    ref.current
+      .querySelectorAll<HTMLElement>("[data-num]")
+      .forEach((n) => (n.textContent = n.dataset.num ?? "0"));
+  }, [ref]);
 
   return (
     <section className="relative py-16">

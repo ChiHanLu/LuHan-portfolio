@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { gsap } from "@/lib/gsap";
+import { prefersReducedMotion, useInView } from "@/lib/useInView";
 import { Reveal } from "@/components/ui/Reveal";
 
 const skills = [
@@ -14,32 +15,20 @@ const skills = [
 ];
 
 export default function Skills() {
-  const ref = useRef<HTMLDivElement>(null);
+  // 進場時技能條由 0 成長到滿（減少動態偏好下直接顯示滿格、不動畫）
+  const ref = useInView<HTMLDivElement>(
+    (el) => {
+      const bars = el.querySelectorAll<HTMLElement>("[data-bar]");
+      gsap.to(bars, { scaleX: 1, duration: 1.1, ease: "power3.out", stagger: 0.08 });
+    },
+    { threshold: 0.25, enabled: !prefersReducedMotion() }
+  );
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const bars = el.querySelectorAll<HTMLElement>("[data-bar]");
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
-      bars.forEach((bar) => gsap.set(bar, { scaleX: 1 }));
-      return;
-    }
-    gsap.set(bars, { scaleX: 0 });
-    // 原生 IntersectionObserver 觸發技能條成長（不依賴 Lenis 捲動代理）
-    const io = new IntersectionObserver(
-      (entries, obs) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          gsap.to(bars, { scaleX: 1, duration: 1.1, ease: "power3.out", stagger: 0.08 });
-          obs.disconnect();
-        }
-      },
-      { threshold: 0.25 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+    if (!ref.current) return;
+    const bars = ref.current.querySelectorAll<HTMLElement>("[data-bar]");
+    gsap.set(bars, { scaleX: prefersReducedMotion() ? 1 : 0 });
+  }, [ref]);
 
   return (
     <section id="skills" className="relative scroll-mt-20 py-28">

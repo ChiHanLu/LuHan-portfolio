@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Button } from "@/components/ui/Button";
 import { ResumeDownload } from "@/components/ui/ResumeDownload";
+import { Parallax } from "@/components/ui/Parallax";
 
 // 粒子星群只在 client 載入
 const ParticleField = dynamic(() => import("./ParticleField"), { ssr: false });
@@ -35,14 +36,14 @@ export default function Hero() {
       id="home"
       className="relative flex min-h-screen items-center overflow-hidden"
     >
-      {/* 粒子星群連線（背景主視覺，全幅） */}
-      <div className="absolute inset-0 z-0">
+      {/* 粒子星群連線（背景主視覺，全幅，隨捲動視差） */}
+      <Parallax speed={-90} className="absolute inset-0 z-0">
         <ParticleField />
-      </div>
+      </Parallax>
       {/* 左側遮罩：確保標題文字可讀 */}
       <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-background via-background/70 to-transparent" />
 
-      <div className="container relative z-10">
+      <div className="container relative z-20">
         <div className="max-w-3xl">
           <p className="hero-eyebrow font-mono text-sm tracking-widest text-primary-400">
             {"// Full-Stack Engineer"}

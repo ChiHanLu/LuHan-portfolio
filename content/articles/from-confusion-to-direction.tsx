@@ -5,14 +5,14 @@ export default function Article() {
     <>
       <H2 id="sec-1">起點：迷惘中的五專企管生</H2>
 
-      <Lead>回想起五專企業管理系的那些日子，說不上特別優秀，成績 PR30，算是勉強混過的那種學生。當時的我對未來沒有明確方向，只是按部就班地完成課業，心中始終在尋找那個能真正點燃熱情的領域。</Lead>
+      <Lead>回想五專企業管理系的那些日子，我稱不上優秀，成績 PR30，是勉強混過的那種學生。當時的我對未來沒有明確方向，只是按部就班完成課業，心裡始終在尋找一個能真正點燃熱情的領域。</Lead>
 
       <P><strong>那時候的我</strong>：</P>
       <Ul>
-        <Li>📚 成績平平，不是特別愛讀書的學生</Li>
-        <Li>🤔 對未來感到迷惘，不知道自己想要什麼</Li>
-        <Li>😴 上課常常神遊，覺得課程內容與現實脫節</Li>
-        <Li>💭 總覺得自己應該做點什麼，但不知道該做什麼</Li>
+        <Li>成績平平，並不是特別愛讀書的學生。</Li>
+        <Li>對未來感到迷惘，不知道自己想要什麼。</Li>
+        <Li>上課常常神遊，覺得課程內容與現實脫節。</Li>
+        <Li>總覺得自己該做點什麼，卻不知道該從何做起。</Li>
       </Ul>
 
       <H2 id="sec-2">轉捩點：網頁設計課的啟發</H2>
@@ -27,10 +27,10 @@ export default function Article() {
 
       <P><strong>那種感覺很特別</strong>：</P>
       <Ul>
-        <Li>✨ <strong>從無到有的創造感</strong>：看著空白的編輯器變成有意義的網頁</Li>
-        <Li>🧩 <strong>邏輯實現的成就感</strong>：程式碼按照我的想法執行</Li>
-        <Li>🔥 <strong>內心的熱情被點燃</strong>：第一次對學習感到真正的興奮</Li>
-        <Li>💡 <strong>找到方向的清晰感</strong>：終於知道自己想要什麼了</Li>
+        <Li><strong>從無到有的創造感</strong>：看著空白的編輯器，逐漸變成一個有意義的網頁。</Li>
+        <Li><strong>邏輯實現的成就感</strong>：程式碼確實照著我的想法執行。</Li>
+        <Li><strong>內心的熱情被點燃</strong>：第一次對學習感到真正的興奮。</Li>
+        <Li><strong>找到方向的清晰感</strong>：我終於知道自己想要的是什麼。</Li>
       </Ul>
 
       <P>這份熱情如此強烈，讓我做出了一個重要決定：<strong>跨領域轉向資訊管理</strong>。</P>
@@ -43,18 +43,18 @@ export default function Article() {
 
       <P><strong>面臨的困難</strong>：</P>
       <Ul>
-        <Li>📖 <strong>基礎薄弱</strong>：幾乎零程式設計基礎</Li>
-        <Li>⏰ <strong>時間緊迫</strong>：需要在短時間內準備考試</Li>
-        <Li>👥 <strong>缺乏支持</strong>：身邊的人都覺得我在冒險</Li>
-        <Li>😰 <strong>內心恐懼</strong>：害怕失敗，害怕證明不了自己</Li>
+        <Li><strong>基礎薄弱</strong>：幾乎是零程式設計基礎。</Li>
+        <Li><strong>時間緊迫</strong>：必須在短時間內準備考試。</Li>
+        <Li><strong>缺乏支持</strong>：身邊的人都覺得我在冒險。</Li>
+        <Li><strong>內心恐懼</strong>：害怕失敗，也害怕證明不了自己。</Li>
       </Ul>
 
-      <P><strong>但我知道</strong>：</P>
+      <P><strong>但我心裡很清楚</strong>：</P>
       <Ul>
-        <Li>🎯 這是我真正想要的方向</Li>
-        <Li>💪 再難也要試試看</Li>
-        <Li>🔥 熱情比天賦更重要</Li>
-        <Li>📈 現在不改變，以後會後悔</Li>
+        <Li>這是我真正想走的方向。</Li>
+        <Li>再難，也要試試看。</Li>
+        <Li>熱情比天賦更重要。</Li>
+        <Li>現在不改變，將來一定會後悔。</Li>
       </Ul>
 
       <H2 id="sec-4">起步：面對現實的差距</H2>
@@ -65,16 +65,16 @@ export default function Article() {
 
       <P><strong>殘酷的現實檢驗</strong>：</P>
       <Ul>
-        <Li>😳 <strong>同學們都在討論我聽不懂的術語</strong></Li>
-        <Li>🤯 <strong>第一堂程式設計課完全跟不上</strong></Li>
-        <Li>😓 <strong>感覺自己像是外星人一樣格格不入</strong></Li>
-        <Li>💔 <strong>開始懷疑自己的選擇是否正確</strong></Li>
+        <Li><strong>同學們討論的術語，我幾乎都聽不懂。</strong></Li>
+        <Li><strong>第一堂程式設計課，我完全跟不上。</strong></Li>
+        <Li><strong>感覺自己像個外星人，格格不入。</strong></Li>
+        <Li><strong>開始懷疑自己的選擇是否正確。</strong></Li>
       </Ul>
 
       <P><strong>那段最困難的日子</strong>：
-      還記得第一次作業，要寫一個簡單的計算機程式。其他同學花一小時就完成了，我卻花了整整三天，查資料、看教學影片、一遍遍地嘗試。</P>
+      還記得第一次作業是寫一個簡單的計算機程式。其他同學一小時就完成，我卻花了整整三天，查資料、看教學影片、一遍又一遍地嘗試。</P>
 
-      <P>提交作業的那一刻，雖然程式很陽春，但那種成就感讓我知道：<strong>我選對了方向</strong>。</P>
+      <P>提交作業的那一刻，程式雖然陽春，但那份成就感讓我確信：<strong>我選對了方向</strong>。</P>
 
       <H2 id="sec-5">追趕：拼命自學的日子</H2>
 
@@ -86,27 +86,27 @@ export default function Article() {
 
       <H3>1. 大量投入課後時間</H3>
       <Ul>
-        <Li>⏰ <strong>每天至少 4 小時自主學習</strong></Li>
-        <Li>📚 <strong>鑽研專業書籍和線上教程</strong></Li>
-        <Li>💻 <strong>動手寫程式，邊做邊學</strong></Li>
-        <Li>📝 <strong>記錄學習筆記，反覆複習</strong></Li>
+        <Li><strong>每天至少四小時自主學習。</strong></Li>
+        <Li><strong>鑽研專業書籍與線上課程。</strong></Li>
+        <Li><strong>動手寫程式，邊做邊學。</strong></Li>
+        <Li><strong>記錄學習筆記，反覆複習。</strong></Li>
       </Ul>
 
       <H3>2. 主動向同儕請益</H3>
       <Ul>
-        <Li>🤝 <strong>放下面子，主動請教同學</strong></Li>
-        <Li>💬 <strong>參與課堂討論，不怕問愚蠢的問題</strong></Li>
-        <Li>👥 <strong>加入學習小組，集體成長</strong></Li>
-        <Li>🔄 <strong>建立互助關係，教學相長</strong></Li>
+        <Li><strong>放下面子，主動向同學請教。</strong></Li>
+        <Li><strong>參與課堂討論，不怕問看似愚蠢的問題。</strong></Li>
+        <Li><strong>加入學習小組，與大家一起成長。</strong></Li>
+        <Li><strong>建立互助關係，教學相長。</strong></Li>
       </Ul>
 
       <H3>3. 建立程式邏輯思維</H3>
-      <P>慢慢地，我開始理解程式設計不只是語法，更重要的是<strong>邏輯思維</strong>：</P>
+      <P>漸漸地，我開始明白程式設計不只是語法，更關鍵的是<strong>邏輯思維</strong>：</P>
       <Ul>
-        <Li>🧠 <strong>如何拆解複雜問題</strong></Li>
-        <Li>🔗 <strong>如何建立系統性思考</strong></Li>
-        <Li>🎯 <strong>如何從需求到實現</strong></Li>
-        <Li>🔍 <strong>如何除錯和優化</strong></Li>
+        <Li><strong>如何拆解複雜問題。</strong></Li>
+        <Li><strong>如何建立系統性思考。</strong></Li>
+        <Li><strong>如何從需求走到實現。</strong></Li>
+        <Li><strong>如何除錯與優化。</strong></Li>
       </Ul>
 
       <H2 id="sec-6">轉變：對 AI 的態度演變</H2>
@@ -117,13 +117,13 @@ export default function Article() {
 
       <P><strong>我當時的想法</strong>：</P>
       <Ul>
-        <Li>😤 <strong>用 AI 寫程式是作弊行為</strong></Li>
-        <Li>🧠 <strong>必須先用自己的邏輯打好基礎</strong></Li>
-        <Li>⚖️ <strong>工具應該是能力的延伸，不是思考的替代品</strong></Li>
-        <Li>💪 <strong>要先證明自己有解決問題的能力</strong></Li>
+        <Li><strong>用 AI 寫程式是一種作弊。</strong></Li>
+        <Li><strong>必須先靠自己的邏輯打好基礎。</strong></Li>
+        <Li><strong>工具應該是能力的延伸，而非思考的替代品。</strong></Li>
+        <Li><strong>得先證明自己有解決問題的能力。</strong></Li>
       </Ul>
 
-      <P>這種想法讓我在相當長的時間內都拒絕使用 AI 工具，堅持「純手工」學習。</P>
+      <P>這樣的想法，讓我在很長一段時間裡都拒絕使用 AI 工具，堅持「純手工」學習。</P>
 
       <H3>在實習中的現實衝擊</H3>
 
@@ -137,14 +137,14 @@ export default function Article() {
 
       <P><strong>初期的掙扎</strong>：</P>
       <Ul>
-        <Li>😰 <strong>專案複雜度遠超想像</strong></Li>
-        <Li>🏃‍♂️ <strong>工作節奏比學校快很多</strong></Li>
-        <Li>🤯 <strong>需要同時處理多個技術棧</strong></Li>
-        <Li>😓 <strong>感覺自己的知識完全不夠用</strong></Li>
+        <Li><strong>專案複雜度遠超我的想像。</strong></Li>
+        <Li><strong>工作節奏比學校快上許多。</strong></Li>
+        <Li><strong>必須同時處理多個技術棧。</strong></Li>
+        <Li><strong>感覺自己的知識完全不夠用。</strong></Li>
       </Ul>
 
       <P><strong>那段最困難的時期</strong>：
-      記得第一週，主管交給我一個「簡單」的後端 API 開發任務。我花了整整兩天才弄懂需求，又花了三天寫出勉強能跑的程式碼。看著其他同事輕鬆地解決類似問題，我開始懷疑自己是否適合這個領域。</P>
+      記得第一週，主管交給我一個「簡單」的後端 API 開發任務。我花了整整兩天才弄懂需求，又花了三天才寫出勉強能跑的程式碼。看著其他同事輕鬆解決類似問題，我開始懷疑自己是否適合這個領域。</P>
 
       <H3>主管的悉心指導</H3>
 
@@ -152,10 +152,10 @@ export default function Article() {
 
       <P><strong>主管教給我的重要觀念</strong>：</P>
       <Ul>
-        <Li>🎯 <strong>效率比固執更重要</strong></Li>
-        <Li>🛠️ <strong>善用工具是聰明的表現</strong></Li>
-        <Li>🤖 <strong>AI 是加速學習的催化劑</strong></Li>
-        <Li>💡 <strong>重點是解決問題，不是證明自己</strong></Li>
+        <Li><strong>效率比固執更重要。</strong></Li>
+        <Li><strong>善用工具是聰明的表現。</strong></Li>
+        <Li><strong>AI 是加速學習的催化劑。</strong></Li>
+        <Li><strong>重點是解決問題，而不是證明自己。</strong></Li>
       </Ul>
 
       <H3>AI 思維的啟蒙</H3>
@@ -164,14 +164,14 @@ export default function Article() {
 
       <P><strong>學會的 AI 應用方式</strong>：</P>
       <Ul>
-        <Li>📝 <strong>輔助開發</strong>：快速生成基礎程式碼架構</Li>
-        <Li>📊 <strong>解析數據</strong>：理解複雜的資料結構和關係</Li>
-        <Li>⚡ <strong>優化流程</strong>：改善開發效率和程式碼品質</Li>
-        <Li>🎓 <strong>學習新技術</strong>：快速理解陌生的框架和概念</Li>
+        <Li><strong>輔助開發</strong>：快速生成基礎的程式碼架構。</Li>
+        <Li><strong>解析數據</strong>：理解複雜的資料結構與關聯。</Li>
+        <Li><strong>優化流程</strong>：改善開發效率與程式碼品質。</Li>
+        <Li><strong>學習新技術</strong>：快速理解陌生的框架與概念。</Li>
       </Ul>
 
       <P><strong>重要的心境轉變</strong>：
-      我開始體悟到，<strong>AI 並非學習的終點，而是加速知識獲取與提升創造力的強大催化劑</strong>。</P>
+      我開始體悟到，<strong>AI 並非學習的終點，而是加速知識獲取、提升創造力的強大催化劑</strong>。</P>
 
       <H2 id="sec-8">蛻變：學習曲線的飛躍</H2>
 
@@ -181,18 +181,18 @@ export default function Article() {
 
       <P><strong>具體的改變</strong>：</P>
       <Ul>
-        <Li>⚡ <strong>開發速度提升 3 倍以上</strong></Li>
-        <Li>🧠 <strong>解決複雂問題的能力大幅增強</strong></Li>
-        <Li>📚 <strong>學習新技術的時間大幅縮短</strong></Li>
-        <Li>🎯 <strong>能夠專注於更有價值的思考</strong></Li>
+        <Li><strong>開發速度提升三倍以上。</strong></Li>
+        <Li><strong>解決複雜問題的能力大幅增強。</strong></Li>
+        <Li><strong>學習新技術所需的時間大幅縮短。</strong></Li>
+        <Li><strong>能把心力專注在更有價值的思考上。</strong></Li>
       </Ul>
 
       <P><strong>學會的核心能力</strong>：</P>
       <Ul>
-        <Li>🤖 <strong>與 AI 協作而非依賴</strong></Li>
-        <Li>🎯 <strong>快速理解問題本質</strong></Li>
-        <Li>🔧 <strong>選擇合適的工具和方法</strong></Li>
-        <Li>📈 <strong>持續迭代和優化</strong></Li>
+        <Li><strong>與 AI 協作，而非依賴。</strong></Li>
+        <Li><strong>快速看清問題的本質。</strong></Li>
+        <Li><strong>選擇合適的工具與方法。</strong></Li>
+        <Li><strong>持續迭代與優化。</strong></Li>
       </Ul>
 
       <H2 id="sec-9">應用：將經驗帶回校園</H2>
@@ -203,10 +203,10 @@ export default function Article() {
 
       <P><strong>我帶回校園的東西</strong>：</P>
       <Ul>
-        <Li>🏢 <strong>業界的開發模式和最佳實踐</strong></Li>
-        <Li>🔬 <strong>新技術視野和趨勢判斷</strong></Li>
-        <Li>🤖 <strong>AI 輔助設計的成熟思維</strong></Li>
-        <Li>💼 <strong>實際專案的經驗和教訓</strong></Li>
+        <Li><strong>業界的開發模式與最佳實踐。</strong></Li>
+        <Li><strong>新技術的視野與趨勢判斷。</strong></Li>
+        <Li><strong>AI 輔助設計的成熟思維。</strong></Li>
+        <Li><strong>實際專案累積的經驗與教訓。</strong></Li>
       </Ul>
 
       <H3>專題製作的領導力</H3>
@@ -215,18 +215,18 @@ export default function Article() {
 
       <P><strong>技術層面</strong>：</P>
       <Ul>
-        <Li>⚡ <strong>快速掌握系統核心架構</strong></Li>
-        <Li>🎯 <strong>準確識別技術難點和解決方案</strong></Li>
-        <Li>🔧 <strong>運用 AI 加速開發進度</strong></Li>
-        <Li>📊 <strong>建立完整的系統設計思維</strong></Li>
+        <Li><strong>快速掌握系統的核心架構。</strong></Li>
+        <Li><strong>準確辨識技術難點與解決方案。</strong></Li>
+        <Li><strong>運用 AI 加速開發進度。</strong></Li>
+        <Li><strong>建立完整的系統設計思維。</strong></Li>
       </Ul>
 
       <P><strong>團隊領導層面</strong>：</P>
       <Ul>
-        <Li>👥 <strong>帶領團隊成員共同成長</strong></Li>
-        <Li>🤖 <strong>引入 AI 輔助設計思維</strong></Li>
-        <Li>🚧 <strong>協助團隊克服開發瓶頸</strong></Li>
-        <Li>🎯 <strong>建立高效的協作模式</strong></Li>
+        <Li><strong>帶領團隊成員一起成長。</strong></Li>
+        <Li><strong>引入 AI 輔助設計的思維。</strong></Li>
+        <Li><strong>協助團隊突破開發瓶頸。</strong></Li>
+        <Li><strong>建立高效的協作模式。</strong></Li>
       </Ul>
 
       <H3>晉級全國決賽的成果</H3>
@@ -235,10 +235,10 @@ export default function Article() {
 
       <P><strong>這個成果的意義</strong>：</P>
       <Ul>
-        <Li>🏆 <strong>證明了跨領域學習的可能性</strong></Li>
-        <Li>💪 <strong>展示了努力和方法的重要性</strong></Li>
-        <Li>🤖 <strong>驗證了 AI 協作思維的價值</strong></Li>
-        <Li>👥 <strong>體現了團隊合作的力量</strong></Li>
+        <Li><strong>證明了跨領域學習的可能性。</strong></Li>
+        <Li><strong>展現了努力與方法的重要性。</strong></Li>
+        <Li><strong>驗證了 AI 協作思維的價值。</strong></Li>
+        <Li><strong>體現了團隊合作的力量。</strong></Li>
       </Ul>
 
       <H2 id="sec-10">成長：在公司的重要角色</H2>
@@ -249,18 +249,18 @@ export default function Article() {
 
       <P><strong>角色轉變的歷程</strong>：</P>
       <Ul>
-        <Li>👶 <strong>新手實習生</strong>：需要大量指導和協助</Li>
-        <Li>🎓 <strong>獨立開發者</strong>：能夠獨自完成功能模組</Li>
-        <Li>👨‍💼 <strong>系統負責人</strong>：負責整個後端系統的設計和維護</Li>
-        <Li>🎯 <strong>技術領導者</strong>：指導其他新進同事</Li>
+        <Li><strong>新手實習生</strong>：需要大量的指導與協助。</Li>
+        <Li><strong>獨立開發者</strong>：能夠獨自完成功能模組。</Li>
+        <Li><strong>系統負責人</strong>：負責整個後端系統的設計與維護。</Li>
+        <Li><strong>技術領導者</strong>：開始指導其他新進同事。</Li>
       </Ul>
 
       <P><strong>技術能力的成長</strong>：</P>
       <Ul>
-        <Li>🏗️ <strong>系統架構設計能力</strong></Li>
-        <Li>📊 <strong>資料庫設計和優化</strong></Li>
-        <Li>🔧 <strong>API 設計和效能調優</strong></Li>
-        <Li>🤖 <strong>AI 工具的深度應用</strong></Li>
+        <Li><strong>系統架構設計能力。</strong></Li>
+        <Li><strong>資料庫設計與優化。</strong></Li>
+        <Li><strong>API 設計與效能調優。</strong></Li>
+        <Li><strong>AI 工具的深度應用。</strong></Li>
       </Ul>
 
       <H2 id="sec-11">反思：幸運與努力的平衡</H2>
@@ -271,11 +271,11 @@ export default function Article() {
 
       <P><strong>我遇到的幸運</strong>：</P>
       <Ul>
-        <Li>🎯 <strong>在對的時間發現了興趣方向</strong></Li>
-        <Li>👨‍🏫 <strong>遇到了願意引薦的五專導師</strong></Li>
-        <Li>💼 <strong>獲得了新創公司的實習機會</strong></Li>
-        <Li>👨‍💼 <strong>遇到了願意指導的好主管</strong></Li>
-        <Li>🤖 <strong>趕上了 AI 技術的浪潮</strong></Li>
+        <Li><strong>在對的時間，發現了興趣的方向。</strong></Li>
+        <Li><strong>遇到願意引薦我的五專導師。</strong></Li>
+        <Li><strong>獲得了新創公司的實習機會。</strong></Li>
+        <Li><strong>遇到願意悉心指導的好主管。</strong></Li>
+        <Li><strong>趕上了 AI 技術的浪潮。</strong></Li>
       </Ul>
 
       <H3>堅持努力的價值</H3>
@@ -284,11 +284,11 @@ export default function Article() {
 
       <P><strong>我付出的努力</strong>：</P>
       <Ul>
-        <Li>⏰ <strong>數不清的加班學習時間</strong></Li>
-        <Li>📚 <strong>大量的自主研讀和實作</strong></Li>
-        <Li>🤝 <strong>主動請教和交流的勇氣</strong></Li>
-        <Li>💪 <strong>面對挫折時的堅持不懈</strong></Li>
-        <Li>🎯 <strong>明確目標下的持續行動</strong></Li>
+        <Li><strong>數不清的加班與自學時間。</strong></Li>
+        <Li><strong>大量的自主研讀與實作。</strong></Li>
+        <Li><strong>主動請教與交流的勇氣。</strong></Li>
+        <Li><strong>面對挫折時的堅持不懈。</strong></Li>
+        <Li><strong>在明確目標下的持續行動。</strong></Li>
       </Ul>
 
       <P><strong>重要的體悟</strong>：</P>
@@ -302,30 +302,30 @@ export default function Article() {
 
       <H3>1. 保持開放的心態</H3>
       <Ul>
-        <Li>🔍 <strong>勇於嘗試新事物</strong>：不知道什麼適合你之前，多方嘗試</Li>
-        <Li>💡 <strong>注意內心的聲音</strong>：什麼事情會讓你感到興奮和投入？</Li>
-        <Li>🚪 <strong>不要害怕改變</strong>：發現新方向時要有轉換的勇氣</Li>
+        <Li><strong>勇於嘗試新事物</strong>：在不知道什麼適合你之前，先多方嘗試。</Li>
+        <Li><strong>傾聽內心的聲音</strong>：什麼事情會讓你感到興奮、願意投入？</Li>
+        <Li><strong>不要害怕改變</strong>：發現新方向時，要有轉換跑道的勇氣。</Li>
       </Ul>
 
       <H3>2. 基礎比天賦更重要</H3>
       <Ul>
-        <Li>📚 <strong>札實的基本功</strong>：不要急於求成，先把基礎打好</Li>
-        <Li>🧠 <strong>培養邏輯思維</strong>：學會系統性地思考和解決問題</Li>
-        <Li>⏰ <strong>投入足夠的時間</strong>：沒有捷徑，只有持續的努力</Li>
+        <Li><strong>札實的基本功</strong>：不要急於求成，先把基礎打穩。</Li>
+        <Li><strong>培養邏輯思維</strong>：學會系統性地思考與解決問題。</Li>
+        <Li><strong>投入足夠的時間</strong>：沒有捷徑，只有持續的努力。</Li>
       </Ul>
 
       <H3>3. 善用現代工具</H3>
       <Ul>
-        <Li>🤖 <strong>擁抱 AI 但不依賴</strong>：用 AI 加速學習而非替代思考</Li>
-        <Li>🛠️ <strong>選對工具很重要</strong>：不同階段需要不同的學習方法</Li>
-        <Li>🎯 <strong>效率比固執更重要</strong>：目標是解決問題，不是證明自己</Li>
+        <Li><strong>擁抱 AI，但不依賴</strong>：用 AI 加速學習，而非取代思考。</Li>
+        <Li><strong>選對工具很重要</strong>：不同階段需要不同的學習方法。</Li>
+        <Li><strong>效率比固執更重要</strong>：目標是解決問題，不是證明自己。</Li>
       </Ul>
 
       <H3>4. 重視實務經驗</H3>
       <Ul>
-        <Li>💼 <strong>主動尋找實習機會</strong>：學校學的和業界需要的往往有差距</Li>
-        <Li>🤝 <strong>建立良好的人際關係</strong>：好的導師和主管能改變你的人生軌跡</Li>
-        <Li>🏃‍♂️ <strong>適應快節奏的工作環境</strong>：現實世界的步調比學校快很多</Li>
+        <Li><strong>主動尋找實習機會</strong>：學校所學與業界所需，往往有落差。</Li>
+        <Li><strong>建立良好的人際關係</strong>：好的導師與主管，能改變你的人生軌跡。</Li>
+        <Li><strong>適應快節奏的工作環境</strong>：現實世界的步調比校園快得多。</Li>
       </Ul>
 
       <H2 id="sec-13">結語：清晰目標與不懈努力的力量</H2>
@@ -334,28 +334,28 @@ export default function Article() {
 
       <P><strong>成功的關鍵要素</strong>：</P>
       <Ul>
-        <Li>🎯 <strong>清晰的目標</strong>：知道自己想要什麼</Li>
-        <Li>💪 <strong>不懈的努力</strong>：願意為目標付出代價</Li>
-        <Li>🔄 <strong>持續的學習</strong>：保持成長的心態</Li>
-        <Li>🤝 <strong>善用資源</strong>：包括人脈、工具和機會</Li>
-        <Li>🚀 <strong>擁抱改變</strong>：適應新技術和新環境</Li>
+        <Li><strong>清晰的目標</strong>：清楚知道自己想要什麼。</Li>
+        <Li><strong>不懈的努力</strong>：願意為目標付出代價。</Li>
+        <Li><strong>持續的學習</strong>：始終保持成長的心態。</Li>
+        <Li><strong>善用資源</strong>：包括人脈、工具與機會。</Li>
+        <Li><strong>擁抱改變</strong>：主動適應新技術與新環境。</Li>
       </Ul>
 
       <P><strong>最重要的體悟</strong>：</P>
       <Quote>每個人都有自己的節奏，重要的是找到方向後持續前進。不要因為起步晚就放棄，也不要因為基礎差就自卑。只要方向對了，努力就會有回報。</Quote>
 
       <P><strong>給正在迷惘的你</strong>：
-      如果你也在尋找人生方向，如果你也覺得自己起步比別人晚，請記住：<strong>改變永遠不會太遲，關鍵是要開始行動</strong>。</P>
+      如果你也在尋找人生方向，也覺得自己起步比別人晚，請記住：<strong>改變永遠不嫌晚，關鍵是開始行動</strong>。</P>
 
-      <P>找到那個能點燃你熱情的領域，然後全力以赴地去追求它。相信我，當你真正投入自己熱愛的事情時，你會發現自己擁有超乎想像的潛力。</P>
+      <P>找到那個能點燃你熱情的領域，然後全力以赴去追求。相信我，當你真正投入自己熱愛的事情，你會發現自己擁有超乎想像的潛力。</P>
 
       <Divider />
 
       <P><strong>想要交流學習心得或職涯規劃？歡迎聯絡我！</strong></P>
 
-      <P>📧 Email: 11336028@ntub.edu.tw<br />
-      🌳 我的作品：<a href="https://www.soulcraftjournal.studio/" className="text-primary-300 underline underline-offset-4 hover:text-primary-200" target="_blank" rel="noreferrer">日記之森 - SoulCraft Journal</a><br />
-      💼 實習經驗：智能悅信資訊股份有限公司</P>
+      <P>Email：11336028@ntub.edu.tw<br />
+      我的作品：<a href="https://www.soulcraftjournal.studio/" className="text-primary-300 underline underline-offset-4 hover:text-primary-200" target="_blank" rel="noreferrer">日記之森 - SoulCraft Journal</a><br />
+      實習經驗：智能悅信資訊股份有限公司</P>
 
       <Divider />
 

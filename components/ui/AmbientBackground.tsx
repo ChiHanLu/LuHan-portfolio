@@ -13,24 +13,44 @@ export default function AmbientBackground() {
     const root = ref.current;
     if (!root) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (window.matchMedia("(pointer: coarse)").matches) return;
 
     const blobs = Array.from(root.querySelectorAll<HTMLElement>("[data-speed]"));
+    const coarse = window.matchMedia("(pointer: coarse)").matches;
     let raf = 0;
-    const onMove = (e: PointerEvent) => {
-      const dx = e.clientX / window.innerWidth - 0.5;
-      const dy = e.clientY / window.innerHeight - 0.5;
+    let px = 0,
+      py = 0,
+      sy = 0;
+
+    const apply = () => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
         blobs.forEach((b) => {
           const s = Number(b.dataset.speed);
-          b.style.transform = `translate(${dx * s * 30}px, ${dy * s * 30}px)`;
+          // pointer 視差（桌機）+ scroll 視差（全裝置）疊加 → 全站景深
+          const x = coarse ? 0 : px * s * 30;
+          const y = (coarse ? 0 : py * s * 30) + sy * s * 0.06;
+          b.style.transform = `translate(${x}px, ${y}px)`;
         });
       });
     };
-    window.addEventListener("pointermove", onMove, { passive: true });
+
+    const onMove = (e: PointerEvent) => {
+      px = e.clientX / window.innerWidth - 0.5;
+      py = e.clientY / window.innerHeight - 0.5;
+      apply();
+    };
+    const onScroll = () => {
+      sy = window.scrollY;
+      apply();
+    };
+
+    if (!coarse) window.addEventListener("pointermove", onMove, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    apply();
+
     return () => {
       window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(raf);
     };
   }, []);
