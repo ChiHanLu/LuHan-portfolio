@@ -2,13 +2,13 @@
 @config "../tailwind.config.ts";
 
 /* ============================================================
-   Glass Cinema — 玻璃擬態暗色主題（黑底 + 橘色）
+   Glass Cinema — 玻璃擬態暗色主題（紫黑）
    ============================================================ */
 :root {
   --bg-deep: #08060f;
   --bg-base: #0d0a16;
-  --surface: rgb(255 255 255 / 0.05);
-  --glass-border: rgb(255 255 255 / 0.12);
+  --surface: rgb(255 255 255 / 0.03);
+  --glass-border: rgb(255 255 255 / 0.10);
   --violet: #8b5cf6;
   --violet-light: #a78bfa;
   --glow: rgb(139 92 246 / 0.4);
@@ -66,8 +66,8 @@ h1, h2, h3, h4, h5, h6 { color: inherit; }
 /* ---------- 玻璃表面 ---------- */
 .glass {
   background: var(--surface);
-  backdrop-filter: blur(16px) saturate(130%);
-  -webkit-backdrop-filter: blur(16px) saturate(130%);
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
   border: 1px solid var(--glass-border);
 }
 .glass-strong {
@@ -82,8 +82,8 @@ h1, h2, h3, h4, h5, h6 { color: inherit; }
   position: relative;
   overflow: hidden;
   background: var(--surface);
-  backdrop-filter: blur(16px) saturate(130%);
-  -webkit-backdrop-filter: blur(16px) saturate(130%);
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
   border: 1px solid var(--glass-border);
   border-radius: 18px;
   transform-style: preserve-3d;

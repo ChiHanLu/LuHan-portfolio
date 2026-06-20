@@ -17,6 +17,7 @@ export default function Hero() {
     () => {
       const mm = gsap.matchMedia();
       mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // 進場時間軸
         gsap
           .timeline({ defaults: { ease: "power3.out" } })
           .from(".hero-eyebrow", { opacity: 0, y: 16, duration: 0.5 })
@@ -24,6 +25,15 @@ export default function Hero() {
           .from(".hero-sub", { opacity: 0, y: 20, duration: 0.6 }, "-=0.4")
           .from(".hero-cta > *", { opacity: 0, y: 18, duration: 0.5, stagger: 0.12 }, "-=0.3")
           .from(".hero-chip", { opacity: 0, scale: 0.6, duration: 0.4, stagger: 0.07 }, "-=0.2");
+
+        // 捲動視差淡出：滑過首屏時內容上移、淡出、微縮（過程漸變）
+        gsap.to(".hero-copy", {
+          y: -140,
+          opacity: 0,
+          scale: 0.96,
+          ease: "none",
+          scrollTrigger: { trigger: root.current, start: "top top", end: "bottom top", scrub: true },
+        });
       });
       return () => mm.revert();
     },
@@ -44,7 +54,7 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-background via-background/70 to-transparent" />
 
       <div className="container relative z-20">
-        <div className="max-w-3xl">
+        <div className="hero-copy max-w-3xl">
           <p className="hero-eyebrow font-mono text-sm tracking-widest text-primary-400">
             {"// Full-Stack Engineer"}
           </p>

@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { gsap } from "@/lib/gsap";
 import { prefersReducedMotion, useInView } from "@/lib/useInView";
 import { Reveal } from "@/components/ui/Reveal";
+import { Parallax } from "@/components/ui/Parallax";
 
 const skills = [
   { name: "Laravel · PHP", level: 88 },
@@ -33,12 +34,14 @@ export default function Skills() {
   return (
     <section id="skills" className="relative scroll-mt-20 py-28">
       <div className="container relative z-10">
-        <Reveal className="text-center">
-          <p className="font-mono text-sm tracking-widest text-primary-400">{"// skills"}</p>
-          <h2 className="mt-2 font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-            核心技能
-          </h2>
-        </Reveal>
+        <Parallax speed={-50}>
+          <Reveal className="text-center">
+            <p className="font-mono text-sm tracking-widest text-primary-400">{"// skills"}</p>
+            <h2 className="mt-2 font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+              核心技能
+            </h2>
+          </Reveal>
+        </Parallax>
 
         <div
           ref={ref}

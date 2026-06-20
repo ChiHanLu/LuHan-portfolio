@@ -20,15 +20,23 @@ const childrenOf = (el: HTMLElement) => Array.from(el.children) as HTMLElement[]
  * 進場偵測交給 useInView（原生 IntersectionObserver，看真實 viewport），
  * 動畫本體交給 GSAP。開啟「減少動態」者直接看到內容、不跑動畫。
  */
-export function Reveal({ children, className, y = 28, stagger = 0.08 }: RevealProps) {
+export function Reveal({ children, className, y = 44, stagger = 0.1 }: RevealProps) {
   const ref = useInView<HTMLDivElement>(
-    (el) => gsap.to(childrenOf(el), { opacity: 1, y: 0, duration: 0.7, ease: "power3.out", stagger }),
+    (el) =>
+      gsap.to(childrenOf(el), {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.85,
+        ease: "power3.out",
+        stagger,
+      }),
     { enabled: !prefersReducedMotion() }
   );
 
   React.useEffect(() => {
     if (prefersReducedMotion() || !ref.current) return;
-    gsap.set(childrenOf(ref.current), { opacity: 0, y });
+    gsap.set(childrenOf(ref.current), { opacity: 0, y, scale: 0.97 });
   }, [ref, y]);
 
   return (

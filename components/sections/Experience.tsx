@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal } from "@/components/ui/Reveal";
+import { Parallax } from "@/components/ui/Parallax";
 
 type Item = { period: string; title: string; org: string; desc: string };
 
@@ -35,12 +36,14 @@ export default function Experience() {
   return (
     <section id="experience" className="relative scroll-mt-20 py-28">
       <div className="container relative z-10">
-        <Reveal className="text-center">
-          <p className="font-mono text-sm tracking-widest text-primary-400">{"// experience"}</p>
-          <h2 className="mt-2 font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-            經歷
-          </h2>
-        </Reveal>
+        <Parallax speed={-50}>
+          <Reveal className="text-center">
+            <p className="font-mono text-sm tracking-widest text-primary-400">{"// experience"}</p>
+            <h2 className="mt-2 font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+              經歷
+            </h2>
+          </Reveal>
+        </Parallax>
 
         <div className="relative mx-auto mt-14 max-w-3xl">
           {/* 軸線 */}

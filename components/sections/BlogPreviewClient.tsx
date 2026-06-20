@@ -3,17 +3,20 @@
 import Link from "next/link";
 import type { ArticleMeta } from "@/components/article/ArticleShell";
 import { Reveal } from "@/components/ui/Reveal";
+import { Parallax } from "@/components/ui/Parallax";
 
 export default function BlogPreviewClient({ posts }: { posts: ArticleMeta[] }) {
   return (
     <section id="blog" className="relative scroll-mt-20 py-28">
       <div className="container relative z-10">
-        <Reveal className="text-center">
-          <p className="font-mono text-sm tracking-widest text-primary-400">{"// blog"}</p>
-          <h2 className="mt-2 font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-            最新文章
-          </h2>
-        </Reveal>
+        <Parallax speed={-50}>
+          <Reveal className="text-center">
+            <p className="font-mono text-sm tracking-widest text-primary-400">{"// blog"}</p>
+            <h2 className="mt-2 font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+              最新文章
+            </h2>
+          </Reveal>
+        </Parallax>
 
         <div className="mx-auto mt-12 max-w-3xl">
           <Reveal className="space-y-4" stagger={0.1}>

@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { Parallax } from "@/components/ui/Parallax";
 
 type Project = {
   title: string;
@@ -70,15 +71,17 @@ export default function Projects() {
   return (
     <section id="projects" className="relative scroll-mt-20 py-28">
       <div className="container relative z-10">
-        <Reveal className="text-center">
-          <p className="font-mono text-sm tracking-widest text-primary-400">{"// projects"}</p>
-          <h2 className="mt-2 font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-            精選作品
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-gray-400">
-            從全端系統、AI 工具到跨平台 App，每個作品都承載著解決實際問題的思考。
-          </p>
-        </Reveal>
+        <Parallax speed={-50}>
+          <Reveal className="text-center">
+            <p className="font-mono text-sm tracking-widest text-primary-400">{"// projects"}</p>
+            <h2 className="mt-2 font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+              精選作品
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-gray-400">
+              從全端系統、AI 工具到跨平台 App，每個作品都承載著解決實際問題的思考。
+            </p>
+          </Reveal>
+        </Parallax>
 
         <Reveal className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3" stagger={0.1}>
           {projects.map((project, idx) => (
