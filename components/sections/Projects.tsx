@@ -24,12 +24,6 @@ const projects: Project[] = [
     live: "https://ntub-project-frontend.vercel.app",
   },
   {
-    title: "ESG AI 行銷工具箱",
-    desc: "串接 Gemini 的 ESG 行銷內容生成工具，透過 serverless proxy 安全呼叫模型，前端即時產出文案。",
-    tech: ["JavaScript", "Gemini API", "Serverless"],
-    live: "https://esg-ai-demo.vercel.app",
-  },
-  {
     title: "Vocab 單字學習 App",
     desc: "每日單字學習應用，支援來源篩選與「重新產生今日學習」，以 Expo 跨平台開發。",
     tech: ["React Native", "Expo", "TypeScript"],
