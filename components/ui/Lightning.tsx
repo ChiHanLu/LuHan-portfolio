@@ -47,26 +47,27 @@ export default function Lightning({ className }: { className?: string }) {
   }, []);
 
   return (
-    <svg
-      ref={ref}
-      className={className}
-      viewBox="0 0 360 480"
-      preserveAspectRatio="none"
-      fill="none"
-      aria-hidden
-      style={{ filter: "drop-shadow(0 0 6px rgba(167,139,250,0.9))" }}
-    >
-      {BOLTS.map((d, i) => (
-        <path
-          key={i}
-          d={d}
-          stroke="#a78bfa"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          vectorEffect="non-scaling-stroke"
-        />
-      ))}
-    </svg>
+    <div className={className} aria-hidden>
+      <svg
+        ref={ref}
+        className="h-full w-full"
+        viewBox="0 0 360 480"
+        preserveAspectRatio="none"
+        fill="none"
+        style={{ filter: "drop-shadow(0 0 6px rgba(167,139,250,0.9))" }}
+      >
+        {BOLTS.map((d, i) => (
+          <path
+            key={i}
+            d={d}
+            stroke="#a78bfa"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            vectorEffect="non-scaling-stroke"
+          />
+        ))}
+      </svg>
+    </div>
   );
 }

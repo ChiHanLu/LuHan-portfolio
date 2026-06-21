@@ -60,10 +60,10 @@ export default function About() {
         aria-hidden
       />
       {/* 紫色閃電背景動畫 */}
-      <Lightning className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-50" />
+      <Lightning className="pointer-events-none absolute inset-0 z-0 opacity-50" />
       {/* 路徑動畫裝飾：左側 gutter 的連接線 + 光點（桌機顯示） */}
       <svg
-        className="pointer-events-none absolute left-2 top-0 hidden h-full w-20 xl:block"
+        className="pointer-events-none absolute inset-y-0 left-2 hidden w-20 xl:block"
         viewBox="0 0 80 1000"
         preserveAspectRatio="none"
         fill="none"
