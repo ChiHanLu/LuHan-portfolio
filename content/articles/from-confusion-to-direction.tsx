@@ -353,7 +353,7 @@ export default function Article() {
 
       <P><strong>想要交流學習心得或職涯規劃？歡迎聯絡我！</strong></P>
 
-      <P>Email：11336028@ntub.edu.tw<br />
+      <P>Email：john_lu@intellitrustme.com<br />
       我的作品：<a href="https://www.soulcraftjournal.studio/" className="text-primary-300 underline underline-offset-4 hover:text-primary-200" target="_blank" rel="noreferrer">日記之森 - SoulCraft Journal</a><br />
       實習經驗：智能悅信資訊股份有限公司</P>
 

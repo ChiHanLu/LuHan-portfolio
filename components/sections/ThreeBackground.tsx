@@ -38,6 +38,8 @@ export default function ThreeBackground() {
         return;
       }
       loadedRef.current = true;
+      // youmom 載入時只跑一次 new Zt({targetElement:querySelector('.experience')})，
+      // 換頁回首頁靠 Header logo 的整頁載入確保重新啟動（見 Header）。這裡只需首次注入。
       if (!document.querySelector('script[src="/youmom.js"]')) {
         const script = document.createElement("script");
         script.src = "/youmom.js";

@@ -42,7 +42,7 @@ export default function Footer() {
             ))}
           </div>
 
-          <p className="font-mono text-sm text-gray-400">11336028@ntub.edu.tw</p>
+          <p className="font-mono text-sm text-gray-400">john_lu@intellitrustme.com</p>
 
           <div className="mx-auto h-px w-48 bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
 

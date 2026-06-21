@@ -105,7 +105,7 @@ export default function Contact() {
           </h2>
 
           <div className="pointer-events-auto mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link href="mailto:11336028@ntub.edu.tw" aria-label="Email">
+            <Link href="mailto:john_lu@intellitrustme.com" aria-label="Email">
               <Button intent="primary" size="lg">
                 Email 聯絡
               </Button>

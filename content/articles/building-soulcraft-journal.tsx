@@ -347,7 +347,7 @@ const EntryList = ({ entries }) => (
       <P>
         <strong>體驗專案</strong>：<a href="https://www.soulcraftjournal.studio/" className="text-primary-300 underline underline-offset-4 hover:text-primary-200" target="_blank" rel="noreferrer">SoulCraft Journal</a>
         <br />
-        <strong>技術交流</strong>：11336028@ntub.edu.tw
+        <strong>技術交流</strong>：john_lu@intellitrustme.com
         <br />
         <strong>更多文章</strong>：持續分享開發心得與技術筆記
       </P>

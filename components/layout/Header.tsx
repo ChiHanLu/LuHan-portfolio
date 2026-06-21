@@ -115,7 +115,17 @@ export default function Header() {
       >
         <div className="container mt-3">
           <nav className="glass flex h-14 items-center justify-between rounded-2xl px-4 shadow-glass sm:px-6">
-            <Link href="/" className={cn(linkClass, "font-mono")}>
+            <Link
+              href="/"
+              onClick={(e) => {
+                // 從其他頁回首頁用整頁載入，確保 galaxy（youmom 第三方 bundle 只 init 一次）重新啟動
+                if (pathname !== "/") {
+                  e.preventDefault();
+                  window.location.assign("/");
+                }
+              }}
+              className={cn(linkClass, "font-mono")}
+            >
               ~/luhan
               <span className={underline} />
             </Link>

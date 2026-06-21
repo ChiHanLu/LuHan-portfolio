@@ -77,7 +77,7 @@ export default function Hero() {
           <p className="hero-sub mt-6 max-w-xl text-lg leading-relaxed text-gray-300 lg:text-xl">
             資訊管理系學生 · 軟體開發實習生
             <br />
-            具備後端工程能力與 AI 技術應用經驗，把需求轉成穩定好維護的系統。
+            具備全端工程能力與 AI 技術應用經驗，把需求轉成穩定好維護的系統。
           </p>
 
           <div className="hero-cta mt-10 flex flex-wrap items-center gap-4">

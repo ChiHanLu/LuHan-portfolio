@@ -10,8 +10,8 @@ import { ScrollTilt } from "@/components/ui/ScrollTilt";
 import Lightning from "@/components/ui/Lightning";
 
 const highlights = [
-  { k: "現職", v: "全端開發實習生（在職中）" },
-  { k: "在學", v: "臺北商業大學 · 資訊管理系（二技）" },
+  { k: "現職", v: "全端工程師（在職中）" },
+  { k: "在學", v: "臺北商業大學 · 資訊管理系" },
   { k: "專長", v: "全端開發 · 自動化整合 · 資安防禦" },
   { k: "代表作", v: "Civic Tech 跨域競技場 · 全國決賽" },
 ];

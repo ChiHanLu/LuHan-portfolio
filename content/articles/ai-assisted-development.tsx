@@ -200,7 +200,7 @@ export default function Article() {
       <Divider />
 
       <P><strong>想要交流 AI 學習心得？歡迎聊聊！</strong></P>
-      <P>Email：11336028@ntub.edu.tw</P>
+      <P>Email：john_lu@intellitrustme.com</P>
       <P>我的作品：<a href="https://www.soulcraftjournal.studio/" className="text-primary-300 underline underline-offset-4 hover:text-primary-200" target="_blank" rel="noreferrer">日記之森 - SoulCraft Journal</a></P>
       <P>實習經驗：智能悅信資訊股份有限公司</P>
 

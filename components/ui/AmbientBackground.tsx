@@ -68,23 +68,23 @@ export default function AmbientBackground() {
         className="absolute -inset-[20%] animate-aurora blur-[90px]"
         style={{
           background:
-            "radial-gradient(40% 40% at 20% 30%, rgb(139 92 246 / 0.32), transparent 60%)," +
-            "radial-gradient(35% 35% at 80% 20%, rgb(99 102 241 / 0.24), transparent 60%)," +
-            "radial-gradient(45% 45% at 60% 80%, rgb(124 58 237 / 0.26), transparent 60%)",
+            "radial-gradient(40% 40% at 20% 30%, rgb(139 92 246 / 0.16), transparent 60%)," +
+            "radial-gradient(35% 35% at 80% 20%, rgb(99 102 241 / 0.12), transparent 60%)," +
+            "radial-gradient(45% 45% at 60% 80%, rgb(124 58 237 / 0.13), transparent 60%)",
         }}
       />
       {/* 漂浮光球 */}
       <div
         data-speed="3"
-        className="absolute -left-10 -top-16 h-[380px] w-[380px] rounded-full bg-primary-500/25 blur-[60px] transition-transform duration-500 ease-cinema"
+        className="absolute -left-10 -top-16 h-[380px] w-[380px] rounded-full bg-primary-500/12 blur-[60px] transition-transform duration-500 ease-cinema"
       />
       <div
         data-speed="-2"
-        className="absolute bottom-[8%] -right-16 h-[320px] w-[320px] rounded-full bg-primary-400/20 blur-[60px] transition-transform duration-500 ease-cinema"
+        className="absolute bottom-[8%] -right-16 h-[320px] w-[320px] rounded-full bg-primary-400/10 blur-[60px] transition-transform duration-500 ease-cinema"
       />
       <div
         data-speed="4"
-        className="absolute left-1/2 top-[40%] h-[240px] w-[240px] rounded-full bg-primary-600/15 blur-[60px] transition-transform duration-500 ease-cinema"
+        className="absolute left-1/2 top-[40%] h-[240px] w-[240px] rounded-full bg-primary-600/[0.08] blur-[60px] transition-transform duration-500 ease-cinema"
       />
     </div>
   );
