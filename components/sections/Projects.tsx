@@ -18,6 +18,17 @@ type Project = {
 // 註：描述依專案名稱與技術棧草擬，待本人校正。
 const projects: Project[] = [
   {
+    title: "善勝國際購物官網",
+    desc: "汽車零件電商官網，以 Laravel 12 + Inertia + Vue 3 開發，整合商品、訂單與後台管理的全端商業系統。",
+    tech: ["Laravel 12", "Inertia", "Vue 3"],
+  },
+  {
+    title: "心情日記平台（日記之森）",
+    desc: "與團隊協作開發的心情記錄平台，Flask + Python 後端，從架構設計到上線部署。",
+    tech: ["Flask", "Python"],
+    live: "https://flask-project-heart-diary.vercel.app",
+  },
+  {
     title: "NTUB 資管系專題系統",
     desc: "資管系團隊專題的全端系統，Vue 前端搭配 TypeScript 後端 API，含成績／學分相關模組與前後端資料對齊。",
     tech: ["Vue", "TypeScript", "REST API"],
