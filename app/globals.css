@@ -186,6 +186,28 @@ body::-webkit-scrollbar { display: none; }
   animation: spin 24s linear infinite;
 }
 
+/* ---------- 滑鼠跟隨光圈 ---------- */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  width: 460px;
+  height: 460px;
+  margin: -230px 0 0 -230px;
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle, rgb(139 92 246 / 0.13), rgb(167 139 250 / 0.06) 40%, transparent 68%);
+  mix-blend-mode: screen;
+  will-change: transform;
+  transition: opacity 0.4s ease;
+}
+/* 觸控裝置 / 減少動態：不顯示跟隨光圈 */
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor-glow { display: none; }
+}
+
 /* ---------- 漢堡 → X 線條變形過渡 ---------- */
 .burger-line {
   display: block;

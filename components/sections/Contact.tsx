@@ -41,11 +41,10 @@ export default function Contact() {
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         gsap.fromTo(
           galaxyRef.current,
-          { yPercent: 16, opacity: 0, scale: 1.12 },
+          { yPercent: 14, opacity: 0 },
           {
             yPercent: 0,
             opacity: 1,
-            scale: 1,
             ease: "none",
             scrollTrigger: {
               trigger: root.current,
@@ -76,17 +75,17 @@ export default function Contact() {
     <section
       id="contact"
       ref={root}
-      className="relative flex min-h-[135vh] scroll-mt-20 items-start overflow-x-clip pt-[24vh]"
+      className="relative flex min-h-[130vh] scroll-mt-20 items-start overflow-x-clip pt-[14vh]"
     >
-      {/* galaxy 包裹層：往上延伸超出 Contact（與 BlogPreview 拉開、星空往上下延伸） */}
+      {/* galaxy 包裹層：滿版寬度但較矮（讓 youmom 依高度算出較小的星系），置於內容下方並與其拉開 */}
       <div
         ref={galaxyRef}
-        className="absolute inset-x-0 -top-[22vh] bottom-0 z-0 will-change-transform"
+        className="absolute inset-x-0 top-[40vh] h-[62vh] z-0 will-change-transform"
       >
         <ThreeBackground />
-        {/* 上下漸層遮罩：星空往上下自然淡入淡出，與相鄰區塊不貼死 */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-64 bg-gradient-to-b from-background via-background/55 to-transparent" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-64 bg-gradient-to-t from-background via-background/55 to-transparent" />
+        {/* 上下線性漸層：滿版寬度只需淡化上下水平邊界，融入背景、無方框 */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-40 bg-gradient-to-b from-background to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-40 bg-gradient-to-t from-background to-transparent" />
       </div>
 
       {/* contact 內容置於下方區域，上方留出大片星空（兩者各自保留空間、不貼合） */}

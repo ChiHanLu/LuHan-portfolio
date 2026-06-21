@@ -33,6 +33,7 @@ import Footer from "@/components/layout/Footer";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import PageTransition from "@/components/providers/PageTransition";
 import AmbientBackground from "@/components/ui/AmbientBackground";
+import CursorGlow from "@/components/ui/CursorGlow";
 
 export default function RootLayout({
   children,
@@ -46,6 +47,7 @@ export default function RootLayout({
       >
         <SmoothScroll>
           <AmbientBackground />
+          <CursorGlow />
           <div className="grain" />
           <Header />
           <PageTransition>{children}</PageTransition>
