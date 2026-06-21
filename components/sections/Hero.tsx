@@ -8,9 +8,9 @@ import { ResumeDownload } from "@/components/ui/ResumeDownload";
 import { Parallax } from "@/components/ui/Parallax";
 import { SplitReveal } from "@/components/ui/SplitReveal";
 
-// 粒子星群 / 3D 水晶主視覺只在 client 載入
+// 粒子星群 / 3D 主視覺只在 client 載入
 const ParticleField = dynamic(() => import("./ParticleField"), { ssr: false });
-const CrystalScene = dynamic(() => import("./CrystalScene"), { ssr: false });
+const HeroScene = dynamic(() => import("./HeroScene"), { ssr: false });
 
 export default function Hero() {
   const root = useRef<HTMLElement>(null);
@@ -51,9 +51,9 @@ export default function Hero() {
       <Parallax speed={-90} className="absolute inset-0 z-0">
         <ParticleField />
       </Parallax>
-      {/* 3D 水晶主視覺（玻璃水晶 + 發光星點，桌機靠右） */}
-      <div className="absolute inset-0 z-0 hero-crystal">
-        <CrystalScene />
+      {/* 3D 主視覺：變形球體 + 發光星點 + bloom（桌機靠右） */}
+      <div className="absolute inset-0 z-0">
+        <HeroScene />
       </div>
       {/* 光線：god-ray 光束自上方緩慢掃過 + conic 光圈疊加（A+C） */}
       <div className="god-rays z-0" aria-hidden />

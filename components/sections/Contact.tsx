@@ -10,6 +10,8 @@ import { Reveal } from "@/components/ui/Reveal";
 
 // galaxy / 黑洞 3D 背景（youmom.js）只在 client 載入
 const ThreeBackground = dynamic(() => import("./ThreeBackground"), { ssr: false });
+// 星空粒子背景（滿版，與 galaxy 疊加）
+const ParticleField = dynamic(() => import("./ParticleField"), { ssr: false });
 
 const lines = [
   "Coffee → Code → Repeat",
@@ -77,6 +79,11 @@ export default function Contact() {
       ref={root}
       className="relative flex min-h-[130vh] scroll-mt-20 items-start overflow-x-clip pt-[14vh]"
     >
+      {/* 星空粒子背景：滿版往上下延伸，填滿內容周圍（星空可放大），galaxy 疊在其上 */}
+      <div className="absolute inset-0 z-0 opacity-70">
+        <ParticleField />
+      </div>
+
       {/* galaxy 包裹層：滿版寬度但較矮（讓 youmom 依高度算出較小的星系），置於內容下方並與其拉開 */}
       <div
         ref={galaxyRef}
@@ -91,9 +98,12 @@ export default function Contact() {
       {/* contact 內容置於下方區域，上方留出大片星空（兩者各自保留空間、不貼合） */}
       <div className="container relative z-10 pointer-events-none">
         <Reveal className="mx-auto max-w-2xl text-center [text-shadow:0_2px_24px_rgba(0,0,0,0.7)]">
-          <p className="font-mono text-sm text-gray-300">{line}</p>
+          <h2 className="font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
+            一起打造點什麼吧
+          </h2>
+          <p className="mt-4 font-mono text-sm text-gray-300">{line}</p>
 
-          <div className="pointer-events-auto mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="pointer-events-auto mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link href="mailto:11336028@ntub.edu.tw" aria-label="Email">
               <Button intent="primary" size="lg">
                 Email 聯絡
