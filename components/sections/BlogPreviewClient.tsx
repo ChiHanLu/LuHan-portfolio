@@ -20,12 +20,14 @@ export default function BlogPreviewClient({ posts }: { posts: ArticleMeta[] }) {
 
         <div className="mx-auto mt-12 max-w-3xl">
           <Reveal className="space-y-4" stagger={0.1}>
-            {posts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="spotlight group relative block overflow-hidden rounded-glass glass p-6 transition-all duration-300 ease-cinema hover:-translate-y-1 hover:border-primary-400/50 hover:shadow-glow-lg"
-              >
+            {posts.map((post, i) => (
+              <div key={post.slug}>
+                {/* 視差分層：每張卡以不同速度位移，產生景深 */}
+                <Parallax speed={-10 - i * 22}>
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="spotlight group relative block overflow-hidden rounded-glass glass p-6 transition-all duration-300 ease-cinema hover:-translate-y-1 hover:scale-[1.025] hover:border-primary-400/50 hover:shadow-glow-lg"
+                  >
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0 flex-1">
                     <h3 className="font-display text-lg font-semibold text-white transition-colors group-hover:text-primary-300">
@@ -42,7 +44,9 @@ export default function BlogPreviewClient({ posts }: { posts: ArticleMeta[] }) {
                     →
                   </span>
                 </div>
-              </Link>
+                  </Link>
+                </Parallax>
+              </div>
             ))}
           </Reveal>
 

@@ -92,10 +92,10 @@ export default function HeroScene() {
     camera.position.set(0, 0, 6);
 
     // 變形球體
-    const geo = new THREE.SphereGeometry(1.5, lowEnd ? 64 : 110, lowEnd ? 64 : 110);
+    const geo = new THREE.SphereGeometry(1.05, lowEnd ? 64 : 110, lowEnd ? 64 : 110);
     const uniforms = {
       uTime: { value: 0 },
-      uAmp: { value: 1 },
+      uAmp: { value: 0.7 },
       uColorA: { value: new THREE.Color("#3b1f7a") },
       uColorB: { value: new THREE.Color("#a78bfa") },
     };

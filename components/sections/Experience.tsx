@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Reveal } from "@/components/ui/Reveal";
 import { Parallax } from "@/components/ui/Parallax";
-import { ScrollTilt } from "@/components/ui/ScrollTilt";
 
 type Item = { period: string; title: string; org: string; desc: string };
 
@@ -39,26 +38,35 @@ export default function Experience() {
   const root = useRef<HTMLElement>(null);
   const lineRef = useRef<SVGPathElement>(null);
 
-  // 路徑 + 捲動：時間軸主線隨捲動由上往下「畫出」（DrawSVG scrub）
+  // 進階轉場：釘住區塊，捲動驅動一條 scrubbed 時間軸 —— 主線逐段繪製、節點與卡片依序點亮滑入
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
       mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const nodes = gsap.utils.toArray<HTMLElement>("[data-node]");
+        const cards = gsap.utils.toArray<HTMLElement>("[data-card]");
         if (!lineRef.current) return;
-        gsap.fromTo(
-          lineRef.current,
-          { drawSVG: "0%" },
-          {
-            drawSVG: "100%",
-            ease: "none",
-            scrollTrigger: {
-              trigger: ".exp-timeline",
-              start: "top 75%",
-              end: "bottom 70%",
-              scrub: true,
-            },
-          }
-        );
+
+        gsap.set(lineRef.current, { drawSVG: "0%" });
+        gsap.set(nodes, { scale: 0, opacity: 0, transformOrigin: "center" });
+        gsap.set(cards, { opacity: 0, y: 38 });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: root.current,
+            start: "top top",
+            end: () => "+=" + window.innerHeight * 1.15,
+            pin: true,
+            scrub: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        tl.to(lineRef.current, { drawSVG: "100%", ease: "none", duration: timeline.length });
+        nodes.forEach((node, i) => {
+          tl.to(node, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(2)" }, i);
+          tl.to(cards[i], { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, i + 0.08);
+        });
       });
       return () => mm.revert();
     },
@@ -72,7 +80,7 @@ export default function Experience() {
         className="conic-glow left-0 top-1/2 z-0 h-[460px] w-[460px] -translate-x-1/3 -translate-y-1/2 opacity-20"
         aria-hidden
       />
-      <ScrollTilt className="container relative z-10">
+      <div className="container relative z-10">
         <Parallax speed={-50}>
           <Reveal className="text-center">
             <h2 className="font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
@@ -82,7 +90,7 @@ export default function Experience() {
         </Parallax>
 
         <div className="exp-timeline relative mx-auto mt-14 max-w-3xl">
-          {/* 軸線：以 SVG path 隨捲動畫出（取代靜態漸層線） */}
+          {/* 軸線：隨捲動逐段繪製 */}
           <svg
             className="pointer-events-none absolute left-3 top-2 bottom-2 w-1 sm:left-4"
             viewBox="0 0 4 1000"
@@ -92,8 +100,8 @@ export default function Experience() {
           >
             <defs>
               <linearGradient id="exp-line" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.7" />
-                <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.1" />
+                <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.15" />
               </linearGradient>
             </defs>
             <path
@@ -105,12 +113,15 @@ export default function Experience() {
             />
           </svg>
 
-          <Reveal className="space-y-6" stagger={0.12}>
+          <div className="space-y-6">
             {timeline.map((item) => (
               <div key={item.title + item.period} className="relative pl-10 sm:pl-14">
-                {/* 節點 */}
-                <span className="absolute left-[5px] top-6 h-3 w-3 rounded-full bg-primary-500 shadow-glow ring-4 ring-primary-500/15 sm:left-[9px]" />
-                <div className="spotlight relative overflow-hidden glass rounded-glass p-6">
+                {/* 節點（依序點亮） */}
+                <span
+                  data-node
+                  className="absolute left-[5px] top-6 h-3 w-3 rounded-full bg-primary-500 shadow-glow ring-4 ring-primary-500/15 sm:left-[9px]"
+                />
+                <div data-card className="spotlight relative overflow-hidden glass rounded-glass p-6">
                   <div className="font-mono text-xs tracking-widest text-primary-400">{item.period}</div>
                   <h3 className="mt-1 font-display text-lg font-semibold text-white">
                     {item.title}
@@ -120,9 +131,9 @@ export default function Experience() {
                 </div>
               </div>
             ))}
-          </Reveal>
+          </div>
         </div>
-      </ScrollTilt>
+      </div>
     </section>
   );
 }

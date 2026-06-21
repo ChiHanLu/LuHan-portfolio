@@ -84,15 +84,16 @@ export default function Contact() {
         <ParticleField />
       </div>
 
-      {/* galaxy 包裹層：滿版寬度但較矮（讓 youmom 依高度算出較小的星系），置於內容下方並與其拉開 */}
+      {/* galaxy 包裹層：以 mask 把星系上下淡成「透明」（露出後方星空），兩者無縫融合、不再有隔閡的暗帶 */}
       <div
         ref={galaxyRef}
         className="absolute inset-x-0 top-[40vh] h-[62vh] z-0 will-change-transform"
+        style={{
+          maskImage: "linear-gradient(to bottom, transparent 0%, #000 24%, #000 76%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, #000 24%, #000 76%, transparent 100%)",
+        }}
       >
         <ThreeBackground />
-        {/* 上下線性漸層：滿版寬度只需淡化上下水平邊界，融入背景、無方框 */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-40 bg-gradient-to-b from-background to-transparent" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-40 bg-gradient-to-t from-background to-transparent" />
       </div>
 
       {/* contact 內容置於下方區域，上方留出大片星空（兩者各自保留空間、不貼合） */}

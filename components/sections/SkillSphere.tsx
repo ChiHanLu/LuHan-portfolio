@@ -28,14 +28,14 @@ function makeLabel(text: string): THREE.Sprite {
   ctx.font = `600 ${fontPx}px "Inter", system-ui, sans-serif`;
   ctx.textBaseline = "middle";
   ctx.textAlign = "center";
-  ctx.shadowColor = "rgba(139,92,246,0.9)";
-  ctx.shadowBlur = 18 * dpr;
-  ctx.fillStyle = "#ede9fe";
+  ctx.shadowColor = "rgba(139,92,246,0.5)";
+  ctx.shadowBlur = 7 * dpr;
+  ctx.fillStyle = "#b9a8e6"; // 較柔和的紫，避免太亮
   ctx.fillText(text, canvas.width / 2, canvas.height / 2);
   const tex = new THREE.CanvasTexture(canvas);
   tex.colorSpace = THREE.SRGBColorSpace;
   tex.anisotropy = 4;
-  const mat = new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false });
+  const mat = new THREE.SpriteMaterial({ map: tex, transparent: true, opacity: 0.82, depthWrite: false });
   const sprite = new THREE.Sprite(mat);
   const scale = 0.0034;
   sprite.scale.set(canvas.width * scale, canvas.height * scale, 1);
@@ -92,25 +92,56 @@ export default function SkillSphere() {
     composer.setPixelRatio(Math.min(window.devicePixelRatio, lowEnd ? 1.5 : 2));
     composer.setSize(w, h);
     composer.addPass(new RenderPass(scene, camera));
-    composer.addPass(new UnrealBloomPass(new THREE.Vector2(w, h), lowEnd ? 0.35 : 0.5, 0.6, 0.15));
+    composer.addPass(new UnrealBloomPass(new THREE.Vector2(w, h), lowEnd ? 0.18 : 0.28, 0.6, 0.3));
     composer.addPass(new OutputPass());
 
-    let px = 0;
-    let py = 0;
-    const onMove = (e: PointerEvent) => {
-      const r = mount.getBoundingClientRect();
-      px = ((e.clientX - r.left) / r.width) * 2 - 1;
-      py = ((e.clientY - r.top) / r.height) * 2 - 1;
+    // 拖曳旋轉：按住拖曳手動轉，放開回到自動慢轉
+    let dragging = false;
+    let lastX = 0;
+    let lastY = 0;
+    let velX = 0.18; // 自動慢轉速度（rad/s）
+    let velY = 0;
+    const down = (e: PointerEvent) => {
+      dragging = true;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      mount.setPointerCapture?.(e.pointerId);
+      renderer.domElement.style.cursor = "grabbing";
     };
-    if (!reduce) mount.addEventListener("pointermove", onMove, { passive: true });
+    const move = (e: PointerEvent) => {
+      if (!dragging) return;
+      const dx = e.clientX - lastX;
+      const dy = e.clientY - lastY;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      group.rotation.y += dx * 0.006;
+      group.rotation.x += dy * 0.006;
+      velX = dx * 0.05; // 放開後保留些微慣性
+      velY = dy * 0.05;
+    };
+    const up = (e: PointerEvent) => {
+      dragging = false;
+      mount.releasePointerCapture?.(e.pointerId);
+      renderer.domElement.style.cursor = "grab";
+    };
+    if (!reduce) {
+      renderer.domElement.style.cursor = "grab";
+      mount.addEventListener("pointerdown", down);
+      window.addEventListener("pointermove", move, { passive: true });
+      window.addEventListener("pointerup", up);
+    }
 
     const clock = new THREE.Clock();
     let raf = 0;
     const render = () => {
       const dt = clock.getDelta();
-      group.rotation.y += dt * 0.18 + px * dt * 0.6;
-      group.rotation.x += (py * 0.4 - group.rotation.x) * 0.04;
-      // 讓每個標籤永遠面向相機（sprite 本來就 billboard，這裡只更新 bloom 場景）
+      if (!dragging) {
+        // 慣性衰減回到自動慢轉
+        velX += (0.18 - velX) * 0.02;
+        velY += (0 - velY) * 0.05;
+        group.rotation.y += velX * dt;
+        group.rotation.x += velY * dt;
+      }
       composer.render();
     };
     const loop = () => {
@@ -151,7 +182,9 @@ export default function SkillSphere() {
       if (raf) cancelAnimationFrame(raf);
       io.disconnect();
       window.removeEventListener("resize", onResize);
-      mount.removeEventListener("pointermove", onMove);
+      mount.removeEventListener("pointerdown", down);
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerup", up);
       sprites.forEach((s) => {
         (s.material as THREE.SpriteMaterial).map?.dispose();
         (s.material as THREE.Material).dispose();
