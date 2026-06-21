@@ -94,7 +94,9 @@ export default function Projects() {
   );
 
   return (
-    <section id="projects" ref={root} className="relative scroll-mt-20 pt-28">
+    <section id="projects" ref={root} className="relative scroll-mt-20 overflow-hidden pt-28">
+      {/* 光線：god-ray 光束掃過（A） */}
+      <div className="god-rays z-0" aria-hidden />
       <div className="container relative z-10">
         <Parallax speed={-50}>
           <Reveal className="text-center">

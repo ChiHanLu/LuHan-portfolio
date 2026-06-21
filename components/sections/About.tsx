@@ -50,7 +50,12 @@ export default function About() {
   );
 
   return (
-    <section id="about" ref={root} className="relative scroll-mt-20 py-28">
+    <section id="about" ref={root} className="relative scroll-mt-20 overflow-hidden py-28">
+      {/* 光線：右側 conic 光圈緩慢旋轉（C） */}
+      <div
+        className="conic-glow right-0 top-1/4 z-0 h-[420px] w-[420px] translate-x-1/4 opacity-20"
+        aria-hidden
+      />
       {/* 路徑動畫裝飾：左側 gutter 的連接線 + 光點（桌機顯示） */}
       <svg
         className="pointer-events-none absolute left-2 top-0 hidden h-full w-20 xl:block"

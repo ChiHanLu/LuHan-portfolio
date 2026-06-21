@@ -73,7 +73,7 @@ export default function Skills() {
             <div
               key={skill.name}
               data-row
-              className="space-y-2 rounded-xl border border-white/5 bg-white/5 p-3 backdrop-blur-sm"
+              className="spotlight relative overflow-hidden space-y-2 rounded-xl border border-white/5 bg-white/5 p-3 backdrop-blur-sm"
             >
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium text-gray-200">{skill.name}</span>

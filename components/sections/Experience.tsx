@@ -65,7 +65,12 @@ export default function Experience() {
   );
 
   return (
-    <section id="experience" ref={root} className="relative scroll-mt-20 py-28">
+    <section id="experience" ref={root} className="relative scroll-mt-20 overflow-hidden py-28">
+      {/* 光線：左側 conic 光圈緩慢旋轉（C） */}
+      <div
+        className="conic-glow left-0 top-1/2 z-0 h-[460px] w-[460px] -translate-x-1/3 -translate-y-1/2 opacity-20"
+        aria-hidden
+      />
       <div className="container relative z-10">
         <Parallax speed={-50}>
           <Reveal className="text-center">
@@ -105,7 +110,7 @@ export default function Experience() {
               <div key={item.title + item.period} className="relative pl-10 sm:pl-14">
                 {/* 節點 */}
                 <span className="absolute left-[5px] top-6 h-3 w-3 rounded-full bg-primary-500 shadow-glow ring-4 ring-primary-500/15 sm:left-[9px]" />
-                <div className="glass rounded-glass p-6">
+                <div className="spotlight relative overflow-hidden glass rounded-glass p-6">
                   <div className="font-mono text-xs tracking-widest text-primary-400">{item.period}</div>
                   <h3 className="mt-1 font-display text-lg font-semibold text-white">
                     {item.title}
