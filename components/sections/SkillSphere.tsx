@@ -194,8 +194,8 @@ export default function SkillSphere() {
       className="absolute inset-0"
       aria-hidden
       style={{
-        maskImage: "radial-gradient(circle at 50% 50%, #000 56%, transparent 80%)",
-        WebkitMaskImage: "radial-gradient(circle at 50% 50%, #000 56%, transparent 80%)",
+        maskImage: "radial-gradient(circle at 50% 50%, #000 38%, transparent 68%)",
+        WebkitMaskImage: "radial-gradient(circle at 50% 50%, #000 38%, transparent 68%)",
       }}
     />
   );

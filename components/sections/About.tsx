@@ -7,6 +7,7 @@ import { Reveal3D } from "@/components/ui/Reveal3D";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Parallax } from "@/components/ui/Parallax";
 import { ScrollTilt } from "@/components/ui/ScrollTilt";
+import Lightning from "@/components/ui/Lightning";
 
 const highlights = [
   { k: "現職", v: "全端開發實習生（在職中）" },
@@ -58,6 +59,8 @@ export default function About() {
         className="conic-glow right-0 top-1/4 z-0 h-[420px] w-[420px] translate-x-1/4 opacity-20"
         aria-hidden
       />
+      {/* 紫色閃電背景動畫 */}
+      <Lightning className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-50" />
       {/* 路徑動畫裝飾：左側 gutter 的連接線 + 光點（桌機顯示） */}
       <svg
         className="pointer-events-none absolute left-2 top-0 hidden h-full w-20 xl:block"

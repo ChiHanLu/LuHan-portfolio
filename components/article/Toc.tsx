@@ -29,7 +29,7 @@ export function Toc() {
   if (headings.length < 2) return null;
 
   return (
-    <nav className="sticky top-24 hidden max-h-[70vh] overflow-auto lg:block">
+    <nav className="scrollbar-hide sticky top-24 hidden max-h-[70vh] overflow-y-auto overflow-x-hidden lg:block">
       <p className="mb-3 font-mono text-xs tracking-widest text-primary-400/70">目錄</p>
       <ul className="space-y-2 border-l border-primary-500/15">
         {headings.map((h) => (

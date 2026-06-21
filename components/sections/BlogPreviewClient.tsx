@@ -38,7 +38,7 @@ export default function BlogPreviewClient({ posts }: { posts: ArticleMeta[] }) {
   );
 
   return (
-    <section id="blog" ref={root} className="relative scroll-mt-20 py-28">
+    <section id="blog" ref={root} className="relative scroll-mt-20 overflow-x-clip py-28">
       <div className="container relative z-10">
         <Reveal className="text-center">
           <h2 className="font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">

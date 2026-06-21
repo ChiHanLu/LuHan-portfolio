@@ -79,15 +79,15 @@ export default function Contact() {
       ref={root}
       className="relative flex min-h-[130vh] scroll-mt-20 items-start overflow-x-clip pt-[14vh]"
     >
-      {/* 星空粒子背景：滿版往上下延伸，填滿內容周圍（星空可放大），galaxy 疊在其上 */}
-      <div className="absolute inset-0 z-0 opacity-70">
+      {/* 星空粒子背景：滿版往上下延伸（pointer-events-none，避免手機攔截捲動） */}
+      <div className="pointer-events-none absolute inset-0 z-0 opacity-70">
         <ParticleField />
       </div>
 
-      {/* galaxy 包裹層：以 mask 把星系上下淡成「透明」（露出後方星空），兩者無縫融合、不再有隔閡的暗帶 */}
+      {/* galaxy 包裹層：以 mask 把星系上下淡成「透明」融入星空；手機縮小且不攔截捲動 */}
       <div
         ref={galaxyRef}
-        className="absolute inset-x-0 top-[40vh] h-[62vh] z-0 will-change-transform"
+        className="pointer-events-none absolute inset-x-0 top-[44vh] h-[42vh] z-0 will-change-transform md:pointer-events-auto md:top-[40vh] md:h-[62vh]"
         style={{
           maskImage: "linear-gradient(to bottom, transparent 0%, #000 24%, #000 76%, transparent 100%)",
           WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, #000 24%, #000 76%, transparent 100%)",
