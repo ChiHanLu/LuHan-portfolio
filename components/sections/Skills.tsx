@@ -15,7 +15,7 @@ const skills = [
   { name: "Python · FastAPI · Flask", level: 85 },
   { name: "Vue.js · Next.js · React Native", level: 80 },
   { name: "MySQL · PostgreSQL · Oracle", level: 80 },
-  { name: "自動化整合 · 資安防禦 · 雲端部署", level: 78 },
+  { name: "Automation · Security · Cloud", level: 78 },
   { name: "AI / LLM · RAG · Prompt Engineering", level: 75 },
 ];
 

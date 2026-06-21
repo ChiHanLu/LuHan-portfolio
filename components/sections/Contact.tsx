@@ -98,11 +98,11 @@ export default function Contact() {
 
       {/* contact 內容置於下方區域，上方留出大片星空（兩者各自保留空間、不貼合） */}
       <div className="container relative z-10 pointer-events-none">
-        <Reveal className="mx-auto max-w-2xl text-center [text-shadow:0_2px_24px_rgba(0,0,0,0.7)]">
-          <h2 className="font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
-            一起打造點什麼吧
+        <Reveal className="mx-auto max-w-3xl text-center [text-shadow:0_2px_24px_rgba(0,0,0,0.7)]">
+          {/* 直接把工程師語錄當作標題 */}
+          <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+            {line}
           </h2>
-          <p className="mt-4 font-mono text-sm text-gray-300">{line}</p>
 
           <div className="pointer-events-auto mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link href="mailto:11336028@ntub.edu.tw" aria-label="Email">

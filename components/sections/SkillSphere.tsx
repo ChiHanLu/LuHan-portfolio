@@ -10,7 +10,7 @@ import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
 const TERMS = [
   "Laravel", "PHP", "Python", "FastAPI", "Flask", "Vue.js", "Next.js", "React Native",
   "TypeScript", "MySQL", "PostgreSQL", "Oracle", "Docker", "AWS", "GCP", "n8n",
-  "AI / LLM", "RAG", "Prompt", "資安", "自動化", "Git", "Linux", "Cloudflare",
+  "AI / LLM", "RAG", "Prompt", "Security", "Automation", "Git", "Linux", "Cloudflare",
 ];
 
 /** 製作一個文字精靈（canvas → 貼圖 → Sprite），發光紫白字，供 bloom 擷取。 */
@@ -80,13 +80,6 @@ export default function SkillSphere() {
       group.add(s);
       sprites.push(s);
     }
-
-    // 細線框球體做骨架
-    const wire = new THREE.LineSegments(
-      new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(R, 1)),
-      new THREE.LineBasicMaterial({ color: new THREE.Color("#6d28d9"), transparent: true, opacity: 0.18 })
-    );
-    group.add(wire);
 
     const composer = new EffectComposer(renderer);
     composer.setPixelRatio(Math.min(window.devicePixelRatio, lowEnd ? 1.5 : 2));
@@ -189,13 +182,21 @@ export default function SkillSphere() {
         (s.material as THREE.SpriteMaterial).map?.dispose();
         (s.material as THREE.Material).dispose();
       });
-      wire.geometry.dispose();
-      (wire.material as THREE.Material).dispose();
       composer.dispose();
       renderer.dispose();
       if (renderer.domElement.parentNode === mount) mount.removeChild(renderer.domElement);
     };
   }, []);
 
-  return <div ref={mountRef} className="absolute inset-0" aria-hidden />;
+  return (
+    <div
+      ref={mountRef}
+      className="absolute inset-0"
+      aria-hidden
+      style={{
+        maskImage: "radial-gradient(circle at 50% 50%, #000 56%, transparent 80%)",
+        WebkitMaskImage: "radial-gradient(circle at 50% 50%, #000 56%, transparent 80%)",
+      }}
+    />
+  );
 }
