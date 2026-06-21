@@ -6,6 +6,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Reveal3D } from "@/components/ui/Reveal3D";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Parallax } from "@/components/ui/Parallax";
+import { ScrollTilt } from "@/components/ui/ScrollTilt";
 
 const highlights = [
   { k: "現職", v: "全端開發實習生（在職中）" },
@@ -84,7 +85,7 @@ export default function About() {
         </circle>
       </svg>
 
-      <div className="container relative z-10">
+      <ScrollTilt className="container relative z-10">
         <div className="grid items-start gap-14 lg:grid-cols-2">
           <Reveal>
             <h2 className="font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
@@ -118,7 +119,7 @@ export default function About() {
             </Reveal3D>
           </Parallax>
         </div>
-      </div>
+      </ScrollTilt>
     </section>
   );
 }

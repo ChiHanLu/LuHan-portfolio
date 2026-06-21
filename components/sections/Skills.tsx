@@ -1,10 +1,14 @@
 "use client";
 
 import { useEffect } from "react";
+import dynamic from "next/dynamic";
 import { gsap } from "@/lib/gsap";
 import { prefersReducedMotion, useInView } from "@/lib/useInView";
 import { Reveal } from "@/components/ui/Reveal";
 import { Parallax } from "@/components/ui/Parallax";
+
+// 3D 旋轉技能球只在 client 載入
+const SkillSphere = dynamic(() => import("./SkillSphere"), { ssr: false });
 
 const skills = [
   { name: "Laravel · PHP", level: 88 },
@@ -41,23 +45,9 @@ export default function Skills() {
 
   return (
     <section id="skills" className="relative scroll-mt-20 overflow-hidden py-28">
-      {/* 旋轉裝飾環（隨捲動旋轉） */}
-      <Parallax
-        rotate={120}
-        speed={0}
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2 opacity-40 [perspective:900px]"
-      >
-        {/* 立體傾斜：讓旋轉環看起來像 3D 圓盤在空間中轉 */}
-        <div className="[transform:rotateX(66deg)] [transform-style:preserve-3d]">
-          <div className="h-[520px] w-[520px] rounded-full border border-dashed border-primary-500/20" />
-          <div className="absolute inset-10 rounded-full border border-primary-500/10" />
-        </div>
-      </Parallax>
-
-      {/* 光線：conic 漸層光圈在卡片後方緩慢旋轉 */}
+      {/* 光線：conic 漸層光圈在技能球後方緩慢旋轉 */}
       <div
-        className="conic-glow left-1/2 top-1/2 z-0 h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/2 opacity-30"
+        className="conic-glow left-1/4 top-1/2 z-0 h-[480px] w-[480px] -translate-x-1/2 -translate-y-1/2 opacity-30"
         aria-hidden
       />
 
@@ -70,29 +60,37 @@ export default function Skills() {
           </Reveal>
         </Parallax>
 
-        <div
-          ref={ref}
-          className="glass mx-auto mt-12 grid max-w-4xl gap-x-10 gap-y-4 rounded-glass p-7 [perspective:1000px] sm:grid-cols-2 sm:p-10"
-        >
-          {skills.map((skill) => (
-            <div
-              key={skill.name}
-              data-row
-              className="spotlight relative overflow-hidden space-y-2 rounded-xl border border-white/5 bg-white/5 p-3 backdrop-blur-sm"
-            >
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-gray-200">{skill.name}</span>
-                <span className="font-mono text-xs text-primary-400">{skill.level}%</span>
+        <div className="mt-12 grid items-center gap-10 lg:grid-cols-2">
+          {/* 3D 旋轉技能球 */}
+          <div className="relative h-[360px] sm:h-[440px] lg:h-[480px]">
+            <SkillSphere />
+          </div>
+
+          {/* 熟練度技能條 */}
+          <div
+            ref={ref}
+            className="glass grid gap-x-10 gap-y-4 rounded-glass p-7 [perspective:1000px] sm:p-9"
+          >
+            {skills.map((skill) => (
+              <div
+                key={skill.name}
+                data-row
+                className="spotlight relative space-y-2 overflow-hidden rounded-xl border border-white/5 bg-white/5 p-3 backdrop-blur-sm"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-gray-200">{skill.name}</span>
+                  <span className="font-mono text-xs text-primary-400">{skill.level}%</span>
+                </div>
+                <div className="h-2 overflow-hidden rounded-full bg-white/10">
+                  <div
+                    data-bar
+                    style={{ width: `${skill.level}%`, transformOrigin: "left center" }}
+                    className="h-full rounded-full bg-brand-gradient"
+                  />
+                </div>
               </div>
-              <div className="h-2 overflow-hidden rounded-full bg-white/10">
-                <div
-                  data-bar
-                  style={{ width: `${skill.level}%`, transformOrigin: "left center" }}
-                  className="h-full rounded-full bg-brand-gradient"
-                />
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

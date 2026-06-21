@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Reveal } from "@/components/ui/Reveal";
 import { Parallax } from "@/components/ui/Parallax";
+import { ScrollTilt } from "@/components/ui/ScrollTilt";
 
 type Item = { period: string; title: string; org: string; desc: string };
 
@@ -71,7 +72,7 @@ export default function Experience() {
         className="conic-glow left-0 top-1/2 z-0 h-[460px] w-[460px] -translate-x-1/3 -translate-y-1/2 opacity-20"
         aria-hidden
       />
-      <div className="container relative z-10">
+      <ScrollTilt className="container relative z-10">
         <Parallax speed={-50}>
           <Reveal className="text-center">
             <h2 className="font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
@@ -121,7 +122,7 @@ export default function Experience() {
             ))}
           </Reveal>
         </div>
-      </div>
+      </ScrollTilt>
     </section>
   );
 }

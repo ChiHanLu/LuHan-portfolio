@@ -75,6 +75,21 @@ export default function Projects() {
         const pin = pinRef.current;
         if (!track || !pin) return;
         const amount = () => Math.max(0, track.scrollWidth - window.innerWidth + 96);
+        // 覆流（coverflow）3D：卡片依其相對視窗中心的位置旋轉 Y 軸
+        const cards = gsap.utils.toArray<HTMLElement>(track.querySelectorAll(".pcard"));
+        const tilt = () => {
+          const cx = window.innerWidth / 2;
+          cards.forEach((c) => {
+            const r = c.getBoundingClientRect();
+            const d = (r.left + r.width / 2 - cx) / window.innerWidth; // -0.5 ~ 0.5
+            gsap.set(c, {
+              rotateY: gsap.utils.clamp(-22, 22, -d * 46),
+              z: -Math.abs(d) * 120,
+              transformPerspective: 1200,
+              transformOrigin: "center center",
+            });
+          });
+        };
         gsap.to(track, {
           x: () => -amount(),
           ease: "none",
@@ -85,8 +100,11 @@ export default function Projects() {
             pin: true,
             scrub: 1,
             invalidateOnRefresh: true,
+            onUpdate: tilt,
+            onRefresh: tilt,
           },
         });
+        tilt();
       });
       return () => mm.revert();
     },
@@ -118,10 +136,11 @@ export default function Projects() {
           className="container grid grid-cols-1 gap-6 [perspective:1400px] sm:grid-cols-2 md:flex md:h-full md:w-max md:max-w-none md:items-center md:gap-8 md:px-16"
         >
           {projects.map((project, idx) => (
-            <GlassCard
+            <div
               key={project.title}
-              className="flex flex-col p-6 md:w-[340px] md:shrink-0 md:p-6"
+              className="pcard flex md:w-[340px] md:shrink-0 md:[transform-style:preserve-3d]"
             >
+            <GlassCard className="flex h-full flex-1 flex-col p-6">
               <div className="mb-3 flex items-center gap-3">
                 <span className="font-mono text-sm text-primary-400">
                   {String(idx + 1).padStart(2, "0")}
@@ -165,6 +184,7 @@ export default function Projects() {
                 )}
               </div>
             </GlassCard>
+            </div>
           ))}
         </div>
       </div>
