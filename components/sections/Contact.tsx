@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
+import { gsap, useGSAP } from "@/lib/gsap";
 import { Button } from "@/components/ui/Button";
 import { ResumeDownload } from "@/components/ui/ResumeDownload";
 import { Reveal } from "@/components/ui/Reveal";
@@ -21,24 +22,59 @@ const lines = [
 ];
 
 export default function Contact() {
+  const root = useRef<HTMLElement>(null);
+  const galaxyRef = useRef<HTMLDivElement>(null);
   const [line, setLine] = useState(lines[0]);
 
   useEffect(() => {
     setLine(lines[Math.floor(Math.random() * lines.length)]);
   }, []);
 
+  // Galaxy 捲動互動：一條 scrubbed timeline —— 進場從下方升起淡入 → 過場視差縮放 → 離場往下沉淡出
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: root.current,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          })
+          .fromTo(
+            galaxyRef.current,
+            { yPercent: 14, opacity: 0, scale: 1.12 },
+            { yPercent: 0, opacity: 1, scale: 1, ease: "power1.out", duration: 0.35 }
+          )
+          .to(galaxyRef.current, { scale: 1.05, ease: "none", duration: 0.4 })
+          .to(galaxyRef.current, { yPercent: 16, opacity: 0, ease: "power1.in", duration: 0.25 });
+      });
+      return () => mm.revert();
+    },
+    { scope: root }
+  );
+
   return (
     <section
       id="contact"
-      className="relative flex min-h-[90vh] scroll-mt-20 items-start overflow-hidden pt-10 pb-0"
+      ref={root}
+      className="relative flex min-h-[120vh] scroll-mt-20 items-center pt-10 pb-0"
     >
-      {/* galaxy 星系作為整塊背景 */}
-      <ThreeBackground />
+      {/* galaxy 包裹層：上下各延伸超出 Contact，讓星空不與內容、頁尾貼死 */}
+      <div
+        ref={galaxyRef}
+        className="absolute inset-x-0 -top-[18vh] -bottom-[12vh] z-0 will-change-transform"
+      >
+        <ThreeBackground />
+        {/* 上下漸層遮罩：星空往上下自然淡入淡出，銜接相鄰區塊 */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-56 bg-gradient-to-b from-background via-background/60 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-56 bg-gradient-to-t from-background via-background/60 to-transparent" />
+      </div>
 
-      {/* 僅底部漸層銜接頁尾；頂部不加遮罩，galaxy 完全透出 */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-44 bg-gradient-to-t from-background to-transparent" />
-
-      {/* contact 內容直接融入 galaxy 上方（無卡片框） */}
+      {/* contact 內容垂直置中浮於星空上方（無卡片框） */}
       <div className="container relative z-10 pointer-events-none">
         <Reveal className="mx-auto max-w-2xl text-center [text-shadow:0_2px_24px_rgba(0,0,0,0.7)]">
           <p className="font-mono text-sm tracking-widest text-primary-400">{"// contact"}</p>

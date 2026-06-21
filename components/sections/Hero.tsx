@@ -50,6 +50,8 @@ export default function Hero() {
       <Parallax speed={-90} className="absolute inset-0 z-0">
         <ParticleField />
       </Parallax>
+      {/* 光線：god-ray 光束自上方緩慢掃過 */}
+      <div className="god-rays z-0" aria-hidden />
       {/* 左側遮罩：確保標題文字可讀 */}
       <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-background via-background/70 to-transparent" />
 

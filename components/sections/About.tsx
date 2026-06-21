@@ -1,5 +1,7 @@
 "use client";
 
+import { useRef } from "react";
+import { gsap, useGSAP } from "@/lib/gsap";
 import { Reveal } from "@/components/ui/Reveal";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Parallax } from "@/components/ui/Parallax";
@@ -12,8 +14,70 @@ const highlights = [
 ];
 
 export default function About() {
+  const root = useRef<HTMLElement>(null);
+  const pathRef = useRef<SVGPathElement>(null);
+  const cometRef = useRef<SVGCircleElement>(null);
+
+  // 路徑動畫：捲動時 DrawSVG 沿著左側連接線「畫出」軌跡，光點以 MotionPath 沿同一路徑前進
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
+        const path = pathRef.current;
+        const comet = cometRef.current;
+        if (!path || !comet) return;
+        const st = {
+          trigger: root.current,
+          start: "top 80%",
+          end: "bottom 60%",
+          scrub: true,
+        } as const;
+        gsap.fromTo(path, { drawSVG: "0%" }, { drawSVG: "100%", ease: "none", scrollTrigger: st });
+        gsap.fromTo(
+          comet,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            ease: "none",
+            scrollTrigger: st,
+            motionPath: { path, align: path, alignOrigin: [0.5, 0.5] },
+          }
+        );
+      });
+      return () => mm.revert();
+    },
+    { scope: root }
+  );
+
   return (
-    <section id="about" className="relative scroll-mt-20 py-28">
+    <section id="about" ref={root} className="relative scroll-mt-20 py-28">
+      {/* 路徑動畫裝飾：左側 gutter 的連接線 + 光點（桌機顯示） */}
+      <svg
+        className="pointer-events-none absolute left-2 top-0 hidden h-full w-20 xl:block"
+        viewBox="0 0 80 1000"
+        preserveAspectRatio="none"
+        fill="none"
+        aria-hidden
+      >
+        <defs>
+          <linearGradient id="about-line" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#a78bfa" stopOpacity="0.1" />
+            <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.7" />
+            <stop offset="100%" stopColor="#6d28d9" stopOpacity="0.1" />
+          </linearGradient>
+        </defs>
+        <path
+          ref={pathRef}
+          d="M40 20 C 10 220, 70 420, 40 620 S 10 880, 40 980"
+          stroke="url(#about-line)"
+          strokeWidth="2"
+          vectorEffect="non-scaling-stroke"
+        />
+        <circle ref={cometRef} r="5" fill="#c4b5fd" opacity="0">
+          <animate attributeName="r" values="4;6;4" dur="1.6s" repeatCount="indefinite" />
+        </circle>
+      </svg>
+
       <div className="container relative z-10">
         <div className="grid items-start gap-14 lg:grid-cols-2">
           <Reveal>

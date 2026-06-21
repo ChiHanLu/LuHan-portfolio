@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { gsap } from "@/lib/gsap";
 import { prefersReducedMotion, useInView } from "@/lib/useInView";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { Reveal } from "@/components/ui/Reveal";
 
 const stats = [
   { value: 2, suffix: "+", label: "年開發經驗" },
@@ -40,7 +41,8 @@ export default function Stats() {
   return (
     <section className="relative py-16">
       <div ref={ref} className="container relative z-10">
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        {/* 交錯效果：卡片依序淡入上移，數字同步由 0 滾動到目標值 */}
+        <Reveal className="grid grid-cols-2 gap-4 lg:grid-cols-4" stagger={0.12}>
           {stats.map((s) => (
             <GlassCard key={s.label} className="p-6 text-center">
               <div className="font-display text-4xl font-extrabold text-white sm:text-5xl">
@@ -50,7 +52,7 @@ export default function Stats() {
               <div className="mt-2 text-sm text-gray-400">{s.label}</div>
             </GlassCard>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

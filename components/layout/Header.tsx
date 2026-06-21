@@ -27,6 +27,14 @@ export default function Header() {
     setMenuOpen(false);
   }, [pathname]);
 
+  // 選單展開時鎖定背景捲動（手機 Lenis 預設不平滑觸控，原生 overflow:hidden 即可擋住）
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
   const navItems =
     pathname === "/"
       ? [
@@ -45,12 +53,29 @@ export default function Header() {
     "absolute -bottom-1 left-0 h-0.5 w-0 bg-brand-gradient transition-all duration-300 group-hover:w-full";
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-transform duration-300",
-        hidden && !menuOpen ? "-translate-y-full" : "translate-y-0"
-      )}
-    >
+    <>
+      {/* 手機選單：scrim 遮罩——置於 header 之外，因 header 有 transform 會讓 fixed 子元素只相對 header 定位，無法蓋滿整頁 */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            key="scrim"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setMenuOpen(false)}
+            className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm md:hidden"
+            aria-hidden
+          />
+        )}
+      </AnimatePresence>
+
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 transition-transform duration-300",
+          hidden && !menuOpen ? "-translate-y-full" : "translate-y-0"
+        )}
+      >
       <div className="container mt-3">
         <nav className="glass flex h-14 items-center justify-between rounded-2xl px-4 shadow-glass sm:px-6">
           <Link href="/" className={cn(linkClass, "font-mono")}>
@@ -75,37 +100,36 @@ export default function Header() {
             )}
           </div>
 
-          {/* 手機選單按鈕 */}
+          {/* 手機選單按鈕（三線 → X 變形過渡） */}
           <button
-            className="rounded p-2 text-gray-200 transition-colors hover:text-primary-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 md:hidden"
-            aria-label="開啟選單"
+            className={cn(
+              "burger flex flex-col items-center justify-center rounded p-2 text-gray-200 transition-colors hover:text-primary-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 md:hidden",
+              menuOpen && "open text-primary-300"
+            )}
+            aria-label={menuOpen ? "關閉選單" : "開啟選單"}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             onClick={() => setMenuOpen((v) => !v)}
           >
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {menuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+            <span className="burger-line" />
+            <span className="burger-line" />
+            <span className="burger-line" />
           </button>
         </nav>
       </div>
 
-      {/* 手機選單面板 */}
+      {/* 手機選單面板（在 scrim 之上、glass-strong 不透明背板） */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
             id="mobile-menu"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="container overflow-hidden md:hidden"
+            className="container relative z-50 md:hidden"
           >
-            <div className="glass mt-2 flex flex-col rounded-2xl p-2">
+            <div className="glass-strong mt-2 flex flex-col rounded-2xl p-2 shadow-glass">
               {navItems.map((item) =>
                 item.href.startsWith("#") ? (
                   <a
@@ -131,6 +155,7 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+      </header>
+    </>
   );
 }

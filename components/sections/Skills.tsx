@@ -16,19 +16,24 @@ const skills = [
 ];
 
 export default function Skills() {
-  // 進場時技能條由 0 成長到滿（減少動態偏好下直接顯示滿格、不動畫）
+  // 進場時技能列交錯淡入、技能條由 0 成長到滿（減少動態偏好下直接顯示、不動畫）
   const ref = useInView<HTMLDivElement>(
     (el) => {
+      const rows = el.querySelectorAll<HTMLElement>("[data-row]");
       const bars = el.querySelectorAll<HTMLElement>("[data-bar]");
-      gsap.to(bars, { scaleX: 1, duration: 1.1, ease: "power3.out", stagger: 0.08 });
+      gsap.to(rows, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", stagger: 0.09 });
+      gsap.to(bars, { scaleX: 1, duration: 1.1, ease: "power3.out", stagger: 0.09, delay: 0.15 });
     },
     { threshold: 0.25, enabled: !prefersReducedMotion() }
   );
 
   useEffect(() => {
     if (!ref.current) return;
+    const reduce = prefersReducedMotion();
+    const rows = ref.current.querySelectorAll<HTMLElement>("[data-row]");
     const bars = ref.current.querySelectorAll<HTMLElement>("[data-bar]");
-    gsap.set(bars, { scaleX: prefersReducedMotion() ? 1 : 0 });
+    gsap.set(bars, { scaleX: reduce ? 1 : 0 });
+    gsap.set(rows, reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 });
   }, [ref]);
 
   return (
@@ -44,6 +49,12 @@ export default function Skills() {
         <div className="absolute inset-10 rounded-full border border-primary-500/10" />
       </Parallax>
 
+      {/* 光線：conic 漸層光圈在卡片後方緩慢旋轉 */}
+      <div
+        className="conic-glow left-1/2 top-1/2 z-0 h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/2 opacity-30"
+        aria-hidden
+      />
+
       <div className="container relative z-10">
         <Parallax speed={-50}>
           <Reveal className="text-center">
@@ -56,10 +67,14 @@ export default function Skills() {
 
         <div
           ref={ref}
-          className="glass mx-auto mt-12 grid max-w-4xl gap-x-10 gap-y-6 rounded-glass p-7 sm:grid-cols-2 sm:p-10"
+          className="glass mx-auto mt-12 grid max-w-4xl gap-x-10 gap-y-4 rounded-glass p-7 sm:grid-cols-2 sm:p-10"
         >
           {skills.map((skill) => (
-            <div key={skill.name} className="space-y-2">
+            <div
+              key={skill.name}
+              data-row
+              className="space-y-2 rounded-xl border border-white/5 bg-white/5 p-3 backdrop-blur-sm"
+            >
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium text-gray-200">{skill.name}</span>
                 <span className="font-mono text-xs text-primary-400">{skill.level}%</span>

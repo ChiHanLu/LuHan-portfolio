@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { SplitReveal } from "@/components/ui/SplitReveal";
 import { ReadingProgress } from "./ReadingProgress";
 import { Toc } from "./Toc";
 
@@ -63,7 +64,7 @@ export function ArticleShell({
             {"← /blog"}
           </Link>
           <h1 className="mt-6 font-display text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
-            {meta.title}
+            <SplitReveal text={meta.title} stagger={0.02} />
           </h1>
           <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs text-gray-400">
             <time>{meta.date}</time>

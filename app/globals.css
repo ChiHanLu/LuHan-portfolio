@@ -125,6 +125,81 @@ h1, h2, h3, h4, h5, h6 { color: inherit; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 body::-webkit-scrollbar { display: none; }
 
+/* ---------- 光線效果（god-ray 光束 / 滑鼠聚光 / conic 光圈）---------- */
+/* 方案 A：god-ray 光束緩慢掃過，放在區塊絕對定位裝飾層 */
+.god-rays {
+  position: absolute;
+  inset: -25% -10% auto -10%;
+  height: 150%;
+  pointer-events: none;
+  background: conic-gradient(
+    from 90deg at 50% -8%,
+    transparent 0deg,
+    rgb(139 92 246 / 0.13) 10deg,
+    transparent 22deg,
+    rgb(167 139 250 / 0.10) 36deg,
+    transparent 52deg,
+    rgb(139 92 246 / 0.08) 66deg,
+    transparent 80deg
+  );
+  filter: blur(6px);
+  mix-blend-mode: screen;
+  transform-origin: 50% 0;
+  animation: ray-sway 11s ease-in-out infinite alternate;
+}
+@keyframes ray-sway {
+  0% { transform: rotate(-7deg) scaleY(1); opacity: 0.55; }
+  100% { transform: rotate(7deg) scaleY(1.1); opacity: 0.95; }
+}
+
+/* 方案 B：滑鼠跟隨聚光（區塊層級，JS 設 --mx/--my） */
+.spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(
+    480px circle at var(--mx, 50%) var(--my, 50%),
+    rgb(139 92 246 / 0.16),
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.spotlight:hover::after { opacity: 1; }
+
+/* 方案 C：conic 漸層光圈緩慢旋轉裝飾 */
+.conic-glow {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 9999px;
+  background: conic-gradient(
+    from 0deg,
+    rgb(139 92 246 / 0.0),
+    rgb(139 92 246 / 0.35),
+    rgb(167 139 250 / 0.0),
+    rgb(99 102 241 / 0.30),
+    rgb(139 92 246 / 0.0)
+  );
+  filter: blur(28px);
+  animation: spin 24s linear infinite;
+}
+
+/* ---------- 漢堡 → X 線條變形過渡 ---------- */
+.burger-line {
+  display: block;
+  height: 2px;
+  width: 22px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 0.32s var(--ease-cinema), opacity 0.2s ease;
+}
+.burger-line + .burger-line { margin-top: 5px; }
+.burger.open .burger-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.open .burger-line:nth-child(2) { opacity: 0; }
+.burger.open .burger-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 /* ---------- galaxy / 黑洞 3D 背景（youmom.js）---------- */
 .experience {
   position: absolute;
@@ -138,6 +213,14 @@ body::-webkit-scrollbar { display: none; }
 .experience canvas {
   pointer-events: auto;
   touch-action: none;
+}
+/* ponytail: 手機放掉 galaxy 互動，避免 canvas 攔截頁面捲動（保留視覺）；桌機維持可互動 */
+@media (max-width: 767px) {
+  .experience,
+  .experience canvas {
+    pointer-events: none;
+    touch-action: auto;
+  }
 }
 
 /* ---------- Lenis 平滑捲動 ---------- */

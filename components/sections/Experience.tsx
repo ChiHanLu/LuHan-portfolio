@@ -1,5 +1,7 @@
 "use client";
 
+import { useRef } from "react";
+import { gsap, useGSAP } from "@/lib/gsap";
 import { Reveal } from "@/components/ui/Reveal";
 import { Parallax } from "@/components/ui/Parallax";
 
@@ -33,8 +35,37 @@ const timeline: Item[] = [
 ];
 
 export default function Experience() {
+  const root = useRef<HTMLElement>(null);
+  const lineRef = useRef<SVGPathElement>(null);
+
+  // 路徑 + 捲動：時間軸主線隨捲動由上往下「畫出」（DrawSVG scrub）
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        if (!lineRef.current) return;
+        gsap.fromTo(
+          lineRef.current,
+          { drawSVG: "0%" },
+          {
+            drawSVG: "100%",
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".exp-timeline",
+              start: "top 75%",
+              end: "bottom 70%",
+              scrub: true,
+            },
+          }
+        );
+      });
+      return () => mm.revert();
+    },
+    { scope: root }
+  );
+
   return (
-    <section id="experience" className="relative scroll-mt-20 py-28">
+    <section id="experience" ref={root} className="relative scroll-mt-20 py-28">
       <div className="container relative z-10">
         <Parallax speed={-50}>
           <Reveal className="text-center">
@@ -45,9 +76,29 @@ export default function Experience() {
           </Reveal>
         </Parallax>
 
-        <div className="relative mx-auto mt-14 max-w-3xl">
-          {/* 軸線 */}
-          <span className="absolute left-3 top-2 bottom-2 w-px bg-gradient-to-b from-primary-500/60 via-primary-500/30 to-transparent sm:left-4" />
+        <div className="exp-timeline relative mx-auto mt-14 max-w-3xl">
+          {/* 軸線：以 SVG path 隨捲動畫出（取代靜態漸層線） */}
+          <svg
+            className="pointer-events-none absolute left-3 top-2 bottom-2 w-1 sm:left-4"
+            viewBox="0 0 4 1000"
+            preserveAspectRatio="none"
+            fill="none"
+            aria-hidden
+          >
+            <defs>
+              <linearGradient id="exp-line" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.7" />
+                <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.1" />
+              </linearGradient>
+            </defs>
+            <path
+              ref={lineRef}
+              d="M2 0 L2 1000"
+              stroke="url(#exp-line)"
+              strokeWidth="2"
+              vectorEffect="non-scaling-stroke"
+            />
+          </svg>
 
           <Reveal className="space-y-6" stagger={0.12}>
             {timeline.map((item) => (

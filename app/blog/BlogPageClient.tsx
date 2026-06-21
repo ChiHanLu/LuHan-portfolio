@@ -25,7 +25,7 @@ export default function BlogPageClient({ posts }: { posts: ArticleMeta[] }) {
               <Magnetic key={post.slug} strength={0.1} className="h-full">
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="group flex h-full flex-col rounded-2xl border border-primary-500/20 bg-gradient-to-br from-black/60 to-secondary-900/40 p-6 backdrop-blur-md transition-all duration-300 hover:border-primary-400/40 hover:shadow-2xl hover:shadow-primary-500/15 md:p-7"
+                  className="spotlight group relative flex h-full flex-col overflow-hidden rounded-2xl border border-primary-500/20 bg-gradient-to-br from-black/60 to-secondary-900/40 p-6 backdrop-blur-md transition-all duration-300 hover:border-primary-400/40 hover:shadow-2xl hover:shadow-primary-500/15 md:p-7"
                 >
                   <div className="mb-4 flex flex-wrap items-center gap-x-3 font-mono text-xs text-primary-400">
                     <span>{post.date}</span>
