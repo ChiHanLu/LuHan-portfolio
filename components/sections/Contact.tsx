@@ -92,12 +92,9 @@ export default function Contact() {
       {/* contact 內容置於下方區域，上方留出大片星空（兩者各自保留空間、不貼合） */}
       <div className="container relative z-10 pointer-events-none">
         <Reveal className="mx-auto max-w-2xl text-center [text-shadow:0_2px_24px_rgba(0,0,0,0.7)]">
-          <h2 className="font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
-            一起做點有趣的東西
-          </h2>
-          <p className="mt-4 font-mono text-sm text-gray-300">{line}</p>
+          <p className="font-mono text-sm text-gray-300">{line}</p>
 
-          <div className="pointer-events-auto mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="pointer-events-auto mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link href="mailto:11336028@ntub.edu.tw" aria-label="Email">
               <Button intent="primary" size="lg">
                 Email 聯絡

@@ -6,6 +6,34 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 
+type NavItem = { href: string; label: string };
+
+/** 導航連結：站內路由用 next/link，同頁錨點（#）用原生 <a>。桌機/手機共用。 */
+function NavLink({
+  href,
+  className,
+  onClick,
+  children,
+}: {
+  href: string;
+  className?: string;
+  onClick?: () => void;
+  children: React.ReactNode;
+}) {
+  if (href.startsWith("#")) {
+    return (
+      <a href={href} onClick={onClick} className={className}>
+        {children}
+      </a>
+    );
+  }
+  return (
+    <Link href={href} onClick={onClick} className={className}>
+      {children}
+    </Link>
+  );
+}
+
 export default function Header() {
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -27,6 +55,15 @@ export default function Header() {
     setMenuOpen(false);
   }, [pathname]);
 
+  // 切到桌機寬度時關閉手機選單，否則面板雖隱藏（md:hidden）但 menuOpen 仍為 true，會卡住背景捲動鎖
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768) setMenuOpen(false);
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   // 選單展開時鎖定背景捲動（手機 Lenis 預設不平滑觸控，原生 overflow:hidden 即可擋住）
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -35,7 +72,7 @@ export default function Header() {
     };
   }, [menuOpen]);
 
-  const navItems =
+  const navItems: NavItem[] =
     pathname === "/"
       ? [
           { href: "#about", label: "關於" },
@@ -76,85 +113,67 @@ export default function Header() {
           hidden && !menuOpen ? "-translate-y-full" : "translate-y-0"
         )}
       >
-      <div className="container mt-3">
-        <nav className="glass flex h-14 items-center justify-between rounded-2xl px-4 shadow-glass sm:px-6">
-          <Link href="/" className={cn(linkClass, "font-mono")}>
-            ~/luhan
-            <span className={underline} />
-          </Link>
+        <div className="container mt-3">
+          <nav className="glass flex h-14 items-center justify-between rounded-2xl px-4 shadow-glass sm:px-6">
+            <Link href="/" className={cn(linkClass, "font-mono")}>
+              ~/luhan
+              <span className={underline} />
+            </Link>
 
-          {/* 桌機導航 */}
-          <div className="hidden items-center gap-7 md:flex">
-            {navItems.map((item) =>
-              item.href.startsWith("#") ? (
-                <a key={item.href} href={item.href} className={linkClass}>
+            {/* 桌機導航 */}
+            <div className="hidden items-center gap-7 md:flex">
+              {navItems.map((item) => (
+                <NavLink key={item.href} href={item.href} className={linkClass}>
                   {item.label}
                   <span className={underline} />
-                </a>
-              ) : (
-                <Link key={item.href} href={item.href} className={linkClass}>
-                  {item.label}
-                  <span className={underline} />
-                </Link>
-              )
-            )}
-          </div>
-
-          {/* 手機選單按鈕（三線 → X 變形過渡） */}
-          <button
-            className={cn(
-              "burger flex flex-col items-center justify-center rounded p-2 text-gray-200 transition-colors hover:text-primary-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 md:hidden",
-              menuOpen && "open text-primary-300"
-            )}
-            aria-label={menuOpen ? "關閉選單" : "開啟選單"}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            onClick={() => setMenuOpen((v) => !v)}
-          >
-            <span className="burger-line" />
-            <span className="burger-line" />
-            <span className="burger-line" />
-          </button>
-        </nav>
-      </div>
-
-      {/* 手機選單面板（在 scrim 之上、glass-strong 不透明背板） */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            id="mobile-menu"
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="container relative z-50 md:hidden"
-          >
-            <div className="glass-strong mt-2 flex flex-col rounded-2xl p-2 shadow-glass">
-              {navItems.map((item) =>
-                item.href.startsWith("#") ? (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="rounded-lg px-3 py-3 text-base text-gray-200 transition-colors hover:bg-primary-500/10 hover:text-primary-300"
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="rounded-lg px-3 py-3 text-base text-gray-200 transition-colors hover:bg-primary-500/10 hover:text-primary-300"
-                  >
-                    {item.label}
-                  </Link>
-                )
-              )}
+                </NavLink>
+              ))}
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
+            {/* 手機選單按鈕（三線 → X 變形過渡） */}
+            <button
+              className={cn(
+                "burger flex flex-col items-center justify-center rounded p-2 text-gray-200 transition-colors hover:text-primary-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 md:hidden",
+                menuOpen && "open text-primary-300"
+              )}
+              aria-label={menuOpen ? "關閉選單" : "開啟選單"}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+              onClick={() => setMenuOpen((v) => !v)}
+            >
+              <span className="burger-line" />
+              <span className="burger-line" />
+              <span className="burger-line" />
+            </button>
+          </nav>
+        </div>
+
+        {/* 手機選單面板（在 scrim 之上、glass-strong 不透明背板） */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              id="mobile-menu"
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="container relative z-50 md:hidden"
+            >
+              <div className="glass-strong mt-2 flex flex-col rounded-2xl p-2 shadow-glass">
+                {navItems.map((item) => (
+                  <NavLink
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="rounded-lg px-3 py-3 text-base text-gray-200 transition-colors hover:bg-primary-500/10 hover:text-primary-300"
+                  >
+                    {item.label}
+                  </NavLink>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
     </>
   );
