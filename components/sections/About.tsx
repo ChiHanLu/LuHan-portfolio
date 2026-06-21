@@ -86,8 +86,7 @@ export default function About() {
       <div className="container relative z-10">
         <div className="grid items-start gap-14 lg:grid-cols-2">
           <Reveal>
-            <p className="font-mono text-sm tracking-widest text-primary-400">{"// about"}</p>
-            <h2 className="mt-2 font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+            <h2 className="font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
               關於我
             </h2>
             <div className="mt-6 space-y-4 leading-relaxed text-gray-300">

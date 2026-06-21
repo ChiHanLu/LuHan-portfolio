@@ -30,27 +30,42 @@ export default function Contact() {
     setLine(lines[Math.floor(Math.random() * lines.length)]);
   }, []);
 
-  // Galaxy 捲動互動：一條 scrubbed timeline —— 進場從下方升起淡入 → 過場視差縮放 → 離場往下沉淡出
+  // Galaxy 捲動互動，拆成兩段確保「galaxy 在讀 Contact 時是滿的、最後才消失」：
+  //   1) 進場：區塊進入時星空從下方升起＋淡入（top bottom → top center）
+  //   2) 離場：捲到頁面最底前的最後一段，星空往下沉＋漸層消失（往下消失效果）
+  // 中間整段維持滿版作為 Contact 背景。Contact 是最後一個區塊，離場觸發點鎖在
+  // 「bottom bottom」這個真的能捲到的位置（舊版用 bottom top 永遠到不了所以看不到）。
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap
-          .timeline({
+        gsap.fromTo(
+          galaxyRef.current,
+          { yPercent: 16, opacity: 0, scale: 1.12 },
+          {
+            yPercent: 0,
+            opacity: 1,
+            scale: 1,
+            ease: "none",
             scrollTrigger: {
               trigger: root.current,
               start: "top bottom",
-              end: "bottom top",
+              end: "top center",
               scrub: true,
             },
-          })
-          .fromTo(
-            galaxyRef.current,
-            { yPercent: 14, opacity: 0, scale: 1.12 },
-            { yPercent: 0, opacity: 1, scale: 1, ease: "power1.out", duration: 0.35 }
-          )
-          .to(galaxyRef.current, { scale: 1.05, ease: "none", duration: 0.4 })
-          .to(galaxyRef.current, { yPercent: 16, opacity: 0, ease: "power1.in", duration: 0.25 });
+          }
+        );
+        gsap.to(galaxyRef.current, {
+          yPercent: 24,
+          opacity: 0,
+          ease: "power1.in",
+          scrollTrigger: {
+            trigger: root.current,
+            start: "bottom bottom-=420",
+            end: "bottom bottom",
+            scrub: true,
+          },
+        });
       });
       return () => mm.revert();
     },
@@ -61,24 +76,23 @@ export default function Contact() {
     <section
       id="contact"
       ref={root}
-      className="relative flex min-h-[120vh] scroll-mt-20 items-center pt-10 pb-0"
+      className="relative flex min-h-[135vh] scroll-mt-20 items-start overflow-x-clip pt-[24vh]"
     >
-      {/* galaxy 包裹層：上下各延伸超出 Contact，讓星空不與內容、頁尾貼死 */}
+      {/* galaxy 包裹層：往上延伸超出 Contact（與 BlogPreview 拉開、星空往上下延伸） */}
       <div
         ref={galaxyRef}
-        className="absolute inset-x-0 -top-[18vh] -bottom-[12vh] z-0 will-change-transform"
+        className="absolute inset-x-0 -top-[22vh] bottom-0 z-0 will-change-transform"
       >
         <ThreeBackground />
-        {/* 上下漸層遮罩：星空往上下自然淡入淡出，銜接相鄰區塊 */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-56 bg-gradient-to-b from-background via-background/60 to-transparent" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-56 bg-gradient-to-t from-background via-background/60 to-transparent" />
+        {/* 上下漸層遮罩：星空往上下自然淡入淡出，與相鄰區塊不貼死 */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-64 bg-gradient-to-b from-background via-background/55 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-64 bg-gradient-to-t from-background via-background/55 to-transparent" />
       </div>
 
-      {/* contact 內容垂直置中浮於星空上方（無卡片框） */}
+      {/* contact 內容置於下方區域，上方留出大片星空（兩者各自保留空間、不貼合） */}
       <div className="container relative z-10 pointer-events-none">
         <Reveal className="mx-auto max-w-2xl text-center [text-shadow:0_2px_24px_rgba(0,0,0,0.7)]">
-          <p className="font-mono text-sm tracking-widest text-primary-400">{"// contact"}</p>
-          <h2 className="mt-3 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+          <h2 className="font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
             一起做點有趣的東西
           </h2>
           <p className="mt-4 font-mono text-sm text-gray-300">{line}</p>

@@ -74,8 +74,7 @@ export default function Experience() {
       <div className="container relative z-10">
         <Parallax speed={-50}>
           <Reveal className="text-center">
-            <p className="font-mono text-sm tracking-widest text-primary-400">{"// experience"}</p>
-            <h2 className="mt-2 font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+            <h2 className="font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
               經歷
             </h2>
           </Reveal>

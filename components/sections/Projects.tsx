@@ -100,15 +100,11 @@ export default function Projects() {
       <div className="container relative z-10">
         <Parallax speed={-50}>
           <Reveal className="text-center">
-            <p className="font-mono text-sm tracking-widest text-primary-400">{"// projects"}</p>
-            <h2 className="mt-2 font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+            <h2 className="font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
               精選作品
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-gray-400">
               從全端系統、AI 工具到跨平台 App，每個作品都承載著解決實際問題的思考。
-              <span className="mt-1 hidden md:block font-mono text-xs text-primary-400/70">
-                ↓ 向下捲動，作品橫向展開
-              </span>
             </p>
           </Reveal>
         </Parallax>

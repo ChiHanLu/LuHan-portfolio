@@ -46,7 +46,7 @@ export default function Footer() {
 
           <div className="mx-auto h-px w-48 bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
 
-          <p className="font-mono text-sm text-gray-500">{`// ${quote}`}</p>
+          <p className="font-mono text-sm text-gray-500">{quote}</p>
           <p className="text-xs text-gray-600">
             © {currentYear} Chi Han Lu · built with Next.js · GSAP · Three.js
           </p>

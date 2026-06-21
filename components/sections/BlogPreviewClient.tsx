@@ -11,8 +11,7 @@ export default function BlogPreviewClient({ posts }: { posts: ArticleMeta[] }) {
       <div className="container relative z-10">
         <Parallax speed={-50}>
           <Reveal className="text-center">
-            <p className="font-mono text-sm tracking-widest text-primary-400">{"// blog"}</p>
-            <h2 className="mt-2 font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+            <h2 className="font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
               最新文章
             </h2>
           </Reveal>
@@ -24,7 +23,7 @@ export default function BlogPreviewClient({ posts }: { posts: ArticleMeta[] }) {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group block rounded-glass glass p-6 transition-all duration-300 ease-cinema hover:-translate-y-1 hover:border-primary-400/50 hover:shadow-glow-lg"
+                className="spotlight group relative block overflow-hidden rounded-glass glass p-6 transition-all duration-300 ease-cinema hover:-translate-y-1 hover:border-primary-400/50 hover:shadow-glow-lg"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0 flex-1">

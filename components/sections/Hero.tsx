@@ -62,7 +62,7 @@ export default function Hero() {
       <div className="container relative z-20">
         <div className="hero-copy max-w-3xl">
           <p className="hero-eyebrow font-mono text-sm tracking-widest text-primary-400">
-            {"// Full-Stack Engineer"}
+            Full-Stack Engineer
           </p>
 
           <h1 className="mt-4 font-display text-5xl font-extrabold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
