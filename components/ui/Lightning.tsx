@@ -32,14 +32,11 @@ export default function Lightning({ className }: { className?: string }) {
     gsap.set(bolts, { drawSVG: "0% 0%", opacity: 0 });
     gsap.set(ripples, { opacity: 0, attr: { rx: 3, ry: 1 } });
 
-    let alive = true;
-    const strike = () => {
-      if (!alive) return;
-      const i = Math.floor(Math.random() * bolts.length);
+    const flash = (i: number, delay: number) => {
       const p = bolts[i];
       const rip = ripples[i];
       gsap
-        .timeline()
+        .timeline({ delay })
         // 劈下
         .set(p, { drawSVG: "0% 0%", opacity: 1 })
         .to(p, { drawSVG: "0% 100%", duration: 0.12, ease: "power1.in" })
@@ -50,9 +47,18 @@ export default function Lightning({ className }: { className?: string }) {
         .set(rip, { opacity: 0.85, attr: { rx: 3, ry: 1 } }, 0.12)
         .to(rip, { attr: { rx: 80, ry: 18 }, duration: 0.75, ease: "power2.out" }, 0.12)
         .to(rip, { opacity: 0, duration: 0.55, ease: "power2.out" }, 0.18);
-      gsap.delayedCall(1.2 + Math.random() * 2.8, strike);
     };
-    gsap.delayedCall(0.8 + Math.random(), strike);
+
+    let alive = true;
+    const strike = () => {
+      if (!alive) return;
+      // 一次打 2–4 道（隨機挑不重複），各帶些微時間差形成「群閃」
+      const count = 2 + Math.floor(Math.random() * 3);
+      const order = bolts.map((_, i) => i).sort(() => Math.random() - 0.5);
+      order.slice(0, count).forEach((i, k) => flash(i, k * 0.06));
+      gsap.delayedCall(0.7 + Math.random() * 1.6, strike);
+    };
+    gsap.delayedCall(0.6 + Math.random(), strike);
 
     return () => {
       alive = false;
