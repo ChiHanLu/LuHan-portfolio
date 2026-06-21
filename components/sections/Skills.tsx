@@ -21,7 +21,7 @@ export default function Skills() {
     (el) => {
       const rows = el.querySelectorAll<HTMLElement>("[data-row]");
       const bars = el.querySelectorAll<HTMLElement>("[data-bar]");
-      gsap.to(rows, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", stagger: 0.09 });
+      gsap.to(rows, { opacity: 1, y: 0, rotateX: 0, duration: 0.7, ease: "power3.out", stagger: 0.09 });
       gsap.to(bars, { scaleX: 1, duration: 1.1, ease: "power3.out", stagger: 0.09, delay: 0.15 });
     },
     { threshold: 0.25, enabled: !prefersReducedMotion() }
@@ -33,7 +33,10 @@ export default function Skills() {
     const rows = ref.current.querySelectorAll<HTMLElement>("[data-row]");
     const bars = ref.current.querySelectorAll<HTMLElement>("[data-bar]");
     gsap.set(bars, { scaleX: reduce ? 1 : 0 });
-    gsap.set(rows, reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 });
+    gsap.set(
+      rows,
+      reduce ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 14, rotateX: -28, transformPerspective: 800 }
+    );
   }, [ref]);
 
   return (
@@ -43,10 +46,13 @@ export default function Skills() {
         rotate={120}
         speed={0}
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2 opacity-40"
+        className="pointer-events-none absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2 opacity-40 [perspective:900px]"
       >
-        <div className="h-[520px] w-[520px] rounded-full border border-dashed border-primary-500/20" />
-        <div className="absolute inset-10 rounded-full border border-primary-500/10" />
+        {/* 立體傾斜：讓旋轉環看起來像 3D 圓盤在空間中轉 */}
+        <div className="[transform:rotateX(66deg)] [transform-style:preserve-3d]">
+          <div className="h-[520px] w-[520px] rounded-full border border-dashed border-primary-500/20" />
+          <div className="absolute inset-10 rounded-full border border-primary-500/10" />
+        </div>
       </Parallax>
 
       {/* 光線：conic 漸層光圈在卡片後方緩慢旋轉 */}
@@ -66,7 +72,7 @@ export default function Skills() {
 
         <div
           ref={ref}
-          className="glass mx-auto mt-12 grid max-w-4xl gap-x-10 gap-y-4 rounded-glass p-7 sm:grid-cols-2 sm:p-10"
+          className="glass mx-auto mt-12 grid max-w-4xl gap-x-10 gap-y-4 rounded-glass p-7 [perspective:1000px] sm:grid-cols-2 sm:p-10"
         >
           {skills.map((skill) => (
             <div

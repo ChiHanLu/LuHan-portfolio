@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Reveal } from "@/components/ui/Reveal";
+import { Reveal3D } from "@/components/ui/Reveal3D";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Parallax } from "@/components/ui/Parallax";
 
@@ -106,14 +107,15 @@ export default function About() {
           </Reveal>
 
           <Parallax speed={-40}>
-            <Reveal className="grid grid-cols-1 gap-4 sm:grid-cols-2" stagger={0.1}>
+            {/* 3D 轉場：卡片從側邊翻入 */}
+            <Reveal3D className="grid grid-cols-1 gap-4 sm:grid-cols-2" rotateY={-55} stagger={0.12}>
               {highlights.map((h) => (
                 <GlassCard key={h.k} className="p-6">
                   <div className="font-mono text-xs uppercase tracking-widest text-primary-400">{h.k}</div>
                   <div className="mt-2 text-base font-medium text-white">{h.v}</div>
                 </GlassCard>
               ))}
-            </Reveal>
+            </Reveal3D>
           </Parallax>
         </div>
       </div>

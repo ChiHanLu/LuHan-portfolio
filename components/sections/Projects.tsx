@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Button } from "@/components/ui/Button";
-import { Reveal } from "@/components/ui/Reveal";
+import { Reveal3D } from "@/components/ui/Reveal3D";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Parallax } from "@/components/ui/Parallax";
 
@@ -99,14 +99,15 @@ export default function Projects() {
       <div className="god-rays z-0" aria-hidden />
       <div className="container relative z-10">
         <Parallax speed={-50}>
-          <Reveal className="text-center">
+          {/* 3D 轉場：標題群組由下往上翻入 */}
+          <Reveal3D className="text-center" rotateX={40} stagger={0.12}>
             <h2 className="font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
               精選作品
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-gray-400">
               從全端系統、AI 工具到跨平台 App，每個作品都承載著解決實際問題的思考。
             </p>
-          </Reveal>
+          </Reveal3D>
         </Parallax>
       </div>
 
@@ -114,7 +115,7 @@ export default function Projects() {
       <div ref={pinRef} className="relative mt-12 md:mt-16 md:h-screen md:overflow-hidden">
         <div
           ref={trackRef}
-          className="container grid grid-cols-1 gap-6 sm:grid-cols-2 md:flex md:h-full md:w-max md:max-w-none md:items-center md:gap-8 md:px-16"
+          className="container grid grid-cols-1 gap-6 [perspective:1400px] sm:grid-cols-2 md:flex md:h-full md:w-max md:max-w-none md:items-center md:gap-8 md:px-16"
         >
           {projects.map((project, idx) => (
             <GlassCard
